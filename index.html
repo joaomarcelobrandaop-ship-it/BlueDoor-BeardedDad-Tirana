@@ -3,19 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- MVP de prospecção: fora do Google (regra 3). No site de quem fechou, o
+     montar_site.py tira esta linha sozinho (PROSPECCAO = False) -->
 <meta name="robots" content="noindex">
-<title>Blue Door and The Bearded Dad · Hostels in Tirana</title>
-<meta name="description" content="Two hostels in Tirana with the same owners: the Blue Door, near the New Bazaar, and The Bearded Dad, off Zogu I Boulevard. Ask for a bed on WhatsApp.">
-<meta name="theme-color" content="#F2C744">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23F2C744'/%3E%3Crect x='11' y='8' width='10' height='18' rx='1' fill='%230A4FD1'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#1A1613">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231A1613'/%3E%3Crect x='11' y='8' width='10' height='18' rx='1' fill='%230A4FD1'/%3E%3C/svg%3E">
 <link rel="preload" href="fontes/archivo-400-900.woff2" as="font" type="font/woff2" crossorigin>
+<meta property="og:site_name" content="Blue Door and The Bearded Dad, hostels in Tirana">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_GB">
 <script>
 /* ?foto=1: modo das capturas (montar_site.py). Cada movimento já nasce no fim. */
 if (new URLSearchParams(location.search).has('foto')) document.documentElement.classList.add('foto-final');
 </script>
 <style>
 /* SITE DO GRUPO: Blue Door + The Bearded Dad (Tirana). MVP de prospecção, ciclo A.
-   Base: o protótipo 4 da 2ª rodada (o guia de frases amarelo com o painel das
+   Base: o protótipo 4 da 2ª rodada (o guia de frases com o painel das
    duas casas), refeito em 27/10/2026 com o que a pesquisa de mercado pede
    (0-Metodo-e-Modelos/nichos/manual-mercado-hospedagem.md, seções 10, 12 e 13):
    - foto e datas na primeira tela, e o pedido já escrito para o WhatsApp;
@@ -29,12 +32,19 @@ if (new URLSearchParams(location.search).has('foto')) document.documentElement.c
    está no começo do script). Editar este arquivo, nunca o index.html gerado. */
 @font-face{font-family:'Archivo';font-style:normal;font-weight:400 900;font-display:swap;src:url(fontes/archivo-400-900.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 @font-face{font-family:'Martian Mono';font-style:normal;font-weight:400 800;font-display:swap;src:url(fontes/martian-mono-400-800.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
-:root{--amarelo:#F2C744;--tinta:#17181A;--azul:#0A4FD1;--creme:#EDE6D3;
-  --painel:#0F1012;--placa:#1C1E21;--letra:#F1EFE8;--cinza:#9EA2A8}
+/* PALETA (28/10/2026, pedido do João: "2"), seguindo a pesquisa de referências
+   (referencias/sites-de-referencia/01-visual-e-identidade.md):
+   - as cores saem das fotos (KEX): noite = o marrom do jantar e do café,
+     jardim = o verde do portão, caramelo = a luz da sala de jantar;
+   - UMA cor forte só (Celica): o azul da porta;
+   - o amarelo das paredes fica pequeno, só onde o dedo precisa ir (botões e o
+     selo do prêmio), para não virar a cara do Trip'n'Hostel. */
+:root{--amarelo:#F2C744;--noite:#1A1613;--jardim:#1E2A20;--azul:#0A4FD1;--caramelo:#D9AA60;--creme:#EFE5D3;
+  --tinta:#17181A;--painel:#100D0B;--placa:#26201B;--letra:#F1EBE0;--cinza:#A9A096}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 html,body{margin:0}
-body{background:var(--tinta);color:var(--creme);font:400 18px/1.6 "Archivo",system-ui,sans-serif;overflow-x:clip}
+body{background:var(--noite);color:var(--creme);font:400 18px/1.6 "Archivo",system-ui,sans-serif;overflow-x:clip}
 img{max-width:100%;display:block}
 picture{display:block}
 button,input{font:inherit}
@@ -43,20 +53,27 @@ button,input{font:inherit}
 .foto-final *,.foto-final *::after{animation-duration:1ms!important;animation-delay:0s!important;transition-duration:1ms!important;transition-delay:0s!important}
 
 /* pares de cor por seção: fundo, texto, título, botão e foco sempre juntos
-   (memória "cor nunca sozinha"). O foco muda de cor no amarelo, senão some. */
-.p-amarelo{--fundo:var(--amarelo);--texto:#17181A;--texto2:#3B3320;--titulo:#17181A;--btn-fundo:#17181A;--btn-texto:#F2C744;--foco:#17181A}
-.p-tinta{--fundo:var(--tinta);--texto:#EDE6D3;--texto2:#C9C3B0;--titulo:var(--amarelo);--btn-fundo:var(--amarelo);--btn-texto:#17181A;--foco:var(--amarelo)}
-.p-azul{--fundo:var(--azul);--texto:#FFFFFF;--texto2:#DCE6FF;--titulo:var(--amarelo);--btn-fundo:var(--amarelo);--btn-texto:#17181A;--foco:var(--amarelo)}
+   (memória "cor nunca sozinha"). Os botões amarelos levam texto escuro. */
+.p-noite{--fundo:var(--noite);--texto:var(--creme);--texto2:#C2B6A3;--titulo:var(--creme);--acento:var(--caramelo);--btn-fundo:var(--amarelo);--btn-texto:#17181A;--foco:var(--amarelo)}
+.p-jardim{--fundo:var(--jardim);--texto:#ECE6D6;--texto2:#BFC0AC;--titulo:#ECE6D6;--acento:var(--caramelo);--btn-fundo:var(--amarelo);--btn-texto:#17181A;--foco:var(--amarelo)}
+.p-azul{--fundo:var(--azul);--texto:#FFFFFF;--texto2:#DCE6FF;--titulo:#FFFFFF;--acento:#BFD3FF;--btn-fundo:var(--amarelo);--btn-texto:#17181A;--foco:var(--amarelo)}
 .palavra{background:var(--fundo);color:var(--texto)}
 :focus-visible{outline:3px solid var(--foco,#F2C744);outline-offset:2px}
-.pular{position:absolute;left:12px;top:-80px;z-index:60;display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:4px;background:#17181A;color:#F2C744;font-weight:700;text-decoration:none}
+.pular{position:absolute;left:12px;top:-80px;z-index:60;display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:4px;background:var(--amarelo);color:#17181A;font-weight:700;text-decoration:none}
 .pular:focus{top:12px}
 
 @keyframes sobe{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @keyframes aparece{from{opacity:0}to{opacity:1}}
 
 /* ---------------------------------------------------------------- cabeçalho */
-.topo{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:1240px;margin:0 auto;padding:12px 20px}
+.topo{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 12px;max-width:1240px;margin:0 auto;padding:12px 20px 4px}
+/* menu: no celular, uma linha embaixo da marca; no computador, entre a marca e os botões */
+.topo .marca{flex:1 1 0;min-width:0}
+.menu{display:flex;flex-wrap:wrap;gap:0 20px;flex-basis:100%;margin-left:-2px}
+.menu a{display:inline-flex;align-items:center;min-height:44px;color:var(--texto);font-weight:600;font-size:16px;text-decoration:none;text-underline-offset:5px}
+.menu a:hover{text-decoration:underline}
+.menu a[aria-current="page"]{text-decoration:underline;text-decoration-color:var(--amarelo);text-decoration-thickness:3px}
+@media(min-width:960px){.topo{flex-wrap:nowrap;padding-bottom:12px}.menu{flex-basis:auto;order:1;margin:0 auto 0 32px;gap:0 28px}.acoes{order:2}}
 .marca{display:flex;flex-direction:column;justify-content:center;min-height:44px;color:inherit;text-decoration:none}
 .marca b{display:flex;flex-wrap:wrap;column-gap:.3em;font:800 19px/1.1 "Archivo",system-ui,sans-serif;font-variation-settings:"wdth" 112}
 .marca b span{white-space:nowrap}
@@ -105,21 +122,21 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 .par-fotos img{width:100%;height:auto;border-radius:4px}
 
 /* o painel das duas casas virou o pedido: datas, casa e botão */
-.painel{--foco:var(--amarelo);background:var(--painel);color:var(--letra);border-radius:14px;padding:18px 16px 20px;color-scheme:dark;container-type:inline-size}
+.painel{--foco:var(--amarelo);background:var(--painel);color:var(--letra);border-radius:14px;box-shadow:inset 0 0 0 1px #3A322A;padding:18px 16px 20px;color-scheme:dark;container-type:inline-size}
 @media(min-width:600px){.painel{padding:22px 22px 24px}}
 .campos{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px}
 @media(max-width:359px){.campos{grid-template-columns:1fr 1fr}.campo-data{grid-column:1 / -1}}
 .campo{display:flex;flex-direction:column;gap:6px;min-width:0}
 .campo label,.casas-painel legend{font-size:15px;line-height:1.3;color:var(--cinza)}
 .campo input{display:block;width:100%;min-width:0;min-height:50px;padding:0 12px;border:0;border-radius:6px;background:var(--placa);color:var(--letra);
-  font:500 16px/50px "Archivo",system-ui,sans-serif;box-shadow:inset 0 0 0 1px #6B7078}
+  font:500 16px/50px "Archivo",system-ui,sans-serif;box-shadow:inset 0 0 0 1px #6E655B}
 .campo-data input{padding:0 10px}
 .campo input:focus-visible{outline:3px solid var(--amarelo);outline-offset:1px}
 .casas-painel{margin:18px 0 0;padding:0;border:0;min-width:0}
 .casas-painel legend{padding:0;margin-bottom:6px}
 .linha{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px 12px;align-items:start;padding:12px 10px;border-radius:8px;cursor:pointer}
 .linha + .linha{margin-top:4px}
-.linha:has(input:checked){background:#191B1E;box-shadow:inset 0 0 0 2px var(--amarelo)}
+.linha:has(input:checked){background:#1E1915;box-shadow:inset 0 0 0 2px var(--amarelo)}
 /* a bolinha nativa some no fundo preto: desenhada aqui, com borda clara */
 .linha input{appearance:none;-webkit-appearance:none;display:grid;place-items:center;width:22px;height:22px;margin:3px 0 0;border:2px solid var(--cinza);border-radius:50%;background:transparent;cursor:pointer}
 .linha input::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--amarelo);transform:scale(0)}
@@ -139,8 +156,8 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 /* a letra acompanha a largura do painel (cqi), não a da tela: assim o nome
    da casa cabe numa linha na coluna do computador */
 .dado .flap{font-size:clamp(15px,3.4cqi,21px)}
-.amarelo .flap{color:var(--amarelo)}
-.vantagem{margin:16px 0 0;padding:12px 14px;border-radius:8px;background:#26292D;color:var(--letra);font-weight:600}
+.amarelo .flap{color:var(--caramelo)}
+.vantagem{margin:16px 0 0;padding:12px 14px;border-radius:8px;background:#2A231D;color:var(--letra);font-weight:600}
 .btn-painel{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:54px;margin-top:16px;padding:0 20px;border-radius:6px;background:var(--amarelo);color:#0F1012;
   font:700 15px/1.2 "Martian Mono",ui-monospace,monospace;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;transition:transform 160ms cubic-bezier(.23,1,.32,1)}
 .btn-painel:active{transform:scale(.97)}
@@ -149,11 +166,12 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 .painel .link{color:var(--letra);min-height:44px}
 
 /* ---------------------------------------------------------------- 2 · This week */
-.semana{display:grid;gap:16px;margin:26px 0 0;max-width:46ch}
-.semana div{display:grid;gap:2px}
-@media(min-width:600px){.semana div{grid-template-columns:9em minmax(0,1fr);gap:18px}}
-.semana dt{font:600 15px/1.6 "Martian Mono",ui-monospace,monospace;color:var(--amarelo)}
-.semana dd{margin:0;font-size:18px}
+.semana,.fatos{display:grid;gap:16px;margin:26px 0 0;max-width:52ch}
+.semana div,.fatos div{display:grid;gap:2px}
+@media(min-width:600px){.semana div,.fatos div{grid-template-columns:9em minmax(0,1fr);gap:18px}}
+.semana dt,.fatos dt{font:600 15px/1.6 "Martian Mono",ui-monospace,monospace;color:var(--acento)}
+.semana dd,.fatos dd{margin:0;font-size:18px}
+.link-texto{color:inherit;font-weight:600;text-underline-offset:3px}
 
 /* ---------------------------------------------------------------- 3 · Friends */
 .citacoes{display:grid;gap:34px;margin-top:36px}
@@ -161,8 +179,8 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 .citacao{margin:0}
 .citacao blockquote{margin:0}
 .citacao blockquote p{margin:0;font:650 clamp(20px,2.2vw,27px)/1.35 "Archivo",system-ui,sans-serif;text-wrap:pretty}
-.citacao blockquote p::before{content:"\201C";color:var(--amarelo)}
-.citacao blockquote p::after{content:"\201D";color:var(--amarelo)}
+.citacao blockquote p::before{content:"\201C";color:var(--acento)}
+.citacao blockquote p::after{content:"\201D";color:var(--acento)}
 .citacao figcaption{margin-top:10px;font-size:15px;color:var(--texto2)}
 .citacao figcaption b{color:var(--texto);font-weight:700}
 
@@ -176,6 +194,12 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 .quartos li{margin-bottom:6px}
 .quartos .preco{font-weight:700}
 .casa .link{margin-top:6px}
+.casa-link{display:inline-block;padding:6px 0;color:inherit;text-decoration:none}
+.casa-link:hover{text-decoration:underline;text-underline-offset:4px}
+.resumo-quartos{margin-top:12px!important}
+.casa-acoes{display:flex;flex-wrap:wrap;gap:0 24px;margin-top:6px}
+/* o prêmio é o único selo amarelo do site, sempre com o ano (CLAUDE.md do cliente) */
+.selo{display:inline-flex;align-items:center;min-height:32px;margin:16px 0 0;padding:4px 14px;border-radius:999px;background:var(--amarelo);color:#17181A;font-weight:700;font-size:15px;line-height:1.3}
 
 /* ---------------------------------------------------------------- 5 · Group, 6 · Bus */
 .foto-grupo{max-width:440px}
@@ -187,9 +211,10 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 /* o fundo do rodapé tem espaço para o WhatsApp flutuante não cobrir os últimos links (auditoria de 27/10) */
 .rodape{max-width:1240px;margin:0 auto;padding:0 20px 104px;font-size:15px;color:var(--texto2)}
 .rodape p{margin:0 0 8px}
-.rodape b{color:var(--amarelo);font-weight:700}
+.rodape b{color:var(--acento);font-weight:700}
 .rodape a{color:var(--texto);text-underline-offset:3px}
 .rodape .link{min-height:44px;margin-right:18px;font-weight:500}
+.rodape-links{display:flex;flex-wrap:wrap}
 
 /* WhatsApp sempre à mão (regra 4); some enquanto o pedido do topo está na tela */
 .flutua{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:50;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;
@@ -202,24 +227,116 @@ h2{font-size:clamp(48px,7.4vw,104px)}
   .heroi h1,.heroi .dica{animation:none}
   .btn,.btn-painel{transition:none}
 }
+
+/* ================================================================ subpáginas
+   Blue Door, The Bearded Dad e Things to do: o mesmo vocabulário da inicial
+   (seções de cor chapada, título grande), com texto mais longo e mais fotos. */
+.migalha{margin:0 0 18px;font-size:15px;color:var(--texto2)}
+.migalha a{display:inline-flex;align-items:center;min-height:44px;color:var(--texto);text-underline-offset:3px}
+.pg-heroi .palavra-in{padding-top:8px}
+.pg-heroi h1{font-size:clamp(46px,7vw,104px)}
+.intro{margin:18px 0 0;max-width:48ch;font-size:19px}
+.intro + .intro{margin-top:12px}
+/* topo das subpáginas no celular (auditoria de 28/10/2026, P2): quem chega
+   pelo Google vê nome, prova, foto e botão antes do texto. Só muda a ordem
+   visual; a foto não recebe foco, então a ordem do teclado continua igual.
+   No computador fica como estava: texto à esquerda, foto à direita. */
+@media(max-width:959px){
+  .pg-heroi .palavra-in{display:flex;flex-direction:column;align-items:flex-start;gap:0}
+  .pg-heroi .foto{align-self:stretch}
+  .pg-heroi .palavra-txt{display:contents}
+  .pg-heroi .foto{order:1;margin-top:18px}
+  .pg-heroi .foto img{aspect-ratio:16/10;object-fit:cover}
+  .pg-heroi .ctas{order:2;margin-top:18px}
+  .pg-heroi .intro{order:3}
+  .pg-heroi .ctas + .intro,.pg-heroi .intro:first-of-type{margin-top:22px}
+  .pg-heroi .prova{order:4}
+}
+.palavra-txt > .ctas:first-child{margin-top:0}
+/* bloco de quarto: fotos e texto lado a lado no computador */
+.quartos-lista{display:grid;gap:56px;margin-top:40px}
+.quarto{display:grid;gap:20px;align-items:start}
+@media(min-width:880px){.quarto{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px}}
+.quarto h3,.bloco h3{font:800 clamp(26px,3vw,34px)/1.1 "Archivo",system-ui,sans-serif;font-variation-settings:"wdth" 112;margin:0 0 10px;color:var(--titulo)}
+.quarto p,.bloco p{margin:0 0 10px;max-width:50ch}
+.quarto .preco{font-weight:700}
+.quarto-txt .btn{margin-top:10px}
+.fotos-quarto{display:grid;gap:8px}
+.fotos-quarto .par-fotos{margin:0}
+.fotos-quarto.par-fotos{display:flex}   /* o par fica lado a lado, mesmo dentro da grade */
+.uma-foto img{width:100%;height:auto;border-radius:4px}
+.blocos{display:grid;gap:44px;margin-top:36px}
+@media(min-width:800px){.blocos{grid-template-columns:1fr 1fr;gap:48px 56px}}
+.bloco picture{margin-bottom:16px}
+.bloco img{width:100%;height:auto;border-radius:4px}
+/* perguntas: texto visível, que é o que o Google e a IA leem (pesquisa 05) */
+.perguntas{display:grid;gap:22px;margin:30px 0 0;max-width:62ch}
+.perguntas dt{font-weight:700;font-size:19px;color:var(--titulo)}
+.perguntas dd{margin:4px 0 0}
+/* PALETAS VIVAS DAS CASAS (28/10/2026, pedido do João): a inicial e os
+   passeios são do grupo e ficam calmos; cada casa usa as cores mais vivas das
+   próprias fotos, com UMA cor forte por página (pesquisa, Celica).
+   Blue Door: o azul da porta e o da cozinha, laranja das cápsulas em detalhe.
+   Bearded Dad: o amarelo dos pneus do jardim (uma seção só, para não virar a
+   cara do Trip'n'Hostel) e o verde-petróleo das listras dos dorms. */
+.p-royal{--fundo:var(--azul);--texto:#FFFFFF;--texto2:#DCE6FF;--titulo:#FFFFFF;--acento:#FFD6B8;--btn-fundo:var(--amarelo);--btn-texto:#17181A;--foco:var(--amarelo)}
+.p-marinho{--fundo:#10274B;--texto:#EEF2FA;--texto2:#C3CCE0;--titulo:#EEF2FA;--acento:#FF9F66;--btn-fundo:var(--amarelo);--btn-texto:#17181A;--foco:var(--amarelo)}
+.p-petroleo{--fundo:#1D5357;--texto:#EEF5F4;--texto2:#C7DCD9;--titulo:#EEF5F4;--acento:var(--amarelo);--btn-fundo:var(--amarelo);--btn-texto:#17181A;--foco:var(--amarelo)}
+.p-pneu{--fundo:var(--amarelo);--texto:#17181A;--texto2:#3B3320;--titulo:#17181A;--acento:#5A3A10;--btn-fundo:#17181A;--btn-texto:#F2C744;--foco:#17181A}
+.p-pneu .selo{background:#17181A;color:var(--amarelo)}
+.h3-solto{margin-top:26px!important}
+.creditos{margin:28px 0 0;font-size:14px;line-height:1.5;color:var(--texto2);max-width:70ch}
+.creditos a{color:var(--texto);text-underline-offset:3px}
+
 </style>
+
+<title>Blue Door and The Bearded Dad · Two hostels in Tirana, Albania</title>
+<meta name="description" content="Two hostels in Tirana with the same owners: the Blue Door, 9 minutes from the New Bazaar, and The Bearded Dad, 12 minutes from Skanderbeg Square. Free breakfast in both. Ask for a bed on WhatsApp.">
+<link rel="canonical" href="https://bluedoor-beardeddad-tirana.vercel.app/">
+<meta property="og:title" content="Blue Door and The Bearded Dad · Two hostels in Tirana">
+<meta property="og:description" content="Two hostels in Tirana with the same owners, 21 minutes apart on foot. Free breakfast in both and a dorm for women only.">
+<meta property="og:url" content="https://bluedoor-beardeddad-tirana.vercel.app/">
+<meta property="og:image" content="https://bluedoor-beardeddad-tirana.vercel.app/img/bd-portao-1200.webp">
+<!-- dados estruturados: o grupo e as duas casas. Cada casa tem a ficha
+     completa na própria página; aqui só o vínculo (pesquisa 05, seção 3.3) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://bluedoor-beardeddad-tirana.vercel.app/#grupo",
+  "name": "Blue Door and The Bearded Dad",
+  "url": "https://bluedoor-beardeddad-tirana.vercel.app/",
+  "telephone": "+355695539156",
+  "subOrganization": [
+    {"@type": "Hostel", "@id": "https://bluedoor-beardeddad-tirana.vercel.app/blue-door/#hostel", "name": "Blue Door Hostel", "url": "https://bluedoor-beardeddad-tirana.vercel.app/blue-door/"},
+    {"@type": "Hostel", "@id": "https://bluedoor-beardeddad-tirana.vercel.app/the-bearded-dad/#hostel", "name": "The Bearded Dad Hostel", "url": "https://bluedoor-beardeddad-tirana.vercel.app/the-bearded-dad/"}
+  ]
+}
+</script>
 </head>
 <body>
 <a class="pular" href="#reserva">Skip to booking</a>
 
-<div class="palavra p-amarelo">
+<div class="palavra p-noite">
   <header class="topo">
-    <a class="marca" href="#"><b><span>Blue Door ·</span><span>The Bearded Dad</span></b><small>Hostels in Tirana</small></a>
+    <a class="marca" href="" aria-current="page"><b><span>Blue Door ·</span><span>The Bearded Dad</span></b><small>Hostels in Tirana</small></a>
     <div class="acoes">
       <a class="btn btn-curto" data-msg="topo" href="https://wa.me/355695539156" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2Z"/></svg><span class="rotulo">WhatsApp</span></a>
       <a class="btn btn-s btn-curto so-largo" data-viber href="viber://chat?number=%2B355695539156">Viber</a>
     </div>
+    <!-- cada link leva a uma página própria (SEO: uma página por assunto, com título e texto dela) -->
+    <nav class="menu" aria-label="Main">
+      <a href="blue-door/">Blue Door</a>
+      <a href="the-bearded-dad/">The Bearded Dad</a>
+      <a href="things-to-do/">Things to do</a>
+    </nav>
   </header>
 </div>
 
+
 <main>
   <!-- 1 · Welcome: foto real e datas na primeira tela (manual, seção 6) -->
-  <section class="palavra p-amarelo heroi" aria-labelledby="t-welcome">
+  <section class="palavra p-noite heroi" aria-labelledby="t-welcome">
     <div class="palavra-in">
       <div class="heroi-txt">
         <h1 id="t-welcome">Welcome.</h1>
@@ -232,7 +349,7 @@ h2{font-size:clamp(48px,7.4vw,104px)}
       </div>
 
       <div class="heroi-pedido">
-        <form class="painel" id="reserva" aria-labelledby="t-pedido" tabindex="-1">
+        <form class="painel" id="reserva" aria-labelledby="t-pedido" tabindex="-1" data-sem-flutua>
           <h2 class="sr" id="t-pedido">Ask for a bed</h2>
           <div class="campos">
             <div class="campo campo-data"><label for="chegada">Arrival</label><input type="date" id="chegada" name="chegada"></div>
@@ -281,7 +398,7 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 
   <!-- 2 · This week: a turma vende antes da cama (manual, seção 10). Preço de
        evento não entra (CLAUDE.md do cliente): o botão pergunta. -->
-  <section class="palavra p-tinta" id="semana" aria-labelledby="t-semana">
+  <section class="palavra p-jardim" id="semana" aria-labelledby="t-semana">
     <div class="palavra-in">
       <div class="palavra-txt">
         <h2 id="t-semana">This week.</h2>
@@ -292,7 +409,7 @@ h2{font-size:clamp(48px,7.4vw,104px)}
           <div><dt>Evenings</dt><dd>Family Dinner at The Bearded Dad, every night. At the Blue Door, a home-cooked Albanian dinner, always with a vegetarian option.</dd></div>
           <div><dt>Thursday</dt><dd>Barbecue for guests of both houses.</dd></div>
           <div><dt>Saturday</dt><dd>Cooking class at the Blue Door: <span lang="sq">byrek</span>, <span lang="sq">tavë dheu</span>, wine and raki.</dd></div>
-          <div><dt>Also</dt><dd>A pub crawl, a hike to Lake Bovilla and a three-day trip to the Alps.</dd></div>
+          <div><dt>Also</dt><dd>A pub crawl, a hike to Lake Bovilla and a three-day trip to the Alps. <a class="link-texto" href="things-to-do/">More things to do in Tirana</a></dd></div>
         </dl>
         <a class="btn" data-msg="semana" href="https://wa.me/355695539156" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2Z"/></svg><span>Ask what's on this week</span></a>
       </div>
@@ -333,39 +450,37 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 
   <!-- 4 · Two houses: coletivo e privado lado a lado (manual, seção 10). O
        preço só aparece quando o dono passar (CONFIG.precos, pauta 3 e 9). -->
-  <section class="palavra p-amarelo" id="casas" aria-labelledby="t-casas">
+  <section class="palavra p-noite" id="casas" aria-labelledby="t-casas">
     <div class="palavra-in uma">
       <div class="palavra-txt">
         <h2 id="t-casas">Two houses.</h2>
         <p class="dica">In Albanian: <b lang="sq">Dy shtëpi</b> (<span class="diz">DÜ shtuh-PEE</span>)</p>
         <p class="traducao">Same owners, same WhatsApp. Pick the one that suits you.</p>
         <div class="casas">
+          <!-- a inicial aponta, a subpágina conta (memória "multipágina de verdade"):
+               aqui só o resumo; os quartos, as fotos e as perguntas ficam na página da casa -->
           <article class="casa">
             <picture style="--r:1.3333"><source type="image/avif" srcset="img/bd-capsulas-480.avif 480w, img/bd-capsulas-800.avif 800w, img/bd-capsulas-1200.avif 1200w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><source type="image/webp" srcset="img/bd-capsulas-480.webp 480w, img/bd-capsulas-800.webp 800w, img/bd-capsulas-1200.webp 1200w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><img src="img/bd-capsulas-800.webp" width="800" height="600" alt="The capsule dorm at the Blue Door: a row of beds behind orange curtains" loading="lazy" decoding="async"></picture>
-            <h3>Blue Door</h3>
+            <h3><a class="casa-link" href="blue-door/">Blue Door</a></h3>
             <p>An old house 9 minutes on foot from the New Bazaar, with a garden, a wood stove in the living room and a terrace on the roof.</p>
-            <ul class="quartos">
-              <li data-quarto="bd-capsula">Capsule beds, each with a curtain and a locker</li>
-              <li data-quarto="bd-misto">Mixed dorms of 6 and 8 beds; the 8-bed one has its own bathroom</li>
-              <li data-quarto="bd-feminino">A dorm for women only, in the attic, with a terrace</li>
-              <li data-quarto="bd-privado">Two private rooms for one person, with the bathroom outside the room</li>
-            </ul>
+            <p class="resumo-quartos">Beds: capsules, mixed dorms of 6 and 8, a women-only dorm in the attic and two single rooms.</p>
             <p class="prova">9.4 on Hostelworld (903 reviews) · 4.7 on Google (268 reviews) · checked on 22 October 2026</p>
-            <a class="link" href="#reserva" data-casa="bd">Check dates for the Blue Door <span aria-hidden="true">↑</span></a>
+            <div class="casa-acoes">
+              <a class="link" href="blue-door/">Rooms and photos of the Blue Door <span aria-hidden="true">→</span></a>
+              <a class="link" href="#reserva" data-casa="bd">Check dates <span aria-hidden="true">↑</span></a>
+            </div>
           </article>
           <article class="casa">
             <picture style="--r:1.3334"><source type="image/avif" srcset="img/bb-dorm-480.avif 480w, img/bb-dorm-800.avif 800w, img/bb-dorm-1200.avif 1200w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><source type="image/webp" srcset="img/bb-dorm-480.webp 480w, img/bb-dorm-800.webp 800w, img/bb-dorm-1200.webp 1200w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><img src="img/bb-dorm-800.webp" width="800" height="600" alt="A dorm at The Bearded Dad: two bunk beds with curtains and numbered lockers" loading="lazy" decoding="async"></picture>
-            <h3>The Bearded Dad</h3>
-            <p>A two-storey villa on a quiet street off Zogu I Boulevard, 12 minutes on foot from Skanderbeg Square. The beds are in a few buildings: the main house, a dorm 20 metres away, a new villa 100 metres away and caravans in the yard.</p>
-            <ul class="quartos">
-              <li data-quarto="bb-misto">Mixed dorms of 5, 6 and 8 beds; the 5-bed one, in the new villa, has its own bathroom</li>
-              <li data-quarto="bb-feminino">A dorm for women only, with its own bathroom, in the new villa</li>
-              <li data-quarto="bb-privado">A private room for three, with the bathroom outside the room</li>
-              <li data-quarto="bb-caravana">Private caravans in the yard</li>
-              <li data-quarto="bb-apartamento">Apartments for two or three</li>
-            </ul>
-            <p class="prova">9.5 on Hostelworld (731 reviews) · 4.8 on Google (197 reviews) · HOSCAR 2026: 3rd in Albania · checked on 22 October 2026</p>
-            <a class="link" href="#reserva" data-casa="bb">Check dates for The Bearded Dad <span aria-hidden="true">↑</span></a>
+            <h3><a class="casa-link" href="the-bearded-dad/">The Bearded Dad</a></h3>
+            <p>A two-storey villa with a garden on a quiet street off Zogu I Boulevard, 12 minutes on foot from Skanderbeg Square. Guests share a kitchen, and some beds are in a new villa 100 metres away.</p>
+            <p class="resumo-quartos">Beds: mixed dorms of 5 to 8, a women-only dorm, a private room for three, caravans in the yard and apartments.</p>
+            <p class="selo">HOSCAR 2026: 3rd in Albania</p>
+            <p class="prova">9.5 on Hostelworld (731 reviews) · 4.8 on Google (197 reviews) · checked on 22 October 2026</p>
+            <div class="casa-acoes">
+              <a class="link" href="the-bearded-dad/">Rooms and photos of The Bearded Dad <span aria-hidden="true">→</span></a>
+              <a class="link" href="#reserva" data-casa="bb">Check dates <span aria-hidden="true">↑</span></a>
+            </div>
           </article>
         </div>
       </div>
@@ -374,7 +489,7 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 
   <!-- 5 · Grupos: canal próprio nas redes de hostel (manual, seções 12 e 13).
        Regras de grupo: pauta (pergunta nova de 27/10). -->
-  <section class="palavra p-tinta" id="grupos" aria-labelledby="t-grupo">
+  <section class="palavra p-jardim" id="grupos" aria-labelledby="t-grupo">
     <div class="palavra-in">
       <div class="palavra-txt">
         <h2 id="t-grupo">We're a group.</h2>
@@ -407,7 +522,7 @@ h2{font-size:clamp(48px,7.4vw,104px)}
   </section>
 
   <!-- 7 · See you -->
-  <section class="palavra p-tinta" id="ate-logo" aria-labelledby="t-ate">
+  <section class="palavra p-noite" id="ate-logo" aria-labelledby="t-ate">
     <div class="palavra-in uma">
       <div class="palavra-txt">
         <h2 id="t-ate">See you!</h2>
@@ -422,16 +537,19 @@ h2{font-size:clamp(48px,7.4vw,104px)}
   </section>
 </main>
 
-<footer class="palavra p-tinta">
+<footer class="palavra p-noite">
   <div class="rodape">
     <p>Thank you, in Albanian: <b lang="sq">Faleminderit</b> (<span class="diz">fah-leh-meen-DEH-reet</span>).</p>
+    <!-- nome, endereço e telefone em TEXTO e iguais em todo lugar: o Google e a IA conferem (pesquisa 05, seção 4) -->
     <p>Blue Door Hostel, Rruga Shtjefën Gjeçovi 18 · The Bearded Dad Hostel, Rruga Hamid Shijaku, Vila 13 · Tirana, Albania</p>
     <p>WhatsApp and Viber: +355 69 553 9156</p>
-    <p><a class="link" href="https://www.instagram.com/thebluedoorhostel/" target="_blank" rel="noopener">Blue Door on Instagram</a><a class="link" href="https://www.instagram.com/beardeddadhostel/" target="_blank" rel="noopener">The Bearded Dad on Instagram</a></p>
+    <p class="rodape-links"><a class="link" href="blue-door/">Blue Door Hostel</a><a class="link" href="the-bearded-dad/">The Bearded Dad Hostel</a><a class="link" href="things-to-do/">Things to do in Tirana</a></p>
+    <p class="rodape-links"><a class="link" href="https://www.instagram.com/thebluedoorhostel/" target="_blank" rel="noopener">Blue Door on Instagram</a><a class="link" href="https://www.instagram.com/beardeddadhostel/" target="_blank" rel="noopener">The Bearded Dad on Instagram</a></p>
   </div>
 </footer>
 
 <a class="flutua" data-msg="topo" href="https://wa.me/355695539156" target="_blank" rel="noopener" aria-label="Message us on WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2Z"/></svg></a>
+
 
 <script>
 /* ============================================================ CONFIG
@@ -447,7 +565,26 @@ const CONFIG = {
     semana: "Hi! What's on at your hostels this week?",
     grupo: "Hi! We're a group of … people, arriving on … for … nights. Can you host us?",
     traslado: "Hi! Can you pick me up at the airport? I land on … at …",
-    datas: "Hi! I'd like to stay with you in Tirana. My dates are: "
+    datas: "Hi! I'd like to stay with you in Tirana. My dates are: ",
+    // página do Blue Door
+    bd: "Hi Blue Door! Do you have a bed for me? I'm arriving on … for … nights.",
+    "bd-capsula": "Hi Blue Door! Is there a capsule bed free? I'm arriving on … for … nights.",
+    "bd-misto": "Hi Blue Door! Is there a bed in a mixed dorm? I'm arriving on … for … nights.",
+    "bd-feminino": "Hi Blue Door! Is there a bed in the women-only dorm? I'm arriving on … for … nights.",
+    "bd-privado": "Hi Blue Door! Is a private single room free? I'm arriving on … for … nights.",
+    "bd-jantar": "Hi Blue Door! Can I join the home-cooked dinner tonight?",
+    // página do Bearded Dad
+    bb: "Hi Bearded Dad! Do you have a bed for me? I'm arriving on … for … nights.",
+    "bb-misto": "Hi Bearded Dad! Is there a bed in a dorm in the main house? I'm arriving on … for … nights.",
+    "bb-villa": "Hi Bearded Dad! Is there a bed in the new villa? I'm arriving on … for … nights.",
+    "bb-caravana": "Hi Bearded Dad! Is a caravan free? We're … people, arriving on … for … nights.",
+    "bb-apartamento": "Hi Bearded Dad! Is an apartment free? We're … people, arriving on … for … nights.",
+    "bb-jantar": "Hi Bearded Dad! Can I join the Family Dinner tonight?",
+    // página dos passeios
+    passeios: "Hi! Which trips and tours are on this week?",
+    bovilla: "Hi! Is there a hike to Lake Bovilla this week? How can I join?",
+    citytour: "Hi Bearded Dad! When is the next free city tour?",
+    dajti: "Hi! How do I get to Bunk'Art 1 and the Dajti cable car from the hostel?"
   },
   // o pedido do topo começa com o nome da casa escolhida
   casas: {
@@ -482,6 +619,45 @@ const wa = msg => "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURICompo
 document.querySelectorAll('[data-msg]').forEach(a => { a.href = wa(CONFIG.mensagens[a.dataset.msg]); });
 document.querySelectorAll('[data-viber]').forEach(a => { a.href = "viber://chat?number=%2B" + CONFIG.viber; });
 
+/* preço e vantagem direta: só aparecem quando o CONFIG tiver o dado */
+document.querySelectorAll('[data-quarto]').forEach(li => {
+  const p = CONFIG.precos[li.dataset.quarto];
+  if (p) li.insertAdjacentHTML('beforeend', ' · <span class="preco">from €' + p + ' a night</span>');
+});
+document.querySelectorAll('.vantagem').forEach(v => {
+  if (!CONFIG.vantagemDireta) return;
+  v.textContent = CONFIG.vantagemDireta;
+  v.hidden = false;
+});
+
+/* WhatsApp flutuante: escondido enquanto o botão principal da página está na
+   tela (o pedido, na inicial; o botão do topo, nas outras) */
+const flutua = document.querySelector('.flutua');
+const principal = document.querySelector('[data-sem-flutua]');
+if (principal && 'IntersectionObserver' in window) new IntersectionObserver(([e]) => { flutua.hidden = e.isIntersecting; }).observe(principal);
+
+/* ?foto=1 (prints do montar_site.py): foto adiada sai em branco no print da
+   página inteira, então tudo carrega já */
+const modoFoto = document.documentElement.classList.contains('foto-final');
+if (modoFoto) document.querySelectorAll('picture img').forEach(img => { img.loading = 'eager'; img.decoding = 'sync'; });
+
+
+/* integrações: só com aceite registrado. O banner é do ciclo B; sem ele,
+   nada liga, mesmo com a chave preenchida. */
+const aceitou = () => { try { return localStorage.getItem('aceite-cookies') === 'sim'; } catch (e) { return false; } };
+if (INTEGRACOES.ga4 && aceitou()) {
+  document.head.appendChild(Object.assign(document.createElement('script'), { async: true, src: 'https://www.googletagmanager.com/gtag/js?id=' + INTEGRACOES.ga4 }));
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { dataLayer.push(arguments); };
+  gtag('js', new Date());
+  gtag('config', INTEGRACOES.ga4);
+}
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href^="https://wa.me"]');
+  if (window.gtag && a) gtag('event', 'clique_whatsapp', { secao: a.closest('section')?.id || 'topo' });
+});
+
+
 /* o pedido do topo: as datas, as pessoas e a casa viram a mensagem pronta.
    Nada é guardado: o texto vai no link e quem manda é o hóspede. */
 const form = document.getElementById('reserva');
@@ -511,6 +687,11 @@ form.addEventListener('keydown', e => {
 });
 montarPedido();
 
+/* vindo de outra página com ?casa=bd ou ?casa=bb, a casa já chega marcada */
+const casaPedida = new URLSearchParams(location.search).get('casa');
+const opcaoPedida = casaPedida && form.querySelector('input[name="casa"][value="' + casaPedida + '"]');
+if (opcaoPedida) { opcaoPedida.checked = true; montarPedido(); }
+
 /* "Check dates for..." nas casas: volta ao pedido com a casa já marcada */
 document.querySelectorAll('a[data-casa]').forEach(a => a.addEventListener('click', () => {
   const opcao = form.querySelector('input[name="casa"][value="' + a.dataset.casa + '"]');
@@ -518,26 +699,8 @@ document.querySelectorAll('a[data-casa]').forEach(a => a.addEventListener('click
   requestAnimationFrame(() => form.chegada.focus({ preventScroll: true }));
 }));
 
-/* preço e vantagem direta: só aparecem quando o CONFIG tiver o dado */
-document.querySelectorAll('[data-quarto]').forEach(li => {
-  const p = CONFIG.precos[li.dataset.quarto];
-  if (p) li.insertAdjacentHTML('beforeend', ' · <span class="preco">from €' + p + ' a night</span>');
-});
-if (CONFIG.vantagemDireta) {
-  const v = document.getElementById('vantagem');
-  v.textContent = CONFIG.vantagemDireta;
-  v.hidden = false;
-}
-
-/* WhatsApp flutuante: escondido enquanto o pedido do topo está na tela */
-const flutua = document.querySelector('.flutua');
-if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { flutua.hidden = e.isIntersecting; }).observe(form);
-
 /* as letras do painel giram e param, da esquerda para a direita, logo depois
    do "Welcome." e da dica. Com movimento reduzido, já nascem paradas. */
-const modoFoto = document.documentElement.classList.contains('foto-final');
-// no print da página inteira, foto adiada sai em branco: no modo captura, tudo carrega já
-if (modoFoto) document.querySelectorAll('picture img').forEach(img => { img.loading = 'eager'; img.decoding = 'sync'; });
 if (!modoFoto && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const LETRAS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.:';
   form.querySelectorAll('.flaps').forEach((el, linha) => {
@@ -552,21 +715,6 @@ if (!modoFoto && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     });
   });
 }
-
-/* integrações: só com aceite registrado. O banner é do ciclo B; sem ele,
-   nada liga, mesmo com a chave preenchida. */
-const aceitou = () => { try { return localStorage.getItem('aceite-cookies') === 'sim'; } catch (e) { return false; } };
-if (INTEGRACOES.ga4 && aceitou()) {
-  document.head.appendChild(Object.assign(document.createElement('script'), { async: true, src: 'https://www.googletagmanager.com/gtag/js?id=' + INTEGRACOES.ga4 }));
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function () { dataLayer.push(arguments); };
-  gtag('js', new Date());
-  gtag('config', INTEGRACOES.ga4);
-}
-document.addEventListener('click', e => {
-  const a = e.target.closest('a[href^="https://wa.me"]');
-  if (window.gtag && a) gtag('event', 'clique_whatsapp', { secao: a.closest('section')?.id || 'topo' });
-});
 </script>
 </body>
 </html>
