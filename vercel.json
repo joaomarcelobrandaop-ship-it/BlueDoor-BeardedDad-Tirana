@@ -1,0 +1,34 @@
+{
+  "redirects": [
+    {
+      "source": "/blue-door",
+      "destination": "/hostels/blue-door/",
+      "permanent": true
+    },
+    {
+      "source": "/blue-door/",
+      "destination": "/hostels/blue-door/",
+      "permanent": true
+    },
+    {
+      "source": "/the-bearded-dad",
+      "destination": "/hostels/the-bearded-dad/",
+      "permanent": true
+    },
+    {
+      "source": "/the-bearded-dad/",
+      "destination": "/hostels/the-bearded-dad/",
+      "permanent": true
+    },
+    {
+      "source": "/things-to-do",
+      "destination": "/tours/",
+      "permanent": true
+    },
+    {
+      "source": "/things-to-do/",
+      "destination": "/tours/",
+      "permanent": true
+    }
+  ]
+}

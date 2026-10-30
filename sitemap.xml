@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://bluedoor-beardeddad-tirana.vercel.app/</loc></url>
-  <url><loc>https://bluedoor-beardeddad-tirana.vercel.app/blue-door/</loc></url>
-  <url><loc>https://bluedoor-beardeddad-tirana.vercel.app/the-bearded-dad/</loc></url>
-  <url><loc>https://bluedoor-beardeddad-tirana.vercel.app/things-to-do/</loc></url>
+  <url><loc>https://bluedoor-beardeddad-tirana.vercel.app/hostels/blue-door/</loc></url>
+  <url><loc>https://bluedoor-beardeddad-tirana.vercel.app/hostels/blue-door/rooms/</loc></url>
+  <url><loc>https://bluedoor-beardeddad-tirana.vercel.app/hostels/the-bearded-dad/</loc></url>
+  <url><loc>https://bluedoor-beardeddad-tirana.vercel.app/hostels/the-bearded-dad/rooms/</loc></url>
+  <url><loc>https://bluedoor-beardeddad-tirana.vercel.app/tours/</loc></url>
+  <url><loc>https://bluedoor-beardeddad-tirana.vercel.app/buses/</loc></url>
+  <url><loc>https://bluedoor-beardeddad-tirana.vercel.app/volunteer/</loc></url>
+  <url><loc>https://bluedoor-beardeddad-tirana.vercel.app/blog/</loc></url>
+  <url><loc>https://bluedoor-beardeddad-tirana.vercel.app/blog/tirana-airport-to-the-city/</loc></url>
+  <url><loc>https://bluedoor-beardeddad-tirana.vercel.app/blog/lake-bovilla-from-tirana/</loc></url>
+  <url><loc>https://bluedoor-beardeddad-tirana.vercel.app/blog/day-trips-by-bus-from-tirana/</loc></url>
+  <url><loc>https://bluedoor-beardeddad-tirana.vercel.app/blog/the-best-of-tirana/</loc></url>
+  <url><loc>https://bluedoor-beardeddad-tirana.vercel.app/blog/what-to-see-in-berat/</loc></url>
+  <url><loc>https://bluedoor-beardeddad-tirana.vercel.app/blog/plug-type-in-albania/</loc></url>
+  <url><loc>https://bluedoor-beardeddad-tirana.vercel.app/privacy/</loc></url>
 </urlset>

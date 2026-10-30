@@ -1,0 +1,782 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- MVP de prospecção: fora do Google (regra 3). No site de quem fechou, o
+     montar_site.py tira esta linha sozinho (PROSPECCAO = False) -->
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1A1613">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231A1613'/%3E%3Crect x='11' y='8' width='10' height='18' rx='1' fill='%230A4FD1'/%3E%3C/svg%3E">
+<link rel="preload" href="../../../fontes/archivo-400-900.woff2" as="font" type="font/woff2" crossorigin>
+<meta property="og:site_name" content="Blue Door and The Bearded Dad, hostels in Tirana">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_GB">
+<script>
+/* ?foto=1: modo das capturas (montar_site.py). Cada movimento já nasce no fim. */
+if (new URLSearchParams(location.search).has('foto')) document.documentElement.classList.add('foto-final');
+</script>
+<style>
+/* SITE DO GRUPO: Blue Door + The Bearded Dad (Tirana). MVP de prospecção, ciclo A.
+   Base: o protótipo 4 da 2ª rodada (o guia de frases com o painel das
+   duas casas), refeito em 27/10/2026 com o que a pesquisa de mercado pede
+   (0-Metodo-e-Modelos/nichos/manual-mercado-hospedagem.md, seções 10, 12 e 13):
+   - foto e datas na primeira tela, e o pedido já escrito para o WhatsApp;
+   - a semana das duas casas (a turma vende antes da cama);
+   - citações literais, com país e mês; nota com plataforma, número e data;
+   - quartos coletivos e privados lado a lado, quarto feminino perto do botão;
+   - grupos com botão próprio; como chegar do aeroporto.
+   Cada seção é uma palavra: o título grande em inglês e, embaixo, pequena, a
+   dica em albanês com a pronúncia entre parênteses (pedido do João, 27/10).
+   MODELO: montar_site.py troca as marcas FONTES, FOTO, FLAPS e ICONE (a lista
+   está no começo do script). Editar este arquivo, nunca o index.html gerado. */
+@font-face{font-family:'Archivo';font-style:normal;font-weight:400 900;font-display:swap;src:url(../../../fontes/archivo-400-900.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Martian Mono';font-style:normal;font-weight:400 800;font-display:swap;src:url(../../../fontes/martian-mono-400-800.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+/* PALETA (28/10/2026, pedido do João: "2"), seguindo a pesquisa de referências
+   (referencias/sites-de-referencia/01-visual-e-identidade.md):
+   - as cores saem das fotos (KEX): noite = o marrom do jantar e do café,
+     jardim = o verde do portão, caramelo = a luz da sala de jantar;
+   - UMA cor forte só (Celica): o azul da porta;
+   - o amarelo das paredes fica pequeno, só onde o dedo precisa ir (botões e o
+     selo do prêmio), para não virar a cara do Trip'n'Hostel. */
+:root{--amarelo:#F2C744;--noite:#1A1613;--jardim:#1E2A20;--azul:#0A4FD1;--caramelo:#D9AA60;--creme:#EFE5D3;
+  --tinta:#17181A;--painel:#100D0B;--placa:#26201B;--letra:#F1EBE0;--cinza:#A9A096}
+*{box-sizing:border-box}
+[hidden]{display:none!important}   /* o botão Book now nasce escondido; sem isto o display do .btn vence */
+html{-webkit-text-size-adjust:100%}
+html,body{margin:0}
+body{background:var(--noite);color:var(--creme);font:400 18px/1.6 "Archivo",system-ui,sans-serif;overflow-x:clip}
+img{max-width:100%;display:block}
+picture{display:block}
+button,input{font:inherit}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+/* modo captura (?foto=1): cada movimento já no estado final */
+.foto-final *,.foto-final *::after{animation-duration:1ms!important;animation-delay:0s!important;transition-duration:1ms!important;transition-delay:0s!important}
+
+/* pares de cor por seção: fundo, texto, título, botão e foco sempre juntos
+   (memória "cor nunca sozinha"). Os botões amarelos levam texto escuro. */
+.p-noite{--fundo:var(--noite);--texto:var(--creme);--texto2:#C2B6A3;--titulo:var(--creme);--acento:var(--caramelo);--btn-fundo:var(--amarelo);--btn-texto:#17181A;--foco:var(--amarelo)}
+.p-jardim{--fundo:var(--jardim);--texto:#ECE6D6;--texto2:#BFC0AC;--titulo:#ECE6D6;--acento:var(--caramelo);--btn-fundo:var(--amarelo);--btn-texto:#17181A;--foco:var(--amarelo)}
+.p-azul{--fundo:var(--azul);--texto:#FFFFFF;--texto2:#DCE6FF;--titulo:#FFFFFF;--acento:#BFD3FF;--btn-fundo:var(--amarelo);--btn-texto:#17181A;--foco:var(--amarelo)}
+.palavra{background:var(--fundo);color:var(--texto)}
+:focus-visible{outline:3px solid var(--foco,#F2C744);outline-offset:2px}
+.pular{position:absolute;left:12px;top:-80px;z-index:60;display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:4px;background:var(--amarelo);color:#17181A;font-weight:700;text-decoration:none}
+.pular:focus{top:12px}
+
+@keyframes sobe{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes aparece{from{opacity:0}to{opacity:1}}
+
+/* ---------------------------------------------------------------- cabeçalho */
+.topo{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 12px;max-width:1240px;margin:0 auto;padding:12px 20px 4px}
+/* menu: no celular, uma linha embaixo da marca; no computador, entre a marca e os botões */
+.topo .marca{flex:1 1 0;min-width:0}
+.menu{display:flex;flex-wrap:wrap;gap:0 20px;flex-basis:100%;margin-left:-2px}
+.menu a{display:inline-flex;align-items:center;min-height:44px;color:var(--texto);font-weight:600;font-size:16px;text-decoration:none;text-underline-offset:5px}
+.menu a:hover{text-decoration:underline}
+.menu a[aria-current="page"]{text-decoration:underline;text-decoration-color:var(--amarelo);text-decoration-thickness:3px}
+@media(min-width:960px){.topo{flex-wrap:nowrap;padding-bottom:12px}.menu{flex-basis:auto;order:1;margin:0 auto 0 32px;gap:0 28px}.acoes{order:2}}
+.marca{display:flex;flex-direction:column;justify-content:center;min-height:44px;color:inherit;text-decoration:none}
+.marca b{display:flex;flex-wrap:wrap;column-gap:.3em;font:800 19px/1.1 "Archivo",system-ui,sans-serif;font-variation-settings:"wdth" 112}
+.marca b span{white-space:nowrap}
+.marca small{font-size:14px;margin-top:3px}
+.acoes{display:flex;align-items:center;gap:8px}
+
+/* ---------------------------------------------------------------- botões e links */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 24px;border-radius:4px;background:var(--btn-fundo);color:var(--btn-texto);
+  font:700 16px/1.2 "Archivo",system-ui,sans-serif;text-decoration:none;text-align:center;transition:transform 160ms cubic-bezier(.23,1,.32,1)}
+.btn:active{transform:scale(.97)}
+.btn svg{flex:none}
+.btn-curto{min-height:44px;padding:0 16px;font-size:15px}
+.btn-s{background:transparent;color:var(--texto);box-shadow:inset 0 0 0 2px var(--texto)}
+@media(max-width:479px){.topo .rotulo{display:none}.topo .btn-curto{width:44px;padding:0}}
+.so-largo{display:none}
+@media(min-width:720px){.so-largo{display:inline-flex}}
+.link{display:inline-flex;align-items:center;gap:.35em;min-height:44px;color:var(--texto);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+/* ---------------------------------------------------------------- seções */
+.palavra-in{display:grid;gap:36px;max-width:1240px;margin:0 auto;padding:48px 20px 64px;align-items:center}
+@media(min-width:960px){.palavra-in{grid-template-columns:1.15fr .85fr;gap:64px;padding:80px 20px 96px}.palavra-in.uma{grid-template-columns:1fr}}
+h1,h2{font-weight:800;font-variation-settings:"wdth" 118;letter-spacing:-.02em;line-height:.95;margin:0;color:var(--titulo);text-wrap:balance}
+h1{font-size:clamp(52px,7.2vw,112px)}
+h2{font-size:clamp(48px,7.4vw,104px)}
+.dica{margin:14px 0 0;font-size:17px;line-height:1.4;color:var(--texto2)}
+.dica b{color:var(--texto);font-weight:700}
+.diz{white-space:nowrap}   /* a pronúncia não quebra no hífen (VEE- / nee) */
+.traducao{margin:18px 0 0;max-width:42ch;font-size:19px}
+.prova{margin:18px 0 0;font-size:15px;line-height:1.5;max-width:60ch;color:var(--texto2)}
+.palavra-txt > .btn{margin-top:28px}
+.ctas{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;margin-top:28px}
+.ctas .btn{margin:0}
+.foto img{width:100%;height:auto;border-radius:4px}
+
+/* ---------------------------------------------------------------- 1 · Welcome */
+.heroi .palavra-in{gap:28px;padding:4px 20px 56px;align-items:start}
+/* minmax(0, ...): sem ele o "Welcome." gigante alarga a coluna da esquerda e espreme o painel */
+@media(min-width:960px){.heroi .palavra-in{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;padding:16px 20px 88px}}
+.heroi h1{animation:sobe 420ms cubic-bezier(.23,1,.32,1) both}
+.heroi .dica{animation:aparece 320ms 380ms ease-out both}
+@media(max-width:599px){.heroi .traducao{font-size:17px;margin-top:14px}}
+/* par de fotos, deitada + em pé, com a mesma altura: cada uma cresce na
+   proporção dela (--r = largura / altura, posto pelo montar_site.py) */
+.par-fotos{display:flex;gap:8px;margin-top:22px}
+.par-fotos picture{flex:var(--r) 1 0;min-width:0}
+.par-fotos img{width:100%;height:auto;border-radius:4px}
+
+/* o painel das duas casas virou o pedido: datas, casa e botão */
+.painel{--foco:var(--amarelo);background:var(--painel);color:var(--letra);border-radius:14px;box-shadow:inset 0 0 0 1px #3A322A;padding:18px 16px 20px;color-scheme:dark;container-type:inline-size}
+@media(min-width:600px){.painel{padding:22px 22px 24px}}
+.campos{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px}
+@media(max-width:359px){.campos{grid-template-columns:1fr 1fr}.campo-data{grid-column:1 / -1}}
+.campo{display:flex;flex-direction:column;gap:6px;min-width:0}
+.campo label,.casas-painel legend{font-size:15px;line-height:1.3;color:var(--cinza)}
+.campo input{display:block;width:100%;min-width:0;min-height:50px;padding:0 12px;border:0;border-radius:6px;background:var(--placa);color:var(--letra);
+  font:500 16px/50px "Archivo",system-ui,sans-serif;box-shadow:inset 0 0 0 1px #6E655B}
+.campo-data input{padding:0 10px}
+.campo input:focus-visible{outline:3px solid var(--amarelo);outline-offset:1px}
+.casas-painel{margin:18px 0 0;padding:0;border:0;min-width:0}
+.casas-painel legend{padding:0;margin-bottom:6px}
+.linha{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px 12px;align-items:start;padding:12px 10px;border-radius:8px;cursor:pointer}
+.linha + .linha{margin-top:4px}
+.linha:has(input:checked){background:#1E1915;box-shadow:inset 0 0 0 2px var(--amarelo)}
+/* a bolinha nativa some no fundo preto: desenhada aqui, com borda clara */
+.linha input{appearance:none;-webkit-appearance:none;display:grid;place-items:center;width:22px;height:22px;margin:3px 0 0;border:2px solid var(--cinza);border-radius:50%;background:transparent;cursor:pointer}
+.linha input::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--amarelo);transform:scale(0)}
+.linha input:checked{border-color:var(--amarelo)}
+.linha input:checked::before{transform:scale(1)}
+.linha-info{display:flex;flex-direction:column;gap:12px;min-width:0}
+.linha-dados{display:flex;flex-wrap:wrap;gap:10px 18px}
+.dado{display:flex;flex-direction:column;gap:6px}
+.dado small{font:500 13px/1.2 "Martian Mono",ui-monospace,monospace;letter-spacing:.04em;text-transform:uppercase;color:var(--cinza)}
+.qualquer{align-items:center;font-size:17px}
+.qualquer input{margin:0}
+.flaps{display:flex;flex-wrap:wrap;column-gap:.55em;row-gap:4px}
+.flap-palavra{display:inline-flex;gap:3px}
+.flap{position:relative;display:inline-grid;place-items:center;width:1.12em;height:1.5em;border-radius:3px;background:var(--placa);color:var(--letra);
+  font:600 clamp(15px,4cqi,24px)/1 "Martian Mono",ui-monospace,monospace;box-shadow:inset 0 -2px 0 rgba(0,0,0,.45)}
+.flap::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(0,0,0,.7)}
+/* a letra acompanha a largura do painel (cqi), não a da tela: assim o nome
+   da casa cabe numa linha na coluna do computador */
+.dado .flap{font-size:clamp(15px,3.4cqi,21px)}
+.amarelo .flap{color:var(--caramelo)}
+.vantagem{margin:16px 0 0;padding:12px 14px;border-radius:8px;background:#2A231D;color:var(--letra);font-weight:600}
+.btn-painel{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:54px;margin-top:16px;padding:0 20px;border-radius:6px;background:var(--amarelo);color:#0F1012;
+  font:700 15px/1.2 "Martian Mono",ui-monospace,monospace;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;transition:transform 160ms cubic-bezier(.23,1,.32,1)}
+.btn-painel:active{transform:scale(.97)}
+.painel-nota{margin:10px 0 0;font-size:14px;line-height:1.45;color:var(--cinza)}
+.painel-extra{margin:14px 0 0;font-size:16px;line-height:1.5}
+.painel .link{color:var(--letra);min-height:44px}
+
+/* ---------------------------------------------------------------- 2 · This week */
+.semana,.fatos{display:grid;gap:16px;margin:26px 0 0;max-width:52ch}
+.semana div,.fatos div{display:grid;gap:2px}
+@media(min-width:600px){.semana div,.fatos div{grid-template-columns:9em minmax(0,1fr);gap:18px}}
+.semana dt,.fatos dt{font:600 15px/1.6 "Martian Mono",ui-monospace,monospace;color:var(--acento)}
+.semana dd,.fatos dd{margin:0;font-size:18px}
+.link-texto{color:inherit;font-weight:600;text-underline-offset:3px}
+
+/* ---------------------------------------------------------------- 3 · Friends */
+.citacoes{display:grid;gap:34px;margin-top:36px}
+@media(min-width:800px){.citacoes{grid-template-columns:1fr 1fr;gap:44px 64px}}
+.citacao{margin:0}
+.citacao blockquote{margin:0}
+.citacao blockquote p{margin:0;font:650 clamp(20px,2.2vw,27px)/1.35 "Archivo",system-ui,sans-serif;text-wrap:pretty}
+.citacao blockquote p::before{content:"\201C";color:var(--acento)}
+.citacao blockquote p::after{content:"\201D";color:var(--acento)}
+.citacao figcaption{margin-top:10px;font-size:15px;color:var(--texto2)}
+.citacao figcaption b{color:var(--texto);font-weight:700}
+
+/* ---------------------------------------------------------------- 4 · Two houses */
+.casas{display:grid;gap:44px;margin-top:36px}
+@media(min-width:800px){.casas{grid-template-columns:1fr 1fr;gap:48px}}
+.casa img{width:100%;height:auto;border-radius:4px}
+.casa h3{font:800 30px/1.1 "Archivo",system-ui,sans-serif;font-variation-settings:"wdth" 112;margin:18px 0 8px}
+.casa p{margin:0;max-width:46ch}
+.quartos{margin:14px 0 0;padding-left:1.15em;max-width:46ch}
+.quartos li{margin-bottom:6px}
+.quartos .preco{font-weight:700}
+.casa .link{margin-top:6px}
+.casa-link{display:inline-block;padding:6px 0;color:inherit;text-decoration:none}
+.casa-link:hover{text-decoration:underline;text-underline-offset:4px}
+.resumo-quartos{margin-top:12px!important}
+.casa-acoes{display:flex;flex-wrap:wrap;gap:0 24px;margin-top:6px}
+/* o prêmio é o único selo amarelo do site, sempre com o ano (CLAUDE.md do cliente) */
+.selo{display:inline-flex;align-items:center;min-height:32px;margin:16px 0 0;padding:4px 14px;border-radius:999px;background:var(--amarelo);color:#17181A;font-weight:700;font-size:15px;line-height:1.3}
+
+/* ---------------------------------------------------------------- 5 · Group, 6 · Bus */
+.foto-grupo{max-width:440px}
+.onibus{margin:22px 0 0;max-width:48ch}
+.onibus + .onibus{margin-top:14px}
+.mapas{display:flex;flex-wrap:wrap;gap:0 28px;margin-top:14px}
+
+/* ---------------------------------------------------------------- 7 · See you, rodapé */
+/* o fundo do rodapé tem espaço para o WhatsApp flutuante não cobrir os últimos links (auditoria de 27/10) */
+.rodape{max-width:1240px;margin:0 auto;padding:0 20px 104px;font-size:15px;color:var(--texto2)}
+.rodape p{margin:0 0 8px}
+.rodape b{color:var(--acento);font-weight:700}
+.rodape a{color:var(--texto);text-underline-offset:3px}
+.rodape .link{min-height:44px;margin-right:18px;font-weight:500}
+.rodape-links{display:flex;flex-wrap:wrap}
+
+/* WhatsApp sempre à mão (regra 4); some enquanto o pedido do topo está na tela */
+.flutua{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:50;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;
+  background:#17181A;color:var(--amarelo);box-shadow:0 0 0 2px var(--amarelo),0 6px 18px rgba(0,0,0,.35);--foco:var(--amarelo)}
+.flutua[hidden]{display:none}
+/* foco em dois tons: o anel escuro aparece no amarelo, o branco no preto */
+.flutua:focus-visible{outline:2px solid transparent;box-shadow:0 0 0 2px var(--amarelo),0 0 0 5px #17181A,0 0 0 8px #FFFFFF}
+
+@media (prefers-reduced-motion: reduce){
+  .heroi h1,.heroi .dica{animation:none}
+  .btn,.btn-painel{transition:none}
+}
+
+/* ================================================================ subpáginas
+   Blue Door, The Bearded Dad e Things to do: o mesmo vocabulário da inicial
+   (seções de cor chapada, título grande), com texto mais longo e mais fotos. */
+.migalha{margin:0 0 18px;font-size:15px;color:var(--texto2)}
+.migalha a{display:inline-flex;align-items:center;min-height:44px;color:var(--texto);text-underline-offset:3px}
+.pg-heroi .palavra-in{padding-top:8px}
+.pg-heroi h1{font-size:clamp(46px,7vw,104px)}
+.intro{margin:18px 0 0;max-width:48ch;font-size:19px}
+.intro + .intro{margin-top:12px}
+/* topo das subpáginas no celular (auditoria de 28/10/2026, P2): quem chega
+   pelo Google vê nome, prova, foto e botão antes do texto. Só muda a ordem
+   visual; a foto não recebe foco, então a ordem do teclado continua igual.
+   No computador fica como estava: texto à esquerda, foto à direita. */
+@media(max-width:959px){
+  .pg-heroi .palavra-in{display:flex;flex-direction:column;align-items:flex-start;gap:0}
+  .pg-heroi .foto{align-self:stretch}
+  .pg-heroi .palavra-txt{display:contents}
+  .pg-heroi .foto{order:1;margin-top:18px}
+  .pg-heroi .foto img{aspect-ratio:16/10;object-fit:cover}
+  .pg-heroi .ctas{order:2;margin-top:18px}
+  .pg-heroi .intro{order:3}
+  .pg-heroi .ctas + .intro,.pg-heroi .intro:first-of-type{margin-top:22px}
+  .pg-heroi .prova{order:4}
+}
+.palavra-txt > .ctas:first-child{margin-top:0}
+/* bloco de quarto: fotos e texto lado a lado no computador */
+.quartos-lista{display:grid;gap:56px;margin-top:40px}
+.quarto{display:grid;gap:20px;align-items:start}
+@media(min-width:880px){.quarto{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px}}
+.quarto h3,.bloco h3{font:800 clamp(26px,3vw,34px)/1.1 "Archivo",system-ui,sans-serif;font-variation-settings:"wdth" 112;margin:0 0 10px;color:var(--titulo)}
+.quarto p,.bloco p{margin:0 0 10px;max-width:50ch}
+.quarto .preco{font-weight:700}
+.quarto-txt .btn{margin-top:10px}
+.fotos-quarto{display:grid;gap:8px}
+.fotos-quarto .par-fotos{margin:0}
+.fotos-quarto.par-fotos{display:flex}   /* o par fica lado a lado, mesmo dentro da grade */
+.uma-foto img{width:100%;height:auto;border-radius:4px}
+.blocos{display:grid;gap:44px;margin-top:36px}
+@media(min-width:800px){.blocos{grid-template-columns:1fr 1fr;gap:48px 56px}}
+.bloco picture{margin-bottom:16px}
+.bloco img{width:100%;height:auto;border-radius:4px}
+/* perguntas: texto visível, que é o que o Google e a IA leem (pesquisa 05) */
+.perguntas{display:grid;gap:22px;margin:30px 0 0;max-width:62ch}
+.perguntas dt{font-weight:700;font-size:19px;color:var(--titulo)}
+.perguntas dd{margin:4px 0 0}
+/* PALETAS VIVAS DAS CASAS (28/10/2026, pedido do João): a inicial e os
+   passeios são do grupo e ficam calmos; cada casa usa as cores mais vivas das
+   próprias fotos, com UMA cor forte por página (pesquisa, Celica).
+   Blue Door: o azul da porta e o da cozinha, laranja das cápsulas em detalhe.
+   Bearded Dad: o amarelo dos pneus do jardim (uma seção só, para não virar a
+   cara do Trip'n'Hostel) e o verde-petróleo das listras dos dorms. */
+.p-royal{--fundo:var(--azul);--texto:#FFFFFF;--texto2:#DCE6FF;--titulo:#FFFFFF;--acento:#FFD6B8;--btn-fundo:var(--amarelo);--btn-texto:#17181A;--foco:var(--amarelo)}
+.p-marinho{--fundo:#10274B;--texto:#EEF2FA;--texto2:#C3CCE0;--titulo:#EEF2FA;--acento:#FF9F66;--btn-fundo:var(--amarelo);--btn-texto:#17181A;--foco:var(--amarelo)}
+.p-petroleo{--fundo:#1D5357;--texto:#EEF5F4;--texto2:#C7DCD9;--titulo:#EEF5F4;--acento:var(--amarelo);--btn-fundo:var(--amarelo);--btn-texto:#17181A;--foco:var(--amarelo)}
+.p-pneu{--fundo:var(--amarelo);--texto:#17181A;--texto2:#3B3320;--titulo:#17181A;--acento:#5A3A10;--btn-fundo:#17181A;--btn-texto:#F2C744;--foco:#17181A}
+.p-pneu .selo{background:#17181A;color:var(--amarelo)}
+.h3-solto{margin-top:26px!important}
+.creditos{margin:28px 0 0;font-size:14px;line-height:1.5;color:var(--texto2);max-width:70ch}
+.creditos a{color:var(--texto);text-underline-offset:3px}
+
+/* ================================================================ TIRANA HOSTELS (30/10/2026)
+   Peças novas do portal: mapa, quartos, ônibus, blog e atalhos. Mesmas cores
+   e pares de antes (memória "cor nunca sozinha"). */
+.painel-quartos{display:flex;flex-wrap:wrap;align-items:center;gap:0 16px;margin:10px 0 0;font-size:15px;color:var(--cinza)}
+/* quartos */
+.resumo-lista{margin:18px 0 0;padding-left:1.15em;max-width:56ch}
+.resumo-lista li{margin-bottom:8px}
+.quarto-camas{font-weight:700}
+.quarto-fatos{margin:6px 0 14px;padding-left:1.15em}
+.quarto-fatos li{margin-bottom:4px}
+.sem-foto{display:grid;place-items:center;min-height:180px;border-radius:4px;background:#24201B;color:var(--cinza);text-align:center;padding:20px}
+.sem-foto p{margin:0}
+.motor-caixa iframe{display:block;width:100%;height:min(900px,85vh);border:0;border-radius:6px;background:#fff}
+.motor-aviso{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin-top:20px}
+.preco-tour{font-size:18px}
+/* ônibus: a tabela rola dentro da caixa no celular, nunca a página */
+.tabela-rolar{margin-top:16px;overflow-x:auto}
+.horarios{width:100%;border-collapse:collapse;font-size:16px}
+.horarios th,.horarios td{padding:10px 12px 10px 0;text-align:left;vertical-align:top;border-bottom:1px solid rgba(255,255,255,.12)}
+.horarios thead th{font:600 13px/1.4 "Martian Mono",ui-monospace,monospace;letter-spacing:.04em;color:var(--texto2)}
+.horarios tbody th{font-weight:700;white-space:nowrap;padding-right:18px}
+.horarios td{font-variant-numeric:tabular-nums;color:var(--texto2)}
+/* blog e textos longos */
+.texto-longo{max-width:68ch}
+.h2-texto{font:800 clamp(24px,2.6vw,30px)/1.15 "Archivo",system-ui,sans-serif!important;font-variation-settings:"wdth" 112;letter-spacing:0;margin:34px 0 8px!important}
+.texto-longo > p{margin:0 0 12px}
+.foto-post{margin:18px 0 22px}
+.foto-post img{width:100%;height:auto;border-radius:4px}
+.posts{list-style:none;margin:30px 0 0;padding:0;display:grid;gap:28px;max-width:60ch}
+.posts p{margin:4px 0 0}
+.post-link{display:inline-flex;align-items:center;min-height:44px;font:800 clamp(22px,2.4vw,28px)/1.15 "Archivo",system-ui,sans-serif;font-variation-settings:"wdth" 112;color:var(--titulo);text-underline-offset:5px}
+/* atalhos da inicial: linhas grandes de link, sem caixa nem ícone (memória "sem cara de IA") */
+.atalhos{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:4px;max-width:72ch}
+.atalhos a{display:grid;gap:4px;padding:16px 0;color:var(--texto);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.12)}
+.atalhos b{font:800 clamp(24px,2.8vw,32px)/1.1 "Archivo",system-ui,sans-serif;font-variation-settings:"wdth" 112;color:var(--titulo);text-decoration:underline;text-decoration-color:var(--amarelo);text-decoration-thickness:3px;text-underline-offset:6px}
+.atalhos span{color:var(--texto2)}
+.foto .creditos{margin-top:8px}
+
+/* ================================================================ COMUNIDADE (30/10/2026, revisão)
+   Topo da comunidade, Tirana chamativa, quartos dentro do painel, oferta e
+   mapa do Google. */
+.heroi-comunidade h1{font-size:clamp(50px,7vw,108px)}
+.foto-heroi{margin-top:22px}
+.foto-heroi img{width:100%;height:auto;border-radius:6px}
+@media(max-width:959px){.foto-heroi img{aspect-ratio:16/9;object-fit:cover}}
+.heroi-txt > .creditos{margin-top:8px}
+/* a oferta fica no topo do painel, em amarelo: é o botão de chamada que o dono pediu */
+.oferta{margin:0 0 16px;padding:12px 14px;border-radius:8px;background:var(--amarelo);color:#17181A;font:800 17px/1.3 "Archivo",system-ui,sans-serif;text-align:center;text-wrap:balance}
+/* quartos da casa escolhida, dentro do painel */
+.pq{margin:16px 0 4px}
+.pq-titulo{margin:0 0 8px;font:600 13px/1.3 "Martian Mono",ui-monospace,monospace;letter-spacing:.04em;color:var(--cinza)}
+.pq-lista{list-style:none;margin:0 0 6px;padding:0;display:grid;gap:8px}
+.pq-quarto{display:grid;grid-template-columns:88px minmax(0,1fr) auto;gap:12px;align-items:center;padding:8px;border-radius:8px;background:#1E1915}
+.pq-quarto picture,.pq-sem-foto{width:88px;height:66px;border-radius:4px;overflow:hidden;background:#2A231D}
+.pq-quarto img{width:88px;height:66px;object-fit:cover}
+.pq-txt{display:grid;gap:2px;min-width:0;font-size:15px;line-height:1.35}
+.pq-txt b{font-size:16px}
+.pq-txt span{color:var(--cinza)}
+.pq-txt .preco{color:var(--letra);font-weight:700}
+.pq-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 12px;border-radius:6px;background:var(--amarelo);color:#17181A;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap}
+@media(max-width:399px){.pq-quarto{grid-template-columns:64px minmax(0,1fr)}.pq-quarto picture,.pq-sem-foto,.pq-quarto img{width:64px;height:52px}.pq-btn{grid-column:1 / -1}}
+.pq-fonte{margin:6px 0 0;font-size:13px;line-height:1.4;color:var(--cinza)}
+/* Tirana: foto da largura toda, título por cima com o escuro vindo de baixo */
+.tirana-capa{position:relative}
+.tirana-capa img{width:100%;height:clamp(320px,62vw,640px);object-fit:cover;display:block}
+.tirana-capa::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,14,30,.92) 0,rgba(10,14,30,.55) 170px,rgba(10,14,30,0) 320px);pointer-events:none}
+.tirana-titulo{position:absolute;left:0;right:0;bottom:0;z-index:1;max-width:1240px;margin:0 auto;padding:0 20px 26px;color:#fff}
+.tirana-titulo h2{color:#fff;font-size:clamp(64px,11vw,160px)}
+.tirana-titulo .dica{color:#E6ECFF}
+.tirana-titulo .dica b{color:#fff}
+.tirana .palavra-in{padding-top:30px}
+.tirana-lead{font-size:clamp(20px,2.2vw,26px)!important;max-width:36ch!important}
+.tirana-fatos{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:22px}
+@media(min-width:800px){.tirana-fatos{grid-template-columns:1fr 1fr;gap:28px 48px}}
+.tirana-fatos b{display:block;font:800 clamp(24px,2.6vw,30px)/1.1 "Archivo",system-ui,sans-serif;font-variation-settings:"wdth" 112;color:#fff;margin-bottom:6px}
+.tirana-fatos span{color:var(--texto2)}
+/* mapa do Google: um por hostel */
+.mapa-google{margin:16px 0 0;border-radius:6px;overflow:hidden;background:#24201B;min-height:44px}
+.mapa-google iframe{display:block;width:100%;height:260px;border:0}
+.mapa-endereco{margin:8px 0 0!important;font-size:15px;color:var(--texto2)}
+/* topo da comunidade no celular (auditoria de 30/10/2026, P2): a oferta e as
+   datas entram na primeira tela; a foto de Tirana desce para depois do painel.
+   Só muda a ordem visual (a foto não recebe foco). No computador fica igual. */
+@media(max-width:959px){
+  .heroi-comunidade .palavra-in{gap:0}
+  .heroi-comunidade .heroi-txt{display:contents}
+  .heroi-comunidade h1,.heroi-comunidade .heroi-txt > .dica,.heroi-comunidade .heroi-txt > .traducao{order:0}
+  .heroi-comunidade .heroi-pedido{order:1;margin-top:20px}
+  .heroi-comunidade .foto-heroi{order:2;margin-top:28px}
+  .heroi-comunidade .heroi-txt > .creditos{order:3}
+}
+/* Skanderbeg: o corte guarda a bandeira e o cavaleiro */
+.tirana-capa img{object-position:50% 30%}
+.quarto:not(:has(.fotos-quarto)){grid-template-columns:minmax(0,1fr)}   /* quarto sem foto boa: só o texto */
+
+</style>
+
+<title>Rooms and prices · Blue Door Hostel, Tirana</title>
+<meta name="description" content="Every room at Blue Door Hostel in Tirana, with photos: dorms, the women-only dorm and private rooms. Breakfast is included. See free beds and book direct.">
+<link rel="canonical" href="https://bluedoor-beardeddad-tirana.vercel.app/hostels/blue-door/rooms/">
+<meta property="og:title" content="Rooms and prices · Blue Door Hostel, Tirana">
+<meta property="og:url" content="https://bluedoor-beardeddad-tirana.vercel.app/hostels/blue-door/rooms/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Tirana Hostels", "item": "https://bluedoor-beardeddad-tirana.vercel.app/"},
+    {"@type": "ListItem", "position": 2, "name": "Blue Door Hostel", "item": "https://bluedoor-beardeddad-tirana.vercel.app/hostels/blue-door/"},
+    {"@type": "ListItem", "position": 3, "name": "Rooms", "item": "https://bluedoor-beardeddad-tirana.vercel.app/hostels/blue-door/rooms/"}
+  ]
+}
+</script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Skip to content</a>
+
+<div class="palavra p-noite">
+  <header class="topo">
+    <!-- TIRANA HOSTELS (30/10/2026): a marca é da comunidade, não de um
+         hostel (imagem 2 do dono). Os hostels ficam na lista da inicial. -->
+    <a class="marca" href="../../../"><b>Tirana Hostels</b><small>The hostel community of Tirana</small></a>
+    <div class="acoes">
+      <a class="btn btn-curto" data-msg="topo" href="https://wa.me/355695539156" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2Z"/></svg><span class="rotulo">WhatsApp</span></a>
+      <a class="btn btn-s btn-curto so-largo" data-viber href="viber://chat?number=%2B355695539156">Viber</a>
+    </div>
+    <!-- cada link leva a uma página própria (SEO: uma página por assunto) -->
+    <nav class="menu" aria-label="Main">
+      <a href="../../../#hostels" aria-current="page">Hostels</a>
+      <a href="../../../tours/">Tours</a>
+      <a href="../../../buses/">Buses</a>
+      <a href="../../../blog/">Blog</a>
+      <a href="../../../volunteer/">Volunteer</a>
+    </nav>
+  </header>
+</div>
+
+
+<main id="conteudo">
+  <!-- Quartos de uma casa, gerados de dados/quartos.json (montar_site.py).
+       Referência do dono: a página /rooms do The Galley Hostel (Shkodër), que
+       usa o mesmo FrontDesk Master. A diferença: aqui o botão do quarto abre
+       o motor (ou o calendário embutido), conforme CONFIG.modoReserva. -->
+  <section class="palavra p-noite pg-heroi" aria-labelledby="t-quartos">
+    <div class="palavra-in uma">
+      <div class="palavra-txt">
+        <nav class="migalha" aria-label="Breadcrumb"><a href="../../../">Tirana Hostels</a> / <a href="../../../hostels/blue-door/">Blue Door</a> / Rooms</nav>
+        <h1 id="t-quartos">Rooms at Blue Door</h1>
+        <p class="intro">Breakfast is included in every bed. Towels, bed linen and Wi-Fi too.</p>
+        <p class="intro">Every room below has its price. Tap "Free beds" to see what's free on your dates.</p>
+        <p class="vantagem" hidden></p>
+        <div class="ctas">
+          <a class="btn" data-reserva="bd" hidden href="#" target="_blank" rel="noopener"><span>Book now: see free beds</span></a>
+          <a class="btn" data-msg="bd" data-sem-flutua href="https://wa.me/355695539156" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2Z"/></svg><span>Ask which beds are free</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="palavra p-noite" aria-labelledby="t-todos">
+    <div class="palavra-in uma">
+      <div class="palavra-txt">
+        <h2 class="sr" id="t-todos">All rooms</h2>
+        <div class="quartos-lista">
+<article class="quarto quarto-cartao" data-quarto-cartao="bd-capsula">
+  <div class="fotos-quarto uma-foto"><picture style="--r:1.3333"><source type="image/avif" srcset="../../../img/bd-capsulas-480.avif 480w, ../../../img/bd-capsulas-800.avif 800w, ../../../img/bd-capsulas-1200.avif 1200w" sizes="(min-width:1240px) 620px, (min-width:880px) 52vw, 92vw"><source type="image/webp" srcset="../../../img/bd-capsulas-480.webp 480w, ../../../img/bd-capsulas-800.webp 800w, ../../../img/bd-capsulas-1200.webp 1200w" sizes="(min-width:1240px) 620px, (min-width:880px) 52vw, 92vw"><img src="../../../img/bd-capsulas-800.webp" width="800" height="600" alt="Blue Door Hostel: Capsule dorm" loading="lazy" decoding="async"></picture></div>
+  <div class="quarto-txt">
+    <h3>Capsule dorm</h3>
+    <p class="quarto-camas" data-quarto="bd-capsula">10 beds, mixed</p>
+    <ul class="quarto-fatos"><li>In the basement</li><li>A curtain on every capsule</li><li>A locker under each bed</li><li>Shared bathrooms</li></ul>
+    <a class="btn btn-quarto" data-reservar="bd" data-quarto-msg="Hi Blue Door! Is there a free bed in the capsule dorm (10 beds, mixed)? I&#x27;m arriving on … for … nights." href="https://wa.me/355695539156" target="_blank" rel="noopener"><span>Free beds</span></a>
+  </div>
+</article>
+<article class="quarto quarto-cartao" data-quarto-cartao="bd-misto-8">
+  <div class="fotos-quarto uma-foto"><picture style="--r:0.7500"><source type="image/avif" srcset="../../../img/bd-quarto-2-400.avif 400w, ../../../img/bd-quarto-2-640.avif 640w" sizes="(min-width:1240px) 620px, (min-width:880px) 52vw, 92vw"><source type="image/webp" srcset="../../../img/bd-quarto-2-400.webp 400w, ../../../img/bd-quarto-2-640.webp 640w" sizes="(min-width:1240px) 620px, (min-width:880px) 52vw, 92vw"><img src="../../../img/bd-quarto-2-640.webp" width="640" height="853" alt="Blue Door Hostel: Mixed dorm with its own bathroom" loading="lazy" decoding="async"></picture></div>
+  <div class="quarto-txt">
+    <h3>Mixed dorm with its own bathroom</h3>
+    <p class="quarto-camas" data-quarto="bd-misto-8">8 beds, mixed</p>
+    <ul class="quarto-fatos"><li>Bunks with red curtains</li><li>Bathroom with a bathtub inside the room</li><li>A locker for each bed</li></ul>
+    <a class="btn btn-quarto" data-reservar="bd" data-quarto-msg="Hi Blue Door! Is there a free bed in the mixed dorm with its own bathroom (8 beds, mixed)? I&#x27;m arriving on … for … nights." href="https://wa.me/355695539156" target="_blank" rel="noopener"><span>Free beds</span></a>
+  </div>
+</article>
+<article class="quarto quarto-cartao" data-quarto-cartao="bd-misto-6">
+  <div class="fotos-quarto"><div class="par-fotos"><picture style="--r:0.7500"><source type="image/avif" srcset="../../../img/bd-dorm-mochila-400.avif 400w, ../../../img/bd-dorm-mochila-640.avif 640w" sizes="(min-width:1240px) 300px, (min-width:880px) 26vw, 46vw"><source type="image/webp" srcset="../../../img/bd-dorm-mochila-400.webp 400w, ../../../img/bd-dorm-mochila-640.webp 640w" sizes="(min-width:1240px) 300px, (min-width:880px) 26vw, 46vw"><img src="../../../img/bd-dorm-mochila-640.webp" width="640" height="853" alt="Blue Door Hostel: Mixed dorms, photo 1" loading="lazy" decoding="async"></picture><picture style="--r:0.7500"><source type="image/avif" srcset="../../../img/bd-dorm-mural-400.avif 400w, ../../../img/bd-dorm-mural-640.avif 640w" sizes="(min-width:1240px) 300px, (min-width:880px) 26vw, 46vw"><source type="image/webp" srcset="../../../img/bd-dorm-mural-400.webp 400w, ../../../img/bd-dorm-mural-640.webp 640w" sizes="(min-width:1240px) 300px, (min-width:880px) 26vw, 46vw"><img src="../../../img/bd-dorm-mural-640.webp" width="640" height="853" alt="Blue Door Hostel: Mixed dorms, photo 2" loading="lazy" decoding="async"></picture></div></div>
+  <div class="quarto-txt">
+    <h3>Mixed dorms</h3>
+    <p class="quarto-camas" data-quarto="bd-misto-6">6 beds each, mixed</p>
+    <ul class="quarto-fatos"><li>Two dorms</li><li>Bunks with olive curtains</li><li>Numbered lockers</li><li>Shared bathrooms</li></ul>
+    <a class="btn btn-quarto" data-reservar="bd" data-quarto-msg="Hi Blue Door! Is there a free bed in the mixed dorms (6 beds each, mixed)? I&#x27;m arriving on … for … nights." href="https://wa.me/355695539156" target="_blank" rel="noopener"><span>Free beds</span></a>
+  </div>
+</article>
+<article class="quarto quarto-cartao" data-quarto-cartao="bd-feminino">
+  <div class="fotos-quarto uma-foto"><picture style="--r:0.7500"><source type="image/avif" srcset="../../../img/bd-sotao-400.avif 400w, ../../../img/bd-sotao-640.avif 640w" sizes="(min-width:1240px) 620px, (min-width:880px) 52vw, 92vw"><source type="image/webp" srcset="../../../img/bd-sotao-400.webp 400w, ../../../img/bd-sotao-640.webp 640w" sizes="(min-width:1240px) 620px, (min-width:880px) 52vw, 92vw"><img src="../../../img/bd-sotao-640.webp" width="640" height="853" alt="Blue Door Hostel: Women-only dorm" loading="lazy" decoding="async"></picture></div>
+  <div class="quarto-txt">
+    <h3>Women-only dorm</h3>
+    <p class="quarto-camas" data-quarto="bd-feminino">6 beds, women only</p>
+    <ul class="quarto-fatos"><li>In the attic, under the wooden beams</li><li>A door to a terrace</li><li>Shared bathrooms</li></ul>
+    <a class="btn btn-quarto" data-reservar="bd" data-quarto-msg="Hi Blue Door! Is there a free bed in the women-only dorm (6 beds, women only)? I&#x27;m arriving on … for … nights." href="https://wa.me/355695539156" target="_blank" rel="noopener"><span>Free beds</span></a>
+  </div>
+</article>
+<article class="quarto quarto-cartao" data-quarto-cartao="bd-privado">
+  
+  <div class="quarto-txt">
+    <h3>Private single room</h3>
+    <p class="quarto-camas" data-quarto="bd-privado">1 bed</p>
+    <ul class="quarto-fatos"><li>Two of these rooms</li><li>The bathroom is outside the room</li></ul>
+    <a class="btn btn-quarto" data-reservar="bd" data-quarto-msg="Hi Blue Door! Is there a free bed in the private single room (1 bed)? I&#x27;m arriving on … for … nights." href="https://wa.me/355695539156" target="_blank" rel="noopener"><span>Free beds</span></a>
+  </div>
+</article>
+        </div>
+        <p class="prova" data-preco-fonte hidden></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- O calendário do FrontDesk Master dentro da página (modo "embutido").
+       Escondido até existir o link da casa em CONFIG.reservas. -->
+  <section class="palavra p-marinho" id="camas-livres" aria-labelledby="t-livres" data-motor-embutido="bd" hidden>
+    <div class="palavra-in uma">
+      <div class="palavra-txt">
+        <h2 id="t-livres">Free beds and prices</h2>
+        <p class="traducao">Pick your dates and see which beds are free in each room, with today's price.</p>
+        <div class="motor-caixa">
+          <div class="motor-aviso">
+            <button class="btn" type="button">Show free beds</button>
+            <p class="prova">This opens our booking system, FrontDesk Master, inside this page. It loads from their servers. <a href="../../../privacy/">Privacy</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="palavra p-jardim" aria-labelledby="t-casa-volta">
+    <div class="palavra-in uma">
+      <div class="palavra-txt">
+        <h2 id="t-casa-volta">More about Blue Door</h2>
+        <p class="traducao">Rruga Shtjefën Gjeçovi 18, Tirana. The house, the kitchen, the week and how to get there are on the hostel page.</p>
+        <div class="ctas">
+          <a class="btn" href="../../../hostels/blue-door/"><span>See the hostel</span></a>
+          <a class="link" href="../../../?casa=bd#reserva">Choose your dates</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="palavra p-noite">
+  <div class="rodape">
+    <p>Thank you, in Albanian: <b lang="sq">Faleminderit</b> (<span class="diz">fah-leh-meen-DEH-reet</span>).</p>
+    <!-- nome, endereço e telefone em TEXTO e iguais em todo lugar: o Google e a IA conferem (pesquisa 05, seção 4) -->
+    <p>Blue Door Hostel, Rruga Shtjefën Gjeçovi 18 · The Bearded Dad Hostel, Rruga Hamid Shijaku, Vila 13 · Tirana, Albania</p>
+    <p>WhatsApp and Viber: +355 69 553 9156</p>
+    <p class="rodape-links"><a class="link" href="../../../hostels/blue-door/">Blue Door Hostel</a><a class="link" href="../../../hostels/the-bearded-dad/">The Bearded Dad Hostel</a><a class="link" href="../../../tours/">Tours from Tirana</a><a class="link" href="../../../buses/">Buses from Tirana</a><a class="link" href="../../../blog/">Blog</a><a class="link" href="../../../volunteer/">Volunteer</a></p>
+    <p class="rodape-links"><a class="link" href="https://www.instagram.com/thebluedoorhostel/" target="_blank" rel="noopener">Blue Door on Instagram</a><a class="link" href="https://www.instagram.com/beardeddadhostel/" target="_blank" rel="noopener">The Bearded Dad on Instagram</a><a class="link" href="../../../privacy/">Privacy</a></p>
+  </div>
+</footer>
+
+<a class="flutua" data-msg="topo" href="https://wa.me/355695539156" target="_blank" rel="noopener" aria-label="Message us on WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2Z"/></svg></a>
+
+
+<script>
+/* ============================================================ CONFIG
+   Dados editáveis (regra 6). Tudo aqui é FATO do briefing de 22/10/2026.
+   Campo vazio = o dono ainda não respondeu (comercial/pauta-reuniao.md), e o
+   site não mostra nada no lugar (memória "[PREENCHER] não vai para a tela"). */
+const CONFIG = {
+  whatsapp: "355695539156",   // o mesmo nas duas casas; confirmar qual número recebe (pauta 2)
+  viber: "355695539156",
+  // cada botão leva a mensagem da sua seção (regra 5)
+  mensagens: {
+    topo: "Hi! I found your website and I have a question about your hostels in Tirana.",
+    semana: "Hi! What's on at your hostels this week?",
+    grupo: "Hi! We're a group of … people, arriving on … for … nights. Can you host us?",
+    traslado: "Hi! Can you pick me up at the airport? I land on … at …",
+    datas: "Hi! I'd like to stay with you in Tirana. My dates are: ",
+    // página do Blue Door
+    bd: "Hi Blue Door! Do you have a bed for me? I'm arriving on … for … nights.",
+    "bd-capsula": "Hi Blue Door! Is there a capsule bed free? I'm arriving on … for … nights.",
+    "bd-misto": "Hi Blue Door! Is there a bed in a mixed dorm? I'm arriving on … for … nights.",
+    "bd-feminino": "Hi Blue Door! Is there a bed in the women-only dorm? I'm arriving on … for … nights.",
+    "bd-privado": "Hi Blue Door! Is a private single room free? I'm arriving on … for … nights.",
+    "bd-jantar": "Hi Blue Door! Can I join the home-cooked dinner tonight?",
+    // página do Bearded Dad
+    bb: "Hi Bearded Dad! Do you have a bed for me? I'm arriving on … for … nights.",
+    "bb-misto": "Hi Bearded Dad! Is there a bed in a dorm in the main house? I'm arriving on … for … nights.",
+    "bb-villa": "Hi Bearded Dad! Is there a bed in the new villa? I'm arriving on … for … nights.",
+    "bb-caravana": "Hi Bearded Dad! Is a caravan free? We're … people, arriving on … for … nights.",
+    "bb-apartamento": "Hi Bearded Dad! Is an apartment free? We're … people, arriving on … for … nights.",
+    "bb-jantar": "Hi Bearded Dad! Can I join the Family Dinner tonight?",
+    // página dos passeios
+    passeios: "Hi! Which trips and tours are on this week?",
+    bovilla: "Hi! Is there a hike to Lake Bovilla this week? How can I join?",
+    citytour: "Hi Bearded Dad! When is the next free city tour?",
+    dajti: "Hi! How do I get to Bunk'Art 1 and the Dajti cable car from the hostel?",
+    // Tirana Hostels (30/10/2026)
+    onibus: "Hi! I want to take a bus from Tirana to … Which station and what time?",
+    voluntario: "Hi! I'd like to volunteer at your hostels. I can stay from … to …",
+    quartos: "Hi! I'd like to know which beds are free for my dates: arriving on … for … nights.",
+    pubcrawl: "Hi! Is there a pub crawl tonight? How do I join?",
+    parceiro: "Hi! I run a tour / class in Tirana and I'd like to be a partner of Tirana Hostels."
+  },
+  // agência de passeios do grupo: Lost in Albania, contato do Leo (cartaz da
+  // Bovilla nas duas casas, foto do Alejandro de 30/10/2026)
+  agencia: "355697478510",
+  mensagensAgencia: {
+    bovilla: "Hi Leo! I'd like to join the hike to Lake Bovilla. We're … people, on …",
+    alpes: "Hi Leo! I'd like to know about the 3-day trip to the Albanian Alps. We're … people, from …",
+    passeios: "Hi Leo! Which tours from Tirana are on this week?"
+  },
+  // o pedido do topo começa com o nome da casa escolhida
+  casas: {
+    bd: "Hi Blue Door! Do you have a bed",
+    bb: "Hi Bearded Dad! Do you have a bed",
+    "": "Hi! Do you have a bed in either of your hostels"
+  },
+  // preço por noite, "a partir de", em euros (pauta 3 e 9). Vazio = não
+  // aparece. Com número, a lista de quartos ganha "from €X a night".
+  // PREÇOS: os do anúncio deles no Hostelworld, consultados em 22/10/2026
+  // (briefing 5.1 e 5.2; o menor sem promoção, por cama e por noite). Trocar
+  // pelos do dono quando ele mandar (pauta 52). Privado do Bearded Dad,
+  // trailer e apartamento ficam sem preço: não está claro se é por quarto ou
+  // por pessoa. A data aparece na tela (precoFonte).
+  precos: {
+    "bd-capsula": 15.48, "bd-misto-8": 16.48, "bd-misto-6": 17.48, "bd-feminino": 19.48, "bd-privado": 30.50,
+    "bb-misto": 16.48, "bb-misto-villa": 18.48, "bb-feminino": 19.48, "bb-privado": null, "bb-caravana": null, "bb-apartamento": null
+  },
+  precoFonte: "Prices on Hostelworld, checked on 22 October 2026. Today's price is in the booking system.",
+  // COMO A PÁGINA DE QUARTOS RESERVA (pauta 52, o dono escolhe):
+  //   "from"     cartões com "from €X a night" + botão que abre o motor
+  //   "motor"    cartões sem preço + botão que abre o motor (como o Galley)
+  //   "embutido" cartões + o calendário do FrontDesk Master dentro da página,
+  //              que só carrega quando a pessoa toca em "Show free beds"
+  // Sem link em CONFIG.reservas, os três caem no WhatsApp com a mensagem do quarto.
+  modoReserva: "from",
+  // anúncio de cada casa no Worldpackers (pauta 54). Vazio = o botão some e
+  // fica só o WhatsApp da página /volunteer/
+  worldpackers: { bd: "", bb: "" },
+  // vantagem de reservar direto (pauta 4; 4 de 7 hostels que vendem direto dão
+  // desconto). Vazio = nada na tela. Ex.: "Book here with code DIRECT10: 10% off."
+  // ⚠ EXEMPLO, NÃO CONFIRMADO: 10% foi o exemplo do João (30/10/2026). O dono
+  // confirma ou troca o número na reunião (pauta 53). Sem confirmação, apagar
+  // o texto antes de ir para o ar de verdade (regra 2).
+  vantagemDireta: "Book direct with us and get 10% off",
+  // MOTOR DE RESERVAS do FrontDesk Master, o sistema que eles já usam
+  // (confirmado pelo João em 30/10/2026). Colar aqui o "direct link" de cada
+  // casa, que fica no painel deles em Settings > Property Settings > Booking
+  // Engine > Install on the website. Ex.:
+  //   bd: "https://new-booking.frontdeskmaster.com/?hostelId=XXXX"
+  // Vazio = o site continua só com WhatsApp. Preenchido: o pedido do topo
+  // abre o calendário deles já com chegada, noites e pessoas, e cada página
+  // de casa ganha o botão "Book now". ANTES de preencher: política de
+  // privacidade no site (regra 8: o motor recolhe nome, e-mail e cartão).
+  reservas: { bd: "", bb: "" }
+};
+
+/* ============================================================ INTEGRACOES
+   Tudo desligado: MVP de prospecção (regras 3 e 8). Ligar só no site do
+   cliente que fechou e só DEPOIS do banner de aceite, com Aceitar e Recusar
+   igualmente fáceis (Lei 124/2024 da Albânia = GDPR;
+   0-Metodo-e-Modelos/checklist-clientes-europa.md).
+   Passo a passo: 0-Metodo-e-Modelos/INTEGRACOES-LEIA-ME.txt */
+const INTEGRACOES = {
+  ga4: "",        // Google Analytics 4, ex.: "G-ABC123XYZ"
+  metaPixel: "",  // Meta Pixel, ex.: "1234567890"
+  // MAPA DO GOOGLE (pedido do João, 30/10/2026): o embed manda o IP do
+  // visitante ao Google ao abrir a página (regra 8). Na prévia fica aberto.
+  // No ciclo B: true = o mapa só carrega depois do aceite, com o botão
+  // "Show the map" (já escrito abaixo) e a política em /privacy/.
+  mapaComAceite: false
+};
+
+/* ============================================================ motor (não precisa editar) */
+const wa = (msg, numero = CONFIG.whatsapp) => "https://wa.me/" + numero + "?text=" + encodeURIComponent(msg);
+/* passeios: o botão fala com a agência (Lost in Albania), não com o hostel */
+document.querySelectorAll('[data-msg-agencia]').forEach(a => { a.href = wa(CONFIG.mensagensAgencia[a.dataset.msgAgencia], CONFIG.agencia); });
+/* link do motor de reservas da casa, com as datas (parâmetros do FrontDesk
+   Master: arrival AAAA-MM-DD, nights, guests). null = casa sem motor ligado */
+const motor = (casa, dados = {}) => {
+  const base = CONFIG.reservas && CONFIG.reservas[casa];
+  if (!base) return null;
+  const u = new URL(base);
+  for (const [k, v] of Object.entries(dados)) if (v) u.searchParams.set(k, v);
+  return u.href;
+};
+/* páginas de casa: com o motor ligado, o "Book now" aparece e vira o botão
+   principal; o WhatsApp continua ao lado, como segunda opção */
+document.querySelectorAll('[data-reserva]').forEach(a => {
+  const link = motor(a.dataset.reserva);
+  if (!link) return;
+  a.href = link;
+  a.hidden = false;
+  const zap = a.parentElement.querySelector('[data-msg]');
+  if (zap) zap.classList.add('btn-s');
+});
+document.querySelectorAll('[data-msg]').forEach(a => { a.href = wa(CONFIG.mensagens[a.dataset.msg]); });
+document.querySelectorAll('[data-viber]').forEach(a => { a.href = "viber://chat?number=%2B" + CONFIG.viber; });
+
+/* preço e vantagem direta: só aparecem quando o CONFIG tiver o dado. No modo
+   "motor" e no "embutido" o preço fica com o FrontDesk Master (é o do dia) */
+document.querySelectorAll('[data-quarto]').forEach(li => {
+  const p = CONFIG.precos[li.dataset.quarto];
+  if (p && CONFIG.modoReserva === 'from') li.insertAdjacentHTML('beforeend', ' · <span class="preco">from €' + p.toFixed(2) + ' a night</span>');
+});
+document.querySelectorAll('[data-preco-fonte]').forEach(el => { if (CONFIG.modoReserva === 'from') { el.textContent = CONFIG.precoFonte; el.hidden = false; } });
+
+/* cartões de quarto: com o motor da casa ligado, o botão abre o calendário
+   (ou o calendário embutido, no modo "embutido"); sem ele, WhatsApp */
+document.querySelectorAll('[data-reservar]').forEach(a => {
+  const casa = a.dataset.reservar, link = motor(casa), rotulo = a.querySelector('span');
+  if (!link) { a.href = wa(a.dataset.quartoMsg); return; }
+  if (CONFIG.modoReserva === 'embutido' && document.querySelector('[data-motor-embutido="' + casa + '"]')) {
+    a.href = '#camas-livres'; a.removeAttribute('target'); rotulo.textContent = 'See free beds';
+    a.addEventListener('click', () => abrirMotorEmbutido(casa));
+  } else { a.href = link; if (!a.classList.contains('pq-btn')) rotulo.textContent = 'Book: see free beds'; }
+});
+/* o calendário do FrontDesk Master dentro da página: iframe que só nasce no
+   clique (é terceiro: manda o IP para fora, regra 8) */
+function abrirMotorEmbutido(casa) {
+  const caixa = document.querySelector('[data-motor-embutido="' + casa + '"]');
+  if (!caixa || caixa.querySelector('iframe')) return;
+  const f = document.createElement('iframe');
+  f.src = motor(casa); f.title = 'Free beds and prices'; f.loading = 'lazy';
+  caixa.querySelector('.motor-aviso').replaceWith(f);
+}
+document.querySelectorAll('[data-motor-embutido]').forEach(caixa => {
+  const casa = caixa.dataset.motorEmbutido;
+  if (CONFIG.modoReserva !== 'embutido' || !motor(casa)) return;
+  caixa.hidden = false;
+  caixa.querySelector('button').addEventListener('click', () => abrirMotorEmbutido(casa));
+});
+
+/* Worldpackers: o botão só aparece com o link do anúncio */
+document.querySelectorAll('[data-worldpackers]').forEach(a => {
+  const link = CONFIG.worldpackers[a.dataset.worldpackers];
+  if (link) { a.href = link; a.hidden = false; }
+});
+
+/* MAPA DO GOOGLE: um por hostel (cartões da inicial e "Getting here" de cada
+   casa). Com INTEGRACOES.mapaComAceite = true, só carrega depois do clique em
+   "Show the map" (aceite registrado em localStorage, regra 8). */
+const mapaOk = () => { try { return localStorage.getItem('mapa-ok') === 'sim'; } catch (e) { return false; } };
+function abrirMapa(caixa) {
+  const f = document.createElement('iframe');
+  f.src = 'https://www.google.com/maps?q=' + encodeURIComponent(caixa.dataset.mapaGoogle) + '&z=16&output=embed';
+  f.title = caixa.dataset.titulo || 'Map';
+  f.loading = 'lazy';
+  f.referrerPolicy = 'no-referrer-when-downgrade';
+  caixa.replaceChildren(f);
+}
+document.querySelectorAll('[data-mapa-google]').forEach(caixa => {
+  if (!INTEGRACOES.mapaComAceite || mapaOk()) { abrirMapa(caixa); return; }
+  const b = Object.assign(document.createElement('button'), { type: 'button', className: 'btn btn-s', textContent: 'Show the map' });
+  b.addEventListener('click', () => { try { localStorage.setItem('mapa-ok', 'sim'); } catch (e) {} document.querySelectorAll('[data-mapa-google]').forEach(abrirMapa); });
+  caixa.replaceChildren(b);
+});
+document.querySelectorAll('.vantagem').forEach(v => {
+  if (!CONFIG.vantagemDireta) return;
+  v.textContent = CONFIG.vantagemDireta;
+  v.hidden = false;
+});
+
+/* WhatsApp flutuante: escondido enquanto o botão principal da página está na
+   tela (o pedido, na inicial; o botão do topo, nas outras) */
+const flutua = document.querySelector('.flutua');
+const principal = document.querySelector('[data-sem-flutua]');
+if (principal && 'IntersectionObserver' in window) new IntersectionObserver(([e]) => { flutua.hidden = e.isIntersecting; }).observe(principal);
+
+/* ?foto=1 (prints do montar_site.py): foto adiada sai em branco no print da
+   página inteira, então tudo carrega já */
+const modoFoto = document.documentElement.classList.contains('foto-final');
+if (modoFoto) document.querySelectorAll('picture img').forEach(img => { img.loading = 'eager'; img.decoding = 'sync'; });
+
+
+/* integrações: só com aceite registrado. O banner é do ciclo B; sem ele,
+   nada liga, mesmo com a chave preenchida. */
+const aceitou = () => { try { return localStorage.getItem('aceite-cookies') === 'sim'; } catch (e) { return false; } };
+if (INTEGRACOES.ga4 && aceitou()) {
+  document.head.appendChild(Object.assign(document.createElement('script'), { async: true, src: 'https://www.googletagmanager.com/gtag/js?id=' + INTEGRACOES.ga4 }));
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { dataLayer.push(arguments); };
+  gtag('js', new Date());
+  gtag('config', INTEGRACOES.ga4);
+}
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href^="https://wa.me"]');
+  if (window.gtag && a) gtag('event', 'clique_whatsapp', { secao: a.closest('section')?.id || 'topo' });
+});
+
+</script>
+</body>
+</html>
