@@ -436,6 +436,19 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 .fita-acao svg{width:16px;height:16px}
 @media(prefers-reduced-motion:reduce){.fita-link img{transition:none}}
 
+/* cartões dos hostels: mesma altura, botões no pé, sem mapa (30/10/2026) */
+.casas{align-items:stretch}
+.casa{display:flex;flex-direction:column}
+.casa-foto{aspect-ratio:4/3}
+.casa-foto picture,.casa-foto img{display:block;width:100%;height:100%;object-fit:cover}
+.casa .selo{align-self:flex-start;margin:14px 0 0}
+.notas{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0;padding:0}
+.notas li{display:inline-flex;align-items:baseline;gap:6px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.08);font-size:14px;color:var(--texto2)}
+.notas b{font:700 17px/1 "Archivo",system-ui,sans-serif;color:var(--titulo)}
+.casa .casa-acoes{margin-top:auto;padding-top:22px;align-items:center;gap:10px 22px}
+.notas .notas-data{background:none;padding:6px 4px;font-size:13px}
+.palavra-txt{min-width:0}   /* fileira que desliza nunca estica a coluna (ver .tirana) */
+
 </style>
 
 <title>Tirana Hostels · Blue Door and The Bearded Dad, hostels in Tirana, Albania</title>
@@ -604,33 +617,29 @@ h2{font-size:clamp(48px,7.4vw,104px)}
       <div class="palavra-txt">
         <h2 id="t-casas">The hostels.</h2>
         <p class="dica">In Albanian: <b lang="sq">Shtëpi</b> (<span class="diz">shtuh-PEE</span>), house</p>
-        <p class="traducao">The hostels of the community, each with its rooms, its prices and where it is on the map.</p>
+        <p class="traducao">Two houses in the centre, breakfast included in both.</p>
         <div class="casas">
 <article class="casa">
   <a class="casa-foto" href="hostels/blue-door/" tabindex="-1" aria-hidden="true"><picture style="--r:1.3334"><source type="image/avif" srcset="img/bd-entrada-480.avif 480w, img/bd-entrada-800.avif 800w, img/bd-entrada-1200.avif 1200w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><source type="image/webp" srcset="img/bd-entrada-480.webp 480w, img/bd-entrada-800.webp 800w, img/bd-entrada-1200.webp 1200w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><img src="img/bd-entrada-800.webp" width="800" height="600" alt="The entrance of the Blue Door: the garden gate under the ivy, with the hand-painted sign Blue Door Hostel and the number 18" loading="lazy" decoding="async"></picture></a>
   <h3><a class="casa-link" href="hostels/blue-door/">Blue Door</a></h3>
-  <p>An old house 9 minutes on foot from the New Bazaar, with a garden, a wood stove in the living room and a terrace on the roof. Breakfast is included.</p>
-  <p class="resumo-quartos">Beds: capsules, mixed dorms of 6 and 8, a women-only dorm in the attic and two single rooms.</p>
-  <p class="prova">9.4 on Hostelworld (903 reviews) · 4.7 on Google (268 reviews) · checked on 22 October 2026</p>
+  <p>An old house with a garden, a wood stove and a roof terrace, 9 minutes on foot from the New Bazaar.</p>
+  <ul class="notas" aria-label="Ratings"><li><b>9.4</b> Hostelworld · 903 reviews</li><li><b>4.7</b> Google · 268 reviews</li><li class="notas-data">checked 22 Oct 2026</li></ul>
   <div class="casa-acoes">
-    <a class="link" href="hostels/blue-door/rooms/">Rooms and prices <span aria-hidden="true">→</span></a>
-    <a class="link" href="hostels/blue-door/">About the house <span aria-hidden="true">→</span></a>
+    <a class="btn btn-s" href="hostels/blue-door/rooms/"><span>Rooms and prices</span></a>
+    <a class="link" href="hostels/blue-door/">About the house</a>
+    <a class="link" href="https://www.google.com/maps/dir/?api=1&amp;destination=41.3336245,19.8288341" target="_blank" rel="noopener">Directions</a>
   </div>
-  <div class="mapa-google" data-mapa-google="Blue Door Hostel, Rruga Shtjefën Gjeçovi 18, Tirana" data-titulo="Blue Door Hostel on Google Maps"></div>
-  <p class="mapa-endereco">Rruga Shtjefën Gjeçovi 18, Tirana · <a class="link-texto" href="https://www.google.com/maps/place/Blue+Door+Hostel/@41.3336245,19.8288341,17z/data=!4m9!3m8!1s0x135031f25224da81:0x2472c3d7ab86ad94" target="_blank" rel="noopener">Open in Google Maps</a></p>
 </article>
 <article class="casa">
   <a class="casa-foto" href="hostels/the-bearded-dad/" tabindex="-1" aria-hidden="true"><picture style="--r:1.3333"><source type="image/avif" srcset="img/bb-entrada-480.avif 480w, img/bb-entrada-800.avif 800w, img/bb-entrada-1200.avif 1200w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><source type="image/webp" srcset="img/bb-entrada-480.webp 480w, img/bb-entrada-800.webp 800w, img/bb-entrada-1200.webp 1200w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><img src="img/bb-entrada-800.webp" width="800" height="600" alt="The garden of The Bearded Dad at night, where guests arrive: cable-drum tables, colourful chairs and string lights" loading="lazy" decoding="async"></picture></a>
   <h3><a class="casa-link" href="hostels/the-bearded-dad/">The Bearded Dad</a></h3>
-  <p>A two-storey villa with a garden off Zogu I Boulevard, 12 minutes on foot from Skanderbeg Square. Breakfast is included, and the volunteers cook Family Dinner every night.</p>
-  <p class="resumo-quartos">Beds: mixed dorms of 5 to 8, a women-only dorm, a private room for three, caravans in the yard and apartments.</p>
-  <p class="selo">HOSCAR 2026: 3rd in Albania</p><p class="prova">9.5 on Hostelworld (731 reviews) · 4.8 on Google (197 reviews) · checked on 22 October 2026</p>
+  <p>A villa with a garden off Zogu I Boulevard, 12 minutes on foot from Skanderbeg Square. The volunteers cook Family Dinner every night.</p>
+  <p class="selo">HOSCAR 2026: 3rd in Albania</p><ul class="notas" aria-label="Ratings"><li><b>9.5</b> Hostelworld · 731 reviews</li><li><b>4.8</b> Google · 197 reviews</li><li class="notas-data">checked 22 Oct 2026</li></ul>
   <div class="casa-acoes">
-    <a class="link" href="hostels/the-bearded-dad/rooms/">Rooms and prices <span aria-hidden="true">→</span></a>
-    <a class="link" href="hostels/the-bearded-dad/">About the house <span aria-hidden="true">→</span></a>
+    <a class="btn btn-s" href="hostels/the-bearded-dad/rooms/"><span>Rooms and prices</span></a>
+    <a class="link" href="hostels/the-bearded-dad/">About the house</a>
+    <a class="link" href="https://www.google.com/maps/dir/?api=1&amp;destination=41.3343197,19.8154374" target="_blank" rel="noopener">Directions</a>
   </div>
-  <div class="mapa-google" data-mapa-google="The Bearded Dad Hostel, Rruga Hamid Shijaku, Vila 13, Tirana" data-titulo="The Bearded Dad Hostel on Google Maps"></div>
-  <p class="mapa-endereco">Rruga Hamid Shijaku, Vila 13, Tirana · <a class="link-texto" href="https://www.google.com/maps/place/The+Bearded+Dad+Hostel/@41.3343197,19.8154374,17z/data=!4m9!3m8!1s0x135031b43e06a333:0x43e85eb48cc434c4" target="_blank" rel="noopener">Open in Google Maps</a></p>
 </article>
         </div>
       </div>

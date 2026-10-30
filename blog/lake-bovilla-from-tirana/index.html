@@ -436,6 +436,19 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 .fita-acao svg{width:16px;height:16px}
 @media(prefers-reduced-motion:reduce){.fita-link img{transition:none}}
 
+/* cartões dos hostels: mesma altura, botões no pé, sem mapa (30/10/2026) */
+.casas{align-items:stretch}
+.casa{display:flex;flex-direction:column}
+.casa-foto{aspect-ratio:4/3}
+.casa-foto picture,.casa-foto img{display:block;width:100%;height:100%;object-fit:cover}
+.casa .selo{align-self:flex-start;margin:14px 0 0}
+.notas{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0;padding:0}
+.notas li{display:inline-flex;align-items:baseline;gap:6px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.08);font-size:14px;color:var(--texto2)}
+.notas b{font:700 17px/1 "Archivo",system-ui,sans-serif;color:var(--titulo)}
+.casa .casa-acoes{margin-top:auto;padding-top:22px;align-items:center;gap:10px 22px}
+.notas .notas-data{background:none;padding:6px 4px;font-size:13px}
+.palavra-txt{min-width:0}   /* fileira que desliza nunca estica a coluna (ver .tirana) */
+
 </style>
 
 <title>Lake Bovilla from Tirana: the daily hike · Tirana Hostels</title>
