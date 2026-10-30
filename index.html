@@ -388,6 +388,31 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 .tirana-capa img{object-position:50% 30%}
 .quarto:not(:has(.fotos-quarto)){grid-template-columns:minmax(0,1fr)}   /* quarto sem foto boa: só o texto */
 
+/* What's on (agenda da inicial, versão Tonight) */
+.ag-tag{display:inline-flex;align-items:center;min-height:24px;padding:0 9px;border-radius:999px;font:600 12px/1 "Martian Mono",ui-monospace,monospace;letter-spacing:.03em;white-space:nowrap}
+.tag-bd{background:#0A4FD1;color:#fff}
+.tag-bb{background:#1D5357;color:#EEF5F4}
+.tag-la{background:#F2C744;color:#17181A}
+.tag-all{background:#EFE5D3;color:#17181A}
+.ag-nota{margin:22px 0 0;font-size:15px;color:var(--texto2);max-width:60ch}
+.tn-dias{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 22px}
+.tn-dias button{min-width:52px;min-height:48px;padding:0 12px;border:0;border-radius:999px;background:rgba(255,255,255,.08);color:var(--texto);font:700 15px/1 "Archivo",system-ui,sans-serif;cursor:pointer;transition:background-color 160ms cubic-bezier(.23,1,.32,1),transform 160ms cubic-bezier(.23,1,.32,1)}
+.tn-dias button:active{transform:scale(.96)}
+.tn-dias button[aria-pressed="true"]{background:var(--amarelo);color:#17181A}
+.tn-dias button .tn-hoje{display:block;font:600 10px/1 "Martian Mono",monospace;margin-top:3px}
+.tn-dias-listas{display:grid;gap:28px;margin-top:26px}
+.tn-dias:not([hidden])+.tn-dias-listas{margin-top:0}
+.tn-titulo{font:800 clamp(28px,3.4vw,40px)/1.05 "Archivo",system-ui,sans-serif;font-variation-settings:"wdth" 116;margin:0 0 16px;color:var(--titulo)}
+.tn-lista{list-style:none;margin:0;padding:0;display:grid;gap:10px;max-width:760px}
+.tn-lista li{display:grid;grid-template-columns:5.2em 1fr auto;gap:14px;align-items:center;padding:14px 16px;border-radius:10px;background:rgba(255,255,255,.06);animation:tn-entra 220ms cubic-bezier(.23,1,.32,1) both}
+.tn-lista li:nth-child(2){animation-delay:40ms}.tn-lista li:nth-child(3){animation-delay:80ms}.tn-lista li:nth-child(4){animation-delay:120ms}.tn-lista li:nth-child(n+5){animation-delay:160ms}
+.tn-lista .tn-h{font:700 16px/1.2 "Martian Mono",ui-monospace,monospace;color:var(--amarelo)}
+.tn-lista b{display:block}
+.tn-lista span.tn-d{display:block;font-size:14px;color:var(--texto2);margin-top:2px}
+@keyframes tn-entra{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(max-width:560px){.tn-lista li{grid-template-columns:4.6em 1fr}.tn-lista .ag-tag{grid-column:2;justify-self:start}}
+@media(prefers-reduced-motion:reduce){.tn-lista li{animation:none}.tn-dias button{transition:none}}
+
 </style>
 
 <title>Tirana Hostels · Blue Door and The Bearded Dad, hostels in Tirana, Albania</title>
@@ -544,27 +569,6 @@ h2{font-size:clamp(48px,7.4vw,104px)}
     </div>
   </section>
 
-  <!-- 2 · This week: a turma vende antes da cama (manual, seção 10). Preço de
-       evento não entra (CLAUDE.md do cliente): o botão pergunta. -->
-  <section class="palavra p-jardim" id="semana" aria-labelledby="t-semana">
-    <div class="palavra-in">
-      <div class="palavra-txt">
-        <h2 id="t-semana">This week.</h2>
-        <p class="dica">In Albanian: <b lang="sq">Këtë javë</b> (<span class="diz">KUH-tuh YAH-vuh</span>)</p>
-        <p class="traducao">Events move between the two houses, and guests of both come to the Thursday barbecue.</p>
-        <dl class="semana">
-          <div><dt>Every morning</dt><dd>Breakfast, included in both houses.</dd></div>
-          <div><dt>Evenings</dt><dd>Family Dinner at The Bearded Dad every night, cooked by the volunteers. At the Blue Door, a home-cooked Albanian dinner, always with a vegetarian option.</dd></div>
-          <div><dt>Thursday</dt><dd>Barbecue for guests of both houses.</dd></div>
-          <div><dt>Saturday</dt><dd>Cooking class at the Blue Door: <span lang="sq">byrek</span>, <span lang="sq">tavë dheu</span>, wine and raki.</dd></div>
-          <div><dt>Also</dt><dd>A pub crawl, a hike to Lake Bovilla and a three-day trip to the Alps. <a class="link-texto" href="tours/">Tours from Tirana</a></dd></div>
-        </dl>
-        <a class="btn" data-msg="semana" href="https://wa.me/355695539156" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2Z"/></svg><span>Ask what's on this week</span></a>
-      </div>
-      <div class="foto"><picture style="--r:1.3368"><source type="image/avif" srcset="img/bb-cafe-480.avif 480w, img/bb-cafe-800.avif 800w, img/bb-cafe-1200.avif 1200w" sizes="(min-width:1240px) 500px, (min-width:960px) 40vw, 92vw"><source type="image/webp" srcset="img/bb-cafe-480.webp 480w, img/bb-cafe-800.webp 800w, img/bb-cafe-1200.webp 1200w" sizes="(min-width:1240px) 500px, (min-width:960px) 40vw, 92vw"><img src="img/bb-cafe-800.webp" width="800" height="598" alt="Breakfast on the table at The Bearded Dad: pies, salad, eggs and fruit" loading="lazy" decoding="async"></picture></div>
-    </div>
-  </section>
-
   <!-- 4 · Os hostels: cartões gerados de dados/hostels.json (montar_site.py).
        Hostel novo na comunidade entra lá, sem mexer aqui. O mapa usa os
        mesmos dados e só carrega no clique (regra 8). -->
@@ -602,6 +606,28 @@ h2{font-size:clamp(48px,7.4vw,104px)}
   <p class="mapa-endereco">Rruga Hamid Shijaku, Vila 13, Tirana · <a class="link-texto" href="https://www.google.com/maps/place/The+Bearded+Dad+Hostel/@41.3343197,19.8154374,17z/data=!4m9!3m8!1s0x135031b43e06a333:0x43e85eb48cc434c4" target="_blank" rel="noopener">Open in Google Maps</a></p>
 </article>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · What's on: a agenda da comunidade (versão Tonight, escolhida pelo
+       João em 30/10/2026). Os eventos vêm de dados/agenda.json; preço de
+       evento não entra (CLAUDE.md do cliente), o botão pergunta. -->
+  <section class="palavra p-jardim" id="semana" aria-labelledby="t-semana">
+    <div class="palavra-in uma">
+      <div class="palavra-txt">
+        <h2 id="t-semana">What's on.</h2>
+        <p class="dica">In Albanian: <b lang="sq">Çfarë ka sot?</b> (<span class="diz">CHFAR-uh kah sot</span>), what's on today?</p>
+<div class="tn-dias" role="group" aria-label="Day of the week" hidden><button type="button" data-dia="Mon" aria-pressed="false" aria-controls="tn-Mon">Mon</button><button type="button" data-dia="Tue" aria-pressed="false" aria-controls="tn-Tue">Tue</button><button type="button" data-dia="Wed" aria-pressed="false" aria-controls="tn-Wed">Wed</button><button type="button" data-dia="Thu" aria-pressed="false" aria-controls="tn-Thu">Thu</button><button type="button" data-dia="Fri" aria-pressed="false" aria-controls="tn-Fri">Fri</button><button type="button" data-dia="Sat" aria-pressed="false" aria-controls="tn-Sat">Sat</button><button type="button" data-dia="Sun" aria-pressed="false" aria-controls="tn-Sun">Sun</button></div>
+<div class="tn-dias-listas" aria-live="polite"><div class="tn-dia" id="tn-Mon" data-dia="Mon"><h3 class="tn-titulo">On Monday</h3><ul class="tn-lista"><li><span class="tn-h">Morning</span><div><b>Breakfast</b><span class="tn-d">Included in both houses</span></div><span class="ag-tag tag-all">Both houses</span></li><li><span class="tn-h">Day</span><div><b>Hike to Lake Bovilla</b><span class="tn-d">Guide and transport from the hostel</span></div><span class="ag-tag tag-la">Lost in Albania</span></li><li><span class="tn-h">19:00</span><div><b>Home-cooked Albanian dinner</b><span class="tn-d">Always with a vegetarian option</span></div><span class="ag-tag tag-bd">Blue Door</span></li><li><span class="tn-h">19:30</span><div><b>Family Dinner</b><span class="tn-d">Cooked by the volunteers, served in the garden</span></div><span class="ag-tag tag-bb">Bearded Dad</span></li><li><span class="tn-h">Late</span><div><b>Pub crawl</b><span class="tn-d">Three bars with a local guide, after dinner (summer)</span></div><span class="ag-tag tag-bb">Bearded Dad</span></li></ul></div>
+<div class="tn-dia" id="tn-Tue" data-dia="Tue"><h3 class="tn-titulo">On Tuesday</h3><ul class="tn-lista"><li><span class="tn-h">Morning</span><div><b>Breakfast</b><span class="tn-d">Included in both houses</span></div><span class="ag-tag tag-all">Both houses</span></li><li><span class="tn-h">Day</span><div><b>Hike to Lake Bovilla</b><span class="tn-d">Guide and transport from the hostel</span></div><span class="ag-tag tag-la">Lost in Albania</span></li><li><span class="tn-h">19:00</span><div><b>Home-cooked Albanian dinner</b><span class="tn-d">Always with a vegetarian option</span></div><span class="ag-tag tag-bd">Blue Door</span></li><li><span class="tn-h">19:30</span><div><b>Family Dinner</b><span class="tn-d">Cooked by the volunteers, served in the garden</span></div><span class="ag-tag tag-bb">Bearded Dad</span></li><li><span class="tn-h">Late</span><div><b>Pub crawl</b><span class="tn-d">Three bars with a local guide, after dinner (summer)</span></div><span class="ag-tag tag-bb">Bearded Dad</span></li></ul></div>
+<div class="tn-dia" id="tn-Wed" data-dia="Wed"><h3 class="tn-titulo">On Wednesday</h3><ul class="tn-lista"><li><span class="tn-h">Morning</span><div><b>Breakfast</b><span class="tn-d">Included in both houses</span></div><span class="ag-tag tag-all">Both houses</span></li><li><span class="tn-h">Day</span><div><b>Hike to Lake Bovilla</b><span class="tn-d">Guide and transport from the hostel</span></div><span class="ag-tag tag-la">Lost in Albania</span></li><li><span class="tn-h">19:00</span><div><b>Home-cooked Albanian dinner</b><span class="tn-d">Always with a vegetarian option</span></div><span class="ag-tag tag-bd">Blue Door</span></li><li><span class="tn-h">19:30</span><div><b>Family Dinner</b><span class="tn-d">Cooked by the volunteers, served in the garden</span></div><span class="ag-tag tag-bb">Bearded Dad</span></li><li><span class="tn-h">Late</span><div><b>Pub crawl</b><span class="tn-d">Three bars with a local guide, after dinner (summer)</span></div><span class="ag-tag tag-bb">Bearded Dad</span></li></ul></div>
+<div class="tn-dia" id="tn-Thu" data-dia="Thu"><h3 class="tn-titulo">On Thursday</h3><ul class="tn-lista"><li><span class="tn-h">Morning</span><div><b>Breakfast</b><span class="tn-d">Included in both houses</span></div><span class="ag-tag tag-all">Both houses</span></li><li><span class="tn-h">Day</span><div><b>Hike to Lake Bovilla</b><span class="tn-d">Guide and transport from the hostel</span></div><span class="ag-tag tag-la">Lost in Albania</span></li><li><span class="tn-h">19:00</span><div><b>Home-cooked Albanian dinner</b><span class="tn-d">Always with a vegetarian option</span></div><span class="ag-tag tag-bd">Blue Door</span></li><li><span class="tn-h">19:30</span><div><b>Family Dinner</b><span class="tn-d">Cooked by the volunteers, served in the garden</span></div><span class="ag-tag tag-bb">Bearded Dad</span></li><li><span class="tn-h">19:30</span><div><b>Barbecue and beers</b><span class="tn-d">For guests of both houses, at The Bearded Dad</span></div><span class="ag-tag tag-all">Both houses</span></li><li><span class="tn-h">Late</span><div><b>Pub crawl</b><span class="tn-d">Three bars with a local guide, after dinner (summer)</span></div><span class="ag-tag tag-bb">Bearded Dad</span></li></ul></div>
+<div class="tn-dia" id="tn-Fri" data-dia="Fri"><h3 class="tn-titulo">On Friday</h3><ul class="tn-lista"><li><span class="tn-h">Morning</span><div><b>Breakfast</b><span class="tn-d">Included in both houses</span></div><span class="ag-tag tag-all">Both houses</span></li><li><span class="tn-h">Day</span><div><b>Hike to Lake Bovilla</b><span class="tn-d">Guide and transport from the hostel</span></div><span class="ag-tag tag-la">Lost in Albania</span></li><li><span class="tn-h">19:00</span><div><b>Home-cooked Albanian dinner</b><span class="tn-d">Always with a vegetarian option</span></div><span class="ag-tag tag-bd">Blue Door</span></li><li><span class="tn-h">19:30</span><div><b>Family Dinner</b><span class="tn-d">Cooked by the volunteers, served in the garden</span></div><span class="ag-tag tag-bb">Bearded Dad</span></li><li><span class="tn-h">Late</span><div><b>Pub crawl</b><span class="tn-d">Three bars with a local guide, after dinner (summer)</span></div><span class="ag-tag tag-bb">Bearded Dad</span></li></ul></div>
+<div class="tn-dia" id="tn-Sat" data-dia="Sat"><h3 class="tn-titulo">On Saturday</h3><ul class="tn-lista"><li><span class="tn-h">Morning</span><div><b>Breakfast</b><span class="tn-d">Included in both houses</span></div><span class="ag-tag tag-all">Both houses</span></li><li><span class="tn-h">Day</span><div><b>Hike to Lake Bovilla</b><span class="tn-d">Guide and transport from the hostel</span></div><span class="ag-tag tag-la">Lost in Albania</span></li><li><span class="tn-h">16:30</span><div><b>Cooking class</b><span class="tn-d">Byrek, tavë dheu, wine and raki</span></div><span class="ag-tag tag-bd">Blue Door</span></li><li><span class="tn-h">19:00</span><div><b>Home-cooked Albanian dinner</b><span class="tn-d">Always with a vegetarian option</span></div><span class="ag-tag tag-bd">Blue Door</span></li><li><span class="tn-h">19:30</span><div><b>Family Dinner</b><span class="tn-d">Cooked by the volunteers, served in the garden</span></div><span class="ag-tag tag-bb">Bearded Dad</span></li><li><span class="tn-h">Late</span><div><b>Pub crawl</b><span class="tn-d">Three bars with a local guide, after dinner (summer)</span></div><span class="ag-tag tag-bb">Bearded Dad</span></li></ul></div>
+<div class="tn-dia" id="tn-Sun" data-dia="Sun"><h3 class="tn-titulo">On Sunday</h3><ul class="tn-lista"><li><span class="tn-h">Morning</span><div><b>Breakfast</b><span class="tn-d">Included in both houses</span></div><span class="ag-tag tag-all">Both houses</span></li><li><span class="tn-h">Day</span><div><b>Hike to Lake Bovilla</b><span class="tn-d">Guide and transport from the hostel</span></div><span class="ag-tag tag-la">Lost in Albania</span></li><li><span class="tn-h">19:00</span><div><b>Home-cooked Albanian dinner</b><span class="tn-d">Always with a vegetarian option</span></div><span class="ag-tag tag-bd">Blue Door</span></li><li><span class="tn-h">19:30</span><div><b>Family Dinner</b><span class="tn-d">Cooked by the volunteers, served in the garden</span></div><span class="ag-tag tag-bb">Bearded Dad</span></li><li><span class="tn-h">Late</span><div><b>Pub crawl</b><span class="tn-d">Three bars with a local guide, after dinner (summer)</span></div><span class="ag-tag tag-bb">Bearded Dad</span></li></ul></div></div>
+        <p class="ag-nota">The week changes with the season and the guests. Longer trips, like three days in the Alps, are on the <a class="link-texto" href="tours/">tours page</a>.</p>
+        <a class="btn" data-msg="semana" href="https://wa.me/355695539156" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2Z"/></svg><span>Ask what's on this week</span></a>
       </div>
     </div>
   </section>
@@ -1017,6 +1043,23 @@ if (!modoFoto && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     });
   });
 }
+
+/* What's on: abre hoje e troca de dia no toque. Sem JS, a semana inteira fica à vista. */
+(() => {
+  const botoes = [...document.querySelectorAll('.tn-dias button')];
+  if (!botoes.length) return;
+  const dias = [...document.querySelectorAll('.tn-dia')];
+  const hoje = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][new Date().getDay()];
+  document.querySelector('.tn-dias').hidden = false;
+  botoes.find(b => b.dataset.dia === hoje).insertAdjacentHTML('beforeend', '<span class="tn-hoje">today</span>');
+  document.querySelector('#tn-' + hoje + ' .tn-titulo').textContent = 'Tonight';
+  const mostra = d => {
+    botoes.forEach(b => b.setAttribute('aria-pressed', b.dataset.dia === d));
+    dias.forEach(x => { x.hidden = x.dataset.dia !== d; });
+  };
+  botoes.forEach(b => b.addEventListener('click', () => mostra(b.dataset.dia)));
+  mostra(hoje);
+})();
 </script>
 </body>
 </html>

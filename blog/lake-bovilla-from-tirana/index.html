@@ -388,6 +388,31 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 .tirana-capa img{object-position:50% 30%}
 .quarto:not(:has(.fotos-quarto)){grid-template-columns:minmax(0,1fr)}   /* quarto sem foto boa: só o texto */
 
+/* What's on (agenda da inicial, versão Tonight) */
+.ag-tag{display:inline-flex;align-items:center;min-height:24px;padding:0 9px;border-radius:999px;font:600 12px/1 "Martian Mono",ui-monospace,monospace;letter-spacing:.03em;white-space:nowrap}
+.tag-bd{background:#0A4FD1;color:#fff}
+.tag-bb{background:#1D5357;color:#EEF5F4}
+.tag-la{background:#F2C744;color:#17181A}
+.tag-all{background:#EFE5D3;color:#17181A}
+.ag-nota{margin:22px 0 0;font-size:15px;color:var(--texto2);max-width:60ch}
+.tn-dias{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 22px}
+.tn-dias button{min-width:52px;min-height:48px;padding:0 12px;border:0;border-radius:999px;background:rgba(255,255,255,.08);color:var(--texto);font:700 15px/1 "Archivo",system-ui,sans-serif;cursor:pointer;transition:background-color 160ms cubic-bezier(.23,1,.32,1),transform 160ms cubic-bezier(.23,1,.32,1)}
+.tn-dias button:active{transform:scale(.96)}
+.tn-dias button[aria-pressed="true"]{background:var(--amarelo);color:#17181A}
+.tn-dias button .tn-hoje{display:block;font:600 10px/1 "Martian Mono",monospace;margin-top:3px}
+.tn-dias-listas{display:grid;gap:28px;margin-top:26px}
+.tn-dias:not([hidden])+.tn-dias-listas{margin-top:0}
+.tn-titulo{font:800 clamp(28px,3.4vw,40px)/1.05 "Archivo",system-ui,sans-serif;font-variation-settings:"wdth" 116;margin:0 0 16px;color:var(--titulo)}
+.tn-lista{list-style:none;margin:0;padding:0;display:grid;gap:10px;max-width:760px}
+.tn-lista li{display:grid;grid-template-columns:5.2em 1fr auto;gap:14px;align-items:center;padding:14px 16px;border-radius:10px;background:rgba(255,255,255,.06);animation:tn-entra 220ms cubic-bezier(.23,1,.32,1) both}
+.tn-lista li:nth-child(2){animation-delay:40ms}.tn-lista li:nth-child(3){animation-delay:80ms}.tn-lista li:nth-child(4){animation-delay:120ms}.tn-lista li:nth-child(n+5){animation-delay:160ms}
+.tn-lista .tn-h{font:700 16px/1.2 "Martian Mono",ui-monospace,monospace;color:var(--amarelo)}
+.tn-lista b{display:block}
+.tn-lista span.tn-d{display:block;font-size:14px;color:var(--texto2);margin-top:2px}
+@keyframes tn-entra{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(max-width:560px){.tn-lista li{grid-template-columns:4.6em 1fr}.tn-lista .ag-tag{grid-column:2;justify-self:start}}
+@media(prefers-reduced-motion:reduce){.tn-lista li{animation:none}.tn-dias button{transition:none}}
+
 </style>
 
 <title>Lake Bovilla from Tirana: the daily hike · Tirana Hostels</title>
