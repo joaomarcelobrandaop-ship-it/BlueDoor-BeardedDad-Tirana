@@ -413,6 +413,20 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 @media(max-width:560px){.tn-lista li{grid-template-columns:4.6em 1fr}.tn-lista .ag-tag{grid-column:2;justify-self:start}}
 @media(prefers-reduced-motion:reduce){.tn-lista li{animation:none}.tn-dias button{transition:none}}
 
+/* Tirana: os lugares numa fileira que desliza (versão Filmstrip) */
+.tirana-fita{list-style:none;margin:30px -20px 0 0;padding:0 0 10px;display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin}
+.tirana-fita:focus-visible{outline:3px solid var(--foco);outline-offset:4px}
+.fita-cartao{flex:0 0 min(78vw,340px);scroll-snap-align:start;position:relative;aspect-ratio:3/4;border-radius:14px;overflow:hidden;background:rgba(0,0,0,.2)}
+.fita-cartao picture{position:absolute;inset:0}
+.fita-cartao img{display:block;width:100%;height:100%;object-fit:cover}
+.fita-cartao::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(8,12,28,.95) 0,rgba(8,12,28,.6) 150px,rgba(8,12,28,0) 260px)}
+.fita-txt{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:18px}
+.fita-txt b{display:block;font:800 clamp(22px,2.2vw,26px)/1.1 "Archivo",system-ui,sans-serif;font-variation-settings:"wdth" 112;color:#fff}
+.fita-txt span{display:block;color:#E6ECFF;font-size:15px;line-height:1.5}
+.fita-txt .fita-n{font:700 14px/1 "Martian Mono",monospace;color:var(--amarelo);margin-bottom:8px}
+.fita-dica{font:600 13px/1 "Martian Mono",monospace;color:var(--texto2);margin:12px 0 26px}
+.tirana .palavra-txt{min-width:0}   /* sem isso a fileira estica a coluna e a página vaza no celular */
+
 </style>
 
 <title>Tirana Hostels · Blue Door and The Bearded Dad, hostels in Tirana, Albania</title>
@@ -554,17 +568,21 @@ h2{font-size:clamp(48px,7.4vw,104px)}
     <div class="palavra-in uma">
       <div class="palavra-txt">
         <p class="traducao tirana-lead">The capital of Albania. Mountains on one side, buses all day to the sea at Durrës, and a centre you can walk.</p>
-        <ul class="tirana-fatos">
-          <li><b>Skanderbeg Square</b><span>The heart of the city, with the statue of the national hero, the National History Museum and the Et'hem Bey Mosque.</span></li>
-          <li><b>Bunk'Art</b><span>Cold War bunkers built for the communist leaders, now museums. Bunk'Art 2 is near the square.</span></li>
-          <li><b>Mount Dajti</b><span>Tirana's balcony. The Dajti Ekspres cable car takes about 15 minutes to go up.</span></li>
-          <li><b>The New Bazaar</b><span>Food market, cafés and restaurants, 9 minutes on foot from the Blue Door.</span></li>
+        <!-- Os 4 lugares numa fileira que desliza para o lado (versão Filmstrip,
+             escolhida pelo João em 30/10/2026). Fotos e créditos:
+             referencias/fotos-passeios/CREDITOS.md -->
+        <ul class="tirana-fita" aria-label="Places in Tirana" tabindex="0">
+          <li class="fita-cartao"><picture style="--r:1.5000"><source type="image/avif" srcset="img/pa-mesquita-480.avif 480w, img/pa-mesquita-800.avif 800w, img/pa-mesquita-1200.avif 1200w" sizes="(min-width:900px) 340px, 78vw"><source type="image/webp" srcset="img/pa-mesquita-480.webp 480w, img/pa-mesquita-800.webp 800w, img/pa-mesquita-1200.webp 1200w" sizes="(min-width:900px) 340px, 78vw"><img src="img/pa-mesquita-800.webp" width="800" height="533" alt="The painted arcade of the Et&#x27;hem Bey Mosque on Skanderbeg Square" loading="lazy" decoding="async"></picture><div class="fita-txt"><span class="fita-n">01</span><b>Skanderbeg Square</b><span>The heart of the city, with the statue of the national hero, the National History Museum and the Et'hem Bey Mosque.</span></div></li>
+          <li class="fita-cartao"><picture style="--r:1.3336"><source type="image/avif" srcset="img/pa-bunkart-480.avif 480w, img/pa-bunkart-800.avif 800w, img/pa-bunkart-1200.avif 1200w" sizes="(min-width:900px) 340px, 78vw"><source type="image/webp" srcset="img/pa-bunkart-480.webp 480w, img/pa-bunkart-800.webp 800w, img/pa-bunkart-1200.webp 1200w" sizes="(min-width:900px) 340px, 78vw"><img src="img/pa-bunkart-800.webp" width="800" height="600" alt="The assembly hall inside Bunk&#x27;Art 1, with rows of red seats" loading="lazy" decoding="async"></picture><div class="fita-txt"><span class="fita-n">02</span><b>Bunk'Art</b><span>Cold War bunkers built for the communist leaders, now museums. Bunk'Art 2 is near the square.</span></div></li>
+          <li class="fita-cartao"><picture style="--r:1.3333"><source type="image/avif" srcset="img/pa-teleferico-480.avif 480w, img/pa-teleferico-800.avif 800w, img/pa-teleferico-1200.avif 1200w" sizes="(min-width:900px) 340px, 78vw"><source type="image/webp" srcset="img/pa-teleferico-480.webp 480w, img/pa-teleferico-800.webp 800w, img/pa-teleferico-1200.webp 1200w" sizes="(min-width:900px) 340px, 78vw"><img src="img/pa-teleferico-800.webp" width="800" height="600" alt="The Dajti Ekspres cable car line going up from Tirana over green hills" loading="lazy" decoding="async"></picture><div class="fita-txt"><span class="fita-n">03</span><b>Mount Dajti</b><span>Tirana's balcony. The Dajti Ekspres cable car takes about 15 minutes to go up.</span></div></li>
+          <li class="fita-cartao"><picture style="--r:1.3333"><source type="image/avif" srcset="img/pa-bazar-480.avif 480w, img/pa-bazar-800.avif 800w, img/pa-bazar-1200.avif 1200w" sizes="(min-width:900px) 340px, 78vw"><source type="image/webp" srcset="img/pa-bazar-480.webp 480w, img/pa-bazar-800.webp 800w, img/pa-bazar-1200.webp 1200w" sizes="(min-width:900px) 340px, 78vw"><img src="img/pa-bazar-800.webp" width="800" height="600" alt="Dried fruit and nuts in baskets and sacks at a stall in the New Bazaar" loading="lazy" decoding="async"></picture><div class="fita-txt"><span class="fita-n">04</span><b>The New Bazaar</b><span>Food market, cafés and restaurants, 9 minutes on foot from the Blue Door.</span></div></li>
         </ul>
+        <p class="fita-dica" aria-hidden="true">Swipe for more →</p>
         <div class="ctas">
           <a class="btn" href="tours/"><span>Tours and buses from Tirana</span></a>
           <a class="link" href="blog/the-best-of-tirana/">The best of Tirana</a>
         </div>
-        <p class="creditos">Photo: Skanderbeg Square by Neil Ward (<a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>), Wikimedia Commons.</p>
+        <p class="creditos">Photos, Wikimedia Commons: Skanderbeg Square by Neil Ward (<a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>); Et'hem Bey Mosque by Steffen Schmitz (<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>); Bunk'Art by Andrew Milligan sumo (<a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a>); Dajti Ekspres by Leeturtle (<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>); New Bazaar by Enric (<a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>).</p>
       </div>
     </div>
   </section>
