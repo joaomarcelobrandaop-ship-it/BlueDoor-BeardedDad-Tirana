@@ -189,6 +189,10 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 .casas{display:grid;gap:44px;margin-top:36px}
 @media(min-width:800px){.casas{grid-template-columns:1fr 1fr;gap:48px}}
 .casa img{width:100%;height:auto;border-radius:4px}
+.casa-foto{display:block;border-radius:4px;overflow:hidden}
+.casa-foto img{transition:transform 300ms cubic-bezier(.23,1,.32,1)}
+@media (hover:hover) and (pointer:fine){.casa-foto:hover img{transform:scale(1.03)}}
+@media (prefers-reduced-motion:reduce){.casa-foto img{transition:none}}
 .casa h3{font:800 30px/1.1 "Archivo",system-ui,sans-serif;font-variation-settings:"wdth" 112;margin:18px 0 8px}
 .casa p{margin:0;max-width:46ch}
 .quartos{margin:14px 0 0;padding-left:1.15em;max-width:46ch}
@@ -572,7 +576,7 @@ h2{font-size:clamp(48px,7.4vw,104px)}
         <p class="traducao">The hostels of the community, each with its rooms, its prices and where it is on the map.</p>
         <div class="casas">
 <article class="casa">
-  <picture style="--r:1.3333"><source type="image/avif" srcset="img/bd-capsulas-480.avif 480w, img/bd-capsulas-800.avif 800w, img/bd-capsulas-1200.avif 1200w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><source type="image/webp" srcset="img/bd-capsulas-480.webp 480w, img/bd-capsulas-800.webp 800w, img/bd-capsulas-1200.webp 1200w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><img src="img/bd-capsulas-800.webp" width="800" height="600" alt="The capsule dorm at the Blue Door: a row of beds behind orange curtains" loading="lazy" decoding="async"></picture>
+  <a class="casa-foto" href="hostels/blue-door/" tabindex="-1" aria-hidden="true"><picture style="--r:1.3334"><source type="image/avif" srcset="img/bd-entrada-480.avif 480w, img/bd-entrada-800.avif 800w, img/bd-entrada-1200.avif 1200w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><source type="image/webp" srcset="img/bd-entrada-480.webp 480w, img/bd-entrada-800.webp 800w, img/bd-entrada-1200.webp 1200w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><img src="img/bd-entrada-800.webp" width="800" height="600" alt="The entrance of the Blue Door: the garden gate under the ivy, with the hand-painted sign Blue Door Hostel and the number 18" loading="lazy" decoding="async"></picture></a>
   <h3><a class="casa-link" href="hostels/blue-door/">Blue Door</a></h3>
   <p>An old house 9 minutes on foot from the New Bazaar, with a garden, a wood stove in the living room and a terrace on the roof. Breakfast is included.</p>
   <p class="resumo-quartos">Beds: capsules, mixed dorms of 6 and 8, a women-only dorm in the attic and two single rooms.</p>
@@ -585,7 +589,7 @@ h2{font-size:clamp(48px,7.4vw,104px)}
   <p class="mapa-endereco">Rruga Shtjefën Gjeçovi 18, Tirana · <a class="link-texto" href="https://www.google.com/maps/place/Blue+Door+Hostel/@41.3336245,19.8288341,17z/data=!4m9!3m8!1s0x135031f25224da81:0x2472c3d7ab86ad94" target="_blank" rel="noopener">Open in Google Maps</a></p>
 </article>
 <article class="casa">
-  <picture style="--r:1.3334"><source type="image/avif" srcset="img/bb-dorm-480.avif 480w, img/bb-dorm-800.avif 800w, img/bb-dorm-1200.avif 1200w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><source type="image/webp" srcset="img/bb-dorm-480.webp 480w, img/bb-dorm-800.webp 800w, img/bb-dorm-1200.webp 1200w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><img src="img/bb-dorm-800.webp" width="800" height="600" alt="A dorm at The Bearded Dad: two bunk beds with curtains and numbered lockers" loading="lazy" decoding="async"></picture>
+  <a class="casa-foto" href="hostels/the-bearded-dad/" tabindex="-1" aria-hidden="true"><picture style="--r:1.3333"><source type="image/avif" srcset="img/bb-entrada-480.avif 480w, img/bb-entrada-800.avif 800w, img/bb-entrada-1200.avif 1200w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><source type="image/webp" srcset="img/bb-entrada-480.webp 480w, img/bb-entrada-800.webp 800w, img/bb-entrada-1200.webp 1200w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><img src="img/bb-entrada-800.webp" width="800" height="600" alt="The garden of The Bearded Dad at night, where guests arrive: cable-drum tables, colourful chairs and string lights" loading="lazy" decoding="async"></picture></a>
   <h3><a class="casa-link" href="hostels/the-bearded-dad/">The Bearded Dad</a></h3>
   <p>A two-storey villa with a garden off Zogu I Boulevard, 12 minutes on foot from Skanderbeg Square. Breakfast is included, and the volunteers cook Family Dinner every night.</p>
   <p class="resumo-quartos">Beds: mixed dorms of 5 to 8, a women-only dorm, a private room for three, caravans in the yard and apartments.</p>
