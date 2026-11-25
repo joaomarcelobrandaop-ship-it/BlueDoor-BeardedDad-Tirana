@@ -554,6 +554,13 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 .heroi-comunidade[data-casa="bb"] .linha input::before{background:#3FBF73}
 .heroi-comunidade h1,.heroi-comunidade .dica,.heroi-comunidade .traducao{transition:color 220ms ease}
 
+/* 25/11/2026 (João): a PÁGINA do Bearded Dad é amarela, com botões verdes.
+   O Blue Door já é azul (p-royal / p-marinho). A inicial não muda de cor. */
+.p-bb{--btn-fundo:#17773F;--btn-texto:#FFFFFF;--foco:#17181A}
+.p-bb2{--fundo:#E5B42E}
+.p-bb .btn-s{--texto:#17181A}
+.p-bb .selo{background:#17773F;color:#fff}
+
 </style>
 
 <title>Tirana Hostels · Blue Door and The Bearded Dad, hostels in Tirana, Albania</title>
@@ -611,7 +618,7 @@ h2{font-size:clamp(48px,7.4vw,104px)}
   <section class="palavra p-noite heroi heroi-comunidade" aria-labelledby="t-welcome" data-casa="">
     <!-- 25/11/2026 (lista do dono, itens 2 e 13): a foto vai ATRÁS do texto, e o
          véu muda de cor com o hostel escolhido no painel (azul ou amarelo) -->
-    <div class="heroi-fundo" aria-hidden="true"><picture style="--r:1.5000"><source type="image/avif" srcset="img/tirana-sol-640.avif 640w, img/tirana-sol-960.avif 960w, img/tirana-sol-1440.avif 1440w, img/tirana-sol-1920.avif 1920w" sizes="100vw"><source type="image/webp" srcset="img/tirana-sol-640.webp 640w, img/tirana-sol-960.webp 960w, img/tirana-sol-1440.webp 1440w, img/tirana-sol-1920.webp 1920w" sizes="100vw"><img src="img/tirana-sol-1440.webp" width="1440" height="960" alt="" loading="eager" fetchpriority="high" decoding="async"></picture></div>
+    <div class="heroi-fundo" aria-hidden="true"><picture style="--r:1.3341"><source type="image/avif" srcset="img/tirana-bandeira-640.avif 640w, img/tirana-bandeira-960.avif 960w, img/tirana-bandeira-1150.avif 1150w" sizes="100vw"><source type="image/webp" srcset="img/tirana-bandeira-640.webp 640w, img/tirana-bandeira-960.webp 960w, img/tirana-bandeira-1150.webp 1150w" sizes="100vw"><img src="img/tirana-bandeira-960.webp" width="960" height="720" alt="" loading="eager" fetchpriority="high" decoding="async"></picture></div>
     <div class="palavra-in">
       <div class="heroi-txt">
         <h1 id="t-welcome">Tirana Hostels</h1>
@@ -1152,8 +1159,6 @@ function montarPedido() {
   // dela com as datas; sem motor, ou "qualquer casa", segue pelo WhatsApp
   const link = motor(form.casa.value, { arrival: form.chegada.value, nights: noites > 0 ? noites : '', guests: pessoas > 0 ? pessoas : '' });
   pedir.querySelector('span').textContent = link ? 'See free beds and book' : 'Book now';
-  // a cor do topo segue o hostel escolhido: azul no Blue Door, amarelo no Bearded Dad (item 2)
-  form.closest('.heroi-comunidade').dataset.casa = form.casa.value;
   // os quartos da casa escolhida aparecem no painel (pedido do dono, 30/10/2026)
   document.querySelectorAll('[data-painel-casa]').forEach(b => { b.hidden = b.dataset.painelCasa !== form.casa.value; });
   const fonte = form.querySelector('[data-preco-fonte]');

@@ -554,6 +554,13 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 .heroi-comunidade[data-casa="bb"] .linha input::before{background:#3FBF73}
 .heroi-comunidade h1,.heroi-comunidade .dica,.heroi-comunidade .traducao{transition:color 220ms ease}
 
+/* 25/11/2026 (João): a PÁGINA do Bearded Dad é amarela, com botões verdes.
+   O Blue Door já é azul (p-royal / p-marinho). A inicial não muda de cor. */
+.p-bb{--btn-fundo:#17773F;--btn-texto:#FFFFFF;--foco:#17181A}
+.p-bb2{--fundo:#E5B42E}
+.p-bb .btn-s{--texto:#17181A}
+.p-bb .selo{background:#17773F;color:#fff}
+
 </style>
 
 <title>The Bearded Dad Hostel, Tirana · Dorms, caravans and apartments</title>
@@ -644,7 +651,7 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 
 <main id="conteudo">
   <!-- 1 · A casa: texto do hostel e briefing 5.2. Prêmio sempre com o ano -->
-  <section class="palavra p-petroleo pg-heroi" aria-labelledby="t-bb">
+  <section class="palavra p-pneu p-bb pg-heroi" aria-labelledby="t-bb">
     <div class="palavra-in">
       <div class="palavra-txt">
         <nav class="migalha" aria-label="Breadcrumb"><a href="../../">Tirana Hostels</a> / The Bearded Dad</nav>
@@ -666,7 +673,7 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 
   <!-- 2 · Quartos: aqui só o resumo; cada quarto, com fotos e preço, fica em
        /hostels/the-bearded-dad/rooms/ (memória "multipágina de verdade": esta aponta, aquela conta) -->
-  <section class="palavra p-noite" id="quartos" aria-labelledby="t-quartos">
+  <section class="palavra p-pneu p-bb p-bb2" id="quartos" aria-labelledby="t-quartos">
     <div class="palavra-in">
       <div class="palavra-txt">
         <h2 id="t-quartos">Rooms</h2>
@@ -691,7 +698,7 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 
   <!-- 3 · A casa por dentro: Family Dinner no jardim (evento do hostel no
        Hostelworld), cozinha e lavanderia da lista de comodidades -->
-  <section class="palavra p-pneu" id="casa" aria-labelledby="t-casa">
+  <section class="palavra p-pneu p-bb" id="casa" aria-labelledby="t-casa">
     <div class="palavra-in uma">
       <div class="palavra-txt">
         <h2 id="t-casa">Inside the house</h2>
@@ -725,7 +732,7 @@ h2{font-size:clamp(48px,7.4vw,104px)}
   </section>
 
   <!-- 4 · Como chegar: distâncias medidas (briefing 8), mapa só como link -->
-  <section class="palavra p-petroleo" id="chegar" aria-labelledby="t-chegar">
+  <section class="palavra p-pneu p-bb p-bb2" id="chegar" aria-labelledby="t-chegar">
     <div class="palavra-in uma">
       <div class="palavra-txt">
         <h2 id="t-chegar">Getting here</h2>
@@ -743,7 +750,7 @@ h2{font-size:clamp(48px,7.4vw,104px)}
   </section>
 
   <!-- 5 · Perguntas: as mesmas do FAQPage do <head>, em texto visível -->
-  <section class="palavra p-noite" id="perguntas" aria-labelledby="t-perguntas">
+  <section class="palavra p-pneu p-bb" id="perguntas" aria-labelledby="t-perguntas">
     <div class="palavra-in uma">
       <div class="palavra-txt">
         <h2 id="t-perguntas">Good to know</h2>
