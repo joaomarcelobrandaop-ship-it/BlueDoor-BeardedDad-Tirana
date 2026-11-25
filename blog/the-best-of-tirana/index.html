@@ -494,6 +494,55 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 .tirana-capa::after{background:linear-gradient(to top,var(--azul) 0,rgba(10,79,209,.82) 110px,rgba(10,79,209,.35) 240px,rgba(10,79,209,0) 360px)}
 @media (max-width:700px){.tirana-capa::after{background:linear-gradient(to top,var(--azul) 0,rgba(10,79,209,.7) 70px,rgba(10,79,209,.25) 170px,rgba(10,79,209,0) 230px)}}
 
+/* ================================================================ LISTA DO DONO (25/11/2026)
+   2 e 13: foto atrás do topo, com o véu na cor do hostel escolhido.
+   14: chamadas mais fortes. 15: fotos trocando no fundo do What's on. */
+.heroi-comunidade{position:relative;isolation:isolate;overflow:hidden;--veu:20,16,13}
+.heroi-comunidade[data-casa="bd"]{--veu:6,34,110}
+.heroi-comunidade[data-casa="bb"]{--veu:74,54,4}
+.heroi-fundo{position:absolute;inset:0;z-index:-2}
+.heroi-fundo picture{position:absolute;inset:0}
+.heroi-fundo img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block}
+/* o véu: cor do hostel por cima da foto, mais forte do lado do texto */
+.heroi-comunidade::before{content:"";position:absolute;inset:0;z-index:-1;background:rgb(var(--veu));opacity:.5;transition:background-color 320ms cubic-bezier(.23,1,.32,1)}
+.heroi-comunidade::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(0,0,0,.62) 0,rgba(0,0,0,.3) 50%,rgba(0,0,0,.1) 100%);pointer-events:none}
+@media(max-width:959px){.heroi-comunidade::before{opacity:.72}.heroi-comunidade::after{background:linear-gradient(to bottom,rgba(0,0,0,.35),rgba(0,0,0,.1))}}
+.heroi-comunidade .dica,.heroi-comunidade .traducao{color:#F3ECDF}
+.heroi-comunidade h1{color:#fff}
+/* Blue Door escolhido: os detalhes do painel passam do amarelo para o azul */
+.heroi-comunidade[data-casa="bd"] .btn-painel,.heroi-comunidade[data-casa="bd"] .oferta,.heroi-comunidade[data-casa="bd"] .pq-btn{background:#2F6BFF;color:#fff}
+.heroi-comunidade[data-casa="bd"] .linha:has(input:checked){box-shadow:inset 0 0 0 2px #6E9BFF}
+.heroi-comunidade[data-casa="bd"] .linha input:checked{border-color:#6E9BFF}
+.heroi-comunidade[data-casa="bd"] .linha input::before{background:#6E9BFF}
+.btn-painel,.oferta{transition:background-color 220ms ease,color 220ms ease,transform 160ms cubic-bezier(.23,1,.32,1)}
+@media(prefers-reduced-motion:reduce){.heroi-comunidade::before{transition:none}}
+
+/* 14: chamadas mais fortes, com sombra de "carimbo" e um passo de altura no toque */
+.btn:not(.btn-s){font-weight:800;box-shadow:0 4px 0 rgba(0,0,0,.35);transition:transform 160ms cubic-bezier(.23,1,.32,1),box-shadow 160ms cubic-bezier(.23,1,.32,1)}
+.btn:not(.btn-s):active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.35)}
+@media(hover:hover) and (pointer:fine){.btn:not(.btn-s):hover{transform:translateY(-2px);box-shadow:0 6px 0 rgba(0,0,0,.35)}}
+.btn-grande{min-height:58px;padding:0 30px;font-size:19px}
+.btn-painel{font-size:19px;min-height:58px;box-shadow:0 4px 0 rgba(0,0,0,.35)}
+.btn-painel:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.35)}
+.chamada-tour{align-items:center;margin-top:26px}
+.chamada-tour .selo{margin:0}
+@media(prefers-reduced-motion:reduce){.btn:not(.btn-s),.btn-painel{transition:none}}
+
+/* 15: What's on com as fotos trocando no fundo; o véu escuro segura o contraste */
+#semana{position:relative;isolation:isolate;overflow:hidden}
+.ag-fundo{position:absolute;inset:0;z-index:-2}
+.ag-fundo picture{position:absolute;inset:0;opacity:0;transition:opacity 1200ms ease-in-out}
+.ag-fundo picture.on{opacity:1}
+.ag-fundo img{width:100%;height:100%;object-fit:cover;display:block}
+#semana::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(18,26,20,.82)}
+@media(prefers-reduced-motion:reduce){.ag-fundo picture{transition:none}}
+
+/* galeria do Theth: só foto, sem legenda nem escurecido */
+.fita-foto::after{display:none}
+/* ônibus: rota de cada hostel até o terminal */
+.rotas-t{margin:18px 0 0;color:var(--texto2);max-width:60ch}
+.rotas-terminal{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 0}
+
 </style>
 
 <title>The best of Tirana: three places to start · Tirana Hostels</title>
@@ -526,7 +575,6 @@ h2{font-size:clamp(48px,7.4vw,104px)}
     <a class="marca" href="../../"><b>Tirana Hostels</b><small>The hostel community of Tirana</small></a>
     <div class="acoes">
       <a class="btn btn-curto" data-msg="topo" href="https://wa.me/355695539156" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2Z"/></svg><span class="rotulo">WhatsApp</span></a>
-      <a class="btn btn-s btn-curto so-largo" data-viber href="viber://chat?number=%2B355695539156">Viber</a>
     </div>
     <!-- cada link leva a uma página própria (SEO: uma página por assunto) -->
     <nav class="menu" aria-label="Main">
@@ -568,7 +616,7 @@ h2{font-size:clamp(48px,7.4vw,104px)}
   <!-- nome, endereço e telefone em TEXTO e iguais em todo lugar: o Google e a IA conferem (pesquisa 05, seção 4) -->
   <div class="rx-rod-in">
     <div><b>Blue Door Hostel</b><span>Rruga Shtjefën Gjeçovi 18, Tirana, Albania</span><b>The Bearded Dad Hostel</b><span>Rruga Hamid Shijaku, Vila 13, Tirana, Albania</span></div>
-    <div><b>WhatsApp and Viber</b><span>+355 69 553 9156</span><span class="rx-rod-ig"><a href="https://www.instagram.com/thebluedoorhostel/" target="_blank" rel="noopener">Instagram Blue Door</a> · <a href="https://www.instagram.com/beardeddadhostel/" target="_blank" rel="noopener">Instagram Bearded Dad</a></span></div>
+    <div><b>WhatsApp</b><span>+355 69 553 9156</span><span class="rx-rod-ig"><a href="https://www.instagram.com/thebluedoorhostel/" target="_blank" rel="noopener">Instagram Blue Door</a> · <a href="https://www.instagram.com/beardeddadhostel/" target="_blank" rel="noopener">Instagram Bearded Dad</a></span></div>
     <nav aria-label="Footer"><a href="../../hostels/blue-door/">Blue Door</a><a href="../../hostels/the-bearded-dad/">The Bearded Dad</a><a href="../../tours/">Tours</a><a href="../../buses/">Buses</a><a href="../../blog/">Blog</a><a href="../../volunteer/">Volunteer</a><a href="../../privacy/">Privacy</a><a href="../../privacy/#credits">Photo credits</a></nav>
   </div>
   <p class="rx-rod-fim">Thank you, in Albanian: <b lang="sq">Faleminderit</b> (<span class="diz">fah-leh-meen-DEH-reet</span>).</p>
@@ -584,7 +632,13 @@ h2{font-size:clamp(48px,7.4vw,104px)}
    site não mostra nada no lugar (memória "[PREENCHER] não vai para a tela"). */
 const CONFIG = {
   whatsapp: "355695539156",   // o mesmo nas duas casas; confirmar qual número recebe (pauta 2)
-  viber: "355695539156",
+  // Viber saiu em 25/11/2026: o dono disse que o botão não funcionava e ninguém sabia o que era
+  // TÁXI (item 11 da lista do dono, 25/11/2026): o WhatsApp da Mimi. Vazio = a seção some.
+  taxi: "",
+  mensagemTaxi: "Hi Mimi! I'm staying at a Tirana Hostels house and I need a taxi on … at … from … to …",
+  // GUIA EM PDF de cada passeio (item 9). Caminho do arquivo dentro do site, ex.: "/guias/bovilla.pdf".
+  // Vazio = o link de baixar some.
+  guias: { bovilla: "" },
   // cada botão leva a mensagem da sua seção (regra 5)
   mensagens: {
     topo: "Hi! I found your website and I have a question about your hostels in Tirana.",
@@ -624,13 +678,14 @@ const CONFIG = {
     pubcrawl: "Hi! Is there a pub crawl tonight? How do I join?",
     parceiro: "Hi! I run a tour / class in Tirana and I'd like to be a partner of Tirana Hostels."
   },
-  // agência de passeios do grupo: Lost in Albania, contato do Leo (cartaz da
-  // Bovilla nas duas casas, foto do Alejandro de 30/10/2026)
-  agencia: "355697478510",
+  // agência de passeios do grupo: Lost in Albania. Desde 25/11/2026 o contato é
+  // a Eri, +355 69 338 8881 (lista do dono, item 8: Bovilla e passeios em geral).
+  // Antes era o Leo, 355697478510, do cartaz da Bovilla de 30/10/2026.
+  agencia: "355693388881",
   mensagensAgencia: {
-    bovilla: "Hi Leo! I'd like to join the hike to Lake Bovilla. We're … people, on …",
-    alpes: "Hi Leo! I'd like to know about the 3-day trip to the Albanian Alps. We're … people, from …",
-    passeios: "Hi Leo! Which tours from Tirana are on this week?"
+    bovilla: "Hi Eri! I'd like to join the hike to Lake Bovilla. We're … people, on …",
+    alpes: "Hi Eri! I'd like to know about the 3-day trip to the Albanian Alps. We're … people, from …",
+    passeios: "Hi Eri! Which tours from Tirana are on this week?"
   },
   // o pedido do topo começa com o nome da casa escolhida
   casas: {
@@ -718,7 +773,15 @@ document.querySelectorAll('[data-reserva]').forEach(a => {
   if (zap) zap.classList.add('btn-s');
 });
 document.querySelectorAll('[data-msg]').forEach(a => { a.href = wa(CONFIG.mensagens[a.dataset.msg]); });
-document.querySelectorAll('[data-viber]').forEach(a => { a.href = "viber://chat?number=%2B" + CONFIG.viber; });
+/* táxi e guias em PDF: só aparecem quando o CONFIG tiver o dado */
+if (CONFIG.taxi) {
+  document.querySelectorAll('[data-taxi-msg]').forEach(a => { a.href = wa(CONFIG.mensagemTaxi, CONFIG.taxi); });
+  document.querySelectorAll('[data-taxi]').forEach(s => { s.hidden = false; });
+}
+document.querySelectorAll('[data-guia]').forEach(a => {
+  const arq = CONFIG.guias[a.dataset.guia];
+  if (arq) { a.href = arq; a.hidden = false; }
+});
 
 /* preço e vantagem direta: só aparecem quando o CONFIG tiver o dado. No modo
    "motor" e no "embutido" o preço fica com o FrontDesk Master (é o do dia) */

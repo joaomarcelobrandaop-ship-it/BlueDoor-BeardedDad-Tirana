@@ -494,6 +494,55 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 .tirana-capa::after{background:linear-gradient(to top,var(--azul) 0,rgba(10,79,209,.82) 110px,rgba(10,79,209,.35) 240px,rgba(10,79,209,0) 360px)}
 @media (max-width:700px){.tirana-capa::after{background:linear-gradient(to top,var(--azul) 0,rgba(10,79,209,.7) 70px,rgba(10,79,209,.25) 170px,rgba(10,79,209,0) 230px)}}
 
+/* ================================================================ LISTA DO DONO (25/11/2026)
+   2 e 13: foto atrás do topo, com o véu na cor do hostel escolhido.
+   14: chamadas mais fortes. 15: fotos trocando no fundo do What's on. */
+.heroi-comunidade{position:relative;isolation:isolate;overflow:hidden;--veu:20,16,13}
+.heroi-comunidade[data-casa="bd"]{--veu:6,34,110}
+.heroi-comunidade[data-casa="bb"]{--veu:74,54,4}
+.heroi-fundo{position:absolute;inset:0;z-index:-2}
+.heroi-fundo picture{position:absolute;inset:0}
+.heroi-fundo img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block}
+/* o véu: cor do hostel por cima da foto, mais forte do lado do texto */
+.heroi-comunidade::before{content:"";position:absolute;inset:0;z-index:-1;background:rgb(var(--veu));opacity:.5;transition:background-color 320ms cubic-bezier(.23,1,.32,1)}
+.heroi-comunidade::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(0,0,0,.62) 0,rgba(0,0,0,.3) 50%,rgba(0,0,0,.1) 100%);pointer-events:none}
+@media(max-width:959px){.heroi-comunidade::before{opacity:.72}.heroi-comunidade::after{background:linear-gradient(to bottom,rgba(0,0,0,.35),rgba(0,0,0,.1))}}
+.heroi-comunidade .dica,.heroi-comunidade .traducao{color:#F3ECDF}
+.heroi-comunidade h1{color:#fff}
+/* Blue Door escolhido: os detalhes do painel passam do amarelo para o azul */
+.heroi-comunidade[data-casa="bd"] .btn-painel,.heroi-comunidade[data-casa="bd"] .oferta,.heroi-comunidade[data-casa="bd"] .pq-btn{background:#2F6BFF;color:#fff}
+.heroi-comunidade[data-casa="bd"] .linha:has(input:checked){box-shadow:inset 0 0 0 2px #6E9BFF}
+.heroi-comunidade[data-casa="bd"] .linha input:checked{border-color:#6E9BFF}
+.heroi-comunidade[data-casa="bd"] .linha input::before{background:#6E9BFF}
+.btn-painel,.oferta{transition:background-color 220ms ease,color 220ms ease,transform 160ms cubic-bezier(.23,1,.32,1)}
+@media(prefers-reduced-motion:reduce){.heroi-comunidade::before{transition:none}}
+
+/* 14: chamadas mais fortes, com sombra de "carimbo" e um passo de altura no toque */
+.btn:not(.btn-s){font-weight:800;box-shadow:0 4px 0 rgba(0,0,0,.35);transition:transform 160ms cubic-bezier(.23,1,.32,1),box-shadow 160ms cubic-bezier(.23,1,.32,1)}
+.btn:not(.btn-s):active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.35)}
+@media(hover:hover) and (pointer:fine){.btn:not(.btn-s):hover{transform:translateY(-2px);box-shadow:0 6px 0 rgba(0,0,0,.35)}}
+.btn-grande{min-height:58px;padding:0 30px;font-size:19px}
+.btn-painel{font-size:19px;min-height:58px;box-shadow:0 4px 0 rgba(0,0,0,.35)}
+.btn-painel:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.35)}
+.chamada-tour{align-items:center;margin-top:26px}
+.chamada-tour .selo{margin:0}
+@media(prefers-reduced-motion:reduce){.btn:not(.btn-s),.btn-painel{transition:none}}
+
+/* 15: What's on com as fotos trocando no fundo; o véu escuro segura o contraste */
+#semana{position:relative;isolation:isolate;overflow:hidden}
+.ag-fundo{position:absolute;inset:0;z-index:-2}
+.ag-fundo picture{position:absolute;inset:0;opacity:0;transition:opacity 1200ms ease-in-out}
+.ag-fundo picture.on{opacity:1}
+.ag-fundo img{width:100%;height:100%;object-fit:cover;display:block}
+#semana::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(18,26,20,.82)}
+@media(prefers-reduced-motion:reduce){.ag-fundo picture{transition:none}}
+
+/* galeria do Theth: só foto, sem legenda nem escurecido */
+.fita-foto::after{display:none}
+/* ônibus: rota de cada hostel até o terminal */
+.rotas-t{margin:18px 0 0;color:var(--texto2);max-width:60ch}
+.rotas-terminal{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 0}
+
 </style>
 
 <title>Tours from Tirana · Lake Bovilla, the Albanian Alps and more</title>
@@ -505,7 +554,7 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 <meta property="og:image" content="https://bluedoor-beardeddad-tirana.vercel.app/img/pa-bovilla-1200.webp">
 <!-- Passeios: o cartaz da Bovilla nas duas casas (foto do Alejandro,
      30/10/2026: €30 por pessoa, saída diária, guia e transporte, trilha fácil
-     de 1h30, contato do Leo, Lost in Albania) e os eventos do Hostelworld.
+     de 1h30, contato do Leo, Lost in Albania; desde 25/11/2026 a Eri, +355 69 338 8881) e os eventos do Hostelworld.
      O site da agência (lostinalbania.com) está com spam de cassino: não
      linkar até limpar (pauta 57). Fatos dos lugares: Wikipedia, 28/10/2026. -->
 <script type="application/ld+json">
@@ -543,7 +592,6 @@ h2{font-size:clamp(48px,7.4vw,104px)}
     <a class="marca" href="../"><b>Tirana Hostels</b><small>The hostel community of Tirana</small></a>
     <div class="acoes">
       <a class="btn btn-curto" data-msg="topo" href="https://wa.me/355695539156" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2Z"/></svg><span class="rotulo">WhatsApp</span></a>
-      <a class="btn btn-s btn-curto so-largo" data-viber href="viber://chat?number=%2B355695539156">Viber</a>
     </div>
     <!-- cada link leva a uma página própria (SEO: uma página por assunto) -->
     <nav class="menu" aria-label="Main">
@@ -563,16 +611,17 @@ h2{font-size:clamp(48px,7.4vw,104px)}
       <div class="palavra-txt">
         <nav class="migalha" aria-label="Breadcrumb"><a href="../">Tirana Hostels</a> / Tours</nav>
         <h1 id="t-tours">Tours from Tirana</h1>
-        <p class="intro">The hostels run their trips with Lost in Albania, a tour company on the same street as the Blue Door. Book with Leo on WhatsApp, or ask at reception.</p>
+        <p class="intro">The hostels run their trips with Lost in Albania, a tour company on the same street as the Blue Door. Book with Eri on WhatsApp, or ask at reception.</p>
+        <p class="selo">Best price in the city</p>
         <div class="ctas">
-          <a class="btn" data-msg-agencia="passeios" data-sem-flutua href="https://wa.me/355697478510" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2Z"/></svg><span>Ask Leo what's on this week</span></a>
+          <a class="btn btn-grande" data-msg-agencia="passeios" data-sem-flutua href="https://wa.me/355693388881" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2Z"/></svg><span>Ask Eri what's on this week</span></a>
         </div>
       </div>
       <div class="foto"><picture style="--r:1.4004"><source type="image/avif" srcset="../img/bb-escada-640.avif 640w, ../img/bb-escada-960.avif 960w, ../img/bb-escada-1440.avif 1440w" sizes="(min-width:1240px) 500px, (min-width:960px) 40vw, 92vw"><source type="image/webp" srcset="../img/bb-escada-640.webp 640w, ../img/bb-escada-960.webp 960w, ../img/bb-escada-1440.webp 1440w" sizes="(min-width:1240px) 500px, (min-width:960px) 40vw, 92vw"><img src="../img/bb-escada-960.webp" width="960" height="686" alt="The stairs at The Bearded Dad, seen from above, with a wooden handrail and a drawing of Einstein on the wall next to the words: Only two things are infinite, the Universe and the exploration of Albania" loading="eager" fetchpriority="high" decoding="async"></picture></div>
     </div>
   </section>
 
-  <!-- Passeios da agência: cada um com o seu botão para o Leo (regra 5) -->
+  <!-- Passeios da agência: cada um com o seu botão para a Eri (regra 5) -->
   <section class="palavra p-jardim" id="passeios" aria-labelledby="t-passeios">
     <div class="palavra-in uma">
       <div class="palavra-txt">
@@ -581,16 +630,30 @@ h2{font-size:clamp(48px,7.4vw,104px)}
           <div class="bloco">
             <picture style="--r:1.3333"><source type="image/avif" srcset="../img/pa-bovilla-480.avif 480w, ../img/pa-bovilla-800.avif 800w, ../img/pa-bovilla-1200.avif 1200w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><source type="image/webp" srcset="../img/pa-bovilla-480.webp 480w, ../img/pa-bovilla-800.webp 800w, ../img/pa-bovilla-1200.webp 1200w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><img src="../img/pa-bovilla-800.webp" width="800" height="600" alt="Lake Bovilla, turquoise water between steep green mountains" loading="lazy" decoding="async"></picture>
             <h3>Hike to Lake Bovilla</h3>
-            <p class="preco-tour"><b>€30 a person</b> · every day</p>
+            <p class="preco-tour"><b>€30 a person</b> · every day · best price in the city</p>
             <p>An easy hike of about an hour and a half around Lake Bovilla, a reservoir in Dajti Mountain National Park, about 14 km north-east of Tirana. The guide and the transport are included.</p>
-            <a class="btn" data-msg-agencia="bovilla" href="https://wa.me/355697478510" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2Z"/></svg><span>Book the Bovilla hike</span></a>
+            <a class="btn btn-grande" data-msg-agencia="bovilla" href="https://wa.me/355693388881" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2Z"/></svg><span>Book the Bovilla hike</span></a>
+            <a class="link" data-guia="bovilla" hidden href="#" download>Download the Bovilla guide (PDF)</a>
           </div>
           <div class="bloco">
+            <picture style="--r:1.3329"><source type="image/avif" srcset="../img/th-capa-480.avif 480w, ../img/th-capa-800.avif 800w, ../img/th-capa-1125.avif 1125w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><source type="image/webp" srcset="../img/th-capa-480.webp 480w, ../img/th-capa-800.webp 800w, ../img/th-capa-1125.webp 1125w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><img src="../img/th-capa-800.webp" width="800" height="600" alt="The river in Theth, with a stone and wood house and a green mountain behind" loading="lazy" decoding="async"></picture>
             <h3>Three days in the Albanian Alps</h3>
-            <p>A boat on Lake Koman, then Valbona and Theth, with a night in each village. Ask Leo for the dates and what's included.</p>
-            <a class="btn" data-msg-agencia="alpes" href="https://wa.me/355697478510" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2Z"/></svg><span>Ask about the Alps trip</span></a>
+            <p>A boat on Lake Koman, then Valbona and Theth, with a night in each village. Ask Eri for the dates and what's included.</p>
+            <a class="btn" data-msg-agencia="alpes" href="https://wa.me/355693388881" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2Z"/></svg><span>Ask about the Alps trip</span></a>
           </div>
         </div>
+        <h3 class="h3-solto">On the trip to Theth</h3>
+        <ul class="tirana-fita galeria-fita" aria-label="Photos from the trip to Theth" tabindex="0">
+          <li class="fita-cartao fita-foto"><picture style="--r:0.7500"><source type="image/avif" srcset="../img/th-cachoeira-400.avif 400w, ../img/th-cachoeira-640.avif 640w, ../img/th-cachoeira-960.avif 960w" sizes="(min-width:900px) 340px, 78vw"><source type="image/webp" srcset="../img/th-cachoeira-400.webp 400w, ../img/th-cachoeira-640.webp 640w, ../img/th-cachoeira-960.webp 960w" sizes="(min-width:900px) 340px, 78vw"><img src="../img/th-cachoeira-640.webp" width="640" height="853" alt="The Grunas waterfall in Theth falling into a green pool, with hikers on the rocks below" loading="lazy" decoding="async"></picture></li>
+          <li class="fita-cartao fita-foto"><picture style="--r:0.7500"><source type="image/avif" srcset="../img/th-olho-400.avif 400w, ../img/th-olho-640.avif 640w, ../img/th-olho-960.avif 960w" sizes="(min-width:900px) 340px, 78vw"><source type="image/webp" srcset="../img/th-olho-400.webp 400w, ../img/th-olho-640.webp 640w, ../img/th-olho-960.webp 960w" sizes="(min-width:900px) 340px, 78vw"><img src="../img/th-olho-640.webp" width="640" height="853" alt="A small waterfall pouring into the turquoise water of the Blue Eye of Theth" loading="lazy" decoding="async"></picture></li>
+          <li class="fita-cartao fita-foto"><picture style="--r:0.7506"><source type="image/avif" srcset="../img/th-igreja-400.avif 400w, ../img/th-igreja-600.avif 600w" sizes="(min-width:900px) 340px, 78vw"><source type="image/webp" srcset="../img/th-igreja-400.webp 400w, ../img/th-igreja-600.webp 600w" sizes="(min-width:900px) 340px, 78vw"><img src="../img/th-igreja-600.webp" width="600" height="799" alt="The stone church of Theth at dusk, with the mountains in the clouds behind" loading="lazy" decoding="async"></picture></li>
+          <li class="fita-cartao fita-foto"><picture style="--r:0.7500"><source type="image/avif" srcset="../img/th-casal-400.avif 400w, ../img/th-casal-640.avif 640w, ../img/th-casal-960.avif 960w" sizes="(min-width:900px) 340px, 78vw"><source type="image/webp" srcset="../img/th-casal-400.webp 400w, ../img/th-casal-640.webp 640w, ../img/th-casal-960.webp 960w" sizes="(min-width:900px) 340px, 78vw"><img src="../img/th-casal-640.webp" width="640" height="853" alt="Two hikers resting on the grass in front of a snowy rock peak" loading="lazy" decoding="async"></picture></li>
+          <li class="fita-cartao fita-foto"><picture style="--r:0.7500"><source type="image/avif" srcset="../img/th-ovelhas-400.avif 400w, ../img/th-ovelhas-640.avif 640w, ../img/th-ovelhas-960.avif 960w" sizes="(min-width:900px) 340px, 78vw"><source type="image/webp" srcset="../img/th-ovelhas-400.webp 400w, ../img/th-ovelhas-640.webp 640w, ../img/th-ovelhas-960.webp 960w" sizes="(min-width:900px) 340px, 78vw"><img src="../img/th-ovelhas-640.webp" width="640" height="853" alt="Sheep grazing in a green field in Theth, with stone houses and snowy mountains behind" loading="lazy" decoding="async"></picture></li>
+          <li class="fita-cartao fita-foto"><picture style="--r:0.7500"><source type="image/avif" srcset="../img/th-van-400.avif 400w, ../img/th-van-640.avif 640w, ../img/th-van-960.avif 960w" sizes="(min-width:900px) 340px, 78vw"><source type="image/webp" srcset="../img/th-van-400.webp 400w, ../img/th-van-640.webp 640w, ../img/th-van-960.webp 960w" sizes="(min-width:900px) 340px, 78vw"><img src="../img/th-van-640.webp" width="640" height="853" alt="A white van driving on a wide stony riverbed towards the mountains" loading="lazy" decoding="async"></picture></li>
+          <li class="fita-cartao fita-foto"><picture style="--r:0.7500"><source type="image/avif" srcset="../img/th-pico-400.avif 400w, ../img/th-pico-640.avif 640w, ../img/th-pico-960.avif 960w" sizes="(min-width:900px) 340px, 78vw"><source type="image/webp" srcset="../img/th-pico-400.webp 400w, ../img/th-pico-640.webp 640w, ../img/th-pico-960.webp 960w" sizes="(min-width:900px) 340px, 78vw"><img src="../img/th-pico-640.webp" width="640" height="853" alt="A hiker pointing at a huge rock wall with snow, from the top of a trail" loading="lazy" decoding="async"></picture></li>
+          <li class="fita-cartao fita-foto"><picture style="--r:0.7500"><source type="image/avif" srcset="../img/th-rio-ponte-400.avif 400w, ../img/th-rio-ponte-640.avif 640w, ../img/th-rio-ponte-960.avif 960w" sizes="(min-width:900px) 340px, 78vw"><source type="image/webp" srcset="../img/th-rio-ponte-400.webp 400w, ../img/th-rio-ponte-640.webp 640w, ../img/th-rio-ponte-960.webp 960w" sizes="(min-width:900px) 340px, 78vw"><img src="../img/th-rio-ponte-640.webp" width="640" height="853" alt="The river of Theth under the trees, with a small wooden platform over the water" loading="lazy" decoding="async"></picture></li>
+        </ul>
+        <p class="fita-dica" aria-hidden="true">Swipe for more</p>
         <h3 class="h3-solto">More with Lost in Albania</h3>
         <ul class="resumo-lista">
           <li><b>Cultural heritage</b> tours</li>
@@ -599,7 +662,7 @@ h2{font-size:clamp(48px,7.4vw,104px)}
           <li><b>Self-guided</b> trips, and <b>tailored tours</b> planned around you</li>
         </ul>
         <div class="ctas">
-          <a class="btn" data-msg-agencia="passeios" href="https://wa.me/355697478510" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2Z"/></svg><span>Plan a trip with Leo</span></a>
+          <a class="btn" data-msg-agencia="passeios" href="https://wa.me/355693388881" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2Z"/></svg><span>Plan a trip with Eri</span></a>
         </div>
       </div>
     </div>
@@ -642,7 +705,7 @@ h2{font-size:clamp(48px,7.4vw,104px)}
         <h2 id="t-parceiros">Our partners</h2>
         <p class="traducao">The people we send our guests to.</p>
         <ul class="atalhos">
-          <li><a data-msg-agencia="passeios" href="https://wa.me/355697478510" target="_blank" rel="noopener"><b>Lost in Albania</b><span>Tours from Tirana: the Bovilla hike, the Alps, cultural, cycling and off-road trips.</span></a></li>
+          <li><a data-msg-agencia="passeios" href="https://wa.me/355693388881" target="_blank" rel="noopener"><b>Lost in Albania</b><span>Tours from Tirana: the Bovilla hike, the Alps, cultural, cycling and off-road trips.</span></a></li>
           <li><a data-msg="pubcrawl" href="https://wa.me/355695539156" target="_blank" rel="noopener"><b>Pub Crawl Tirana</b><span>Three bars with a local guide, leaving from the reception after the evening events.</span></a></li>
         </ul>
         <div class="ctas">
@@ -715,7 +778,7 @@ h2{font-size:clamp(48px,7.4vw,104px)}
   <!-- nome, endereço e telefone em TEXTO e iguais em todo lugar: o Google e a IA conferem (pesquisa 05, seção 4) -->
   <div class="rx-rod-in">
     <div><b>Blue Door Hostel</b><span>Rruga Shtjefën Gjeçovi 18, Tirana, Albania</span><b>The Bearded Dad Hostel</b><span>Rruga Hamid Shijaku, Vila 13, Tirana, Albania</span></div>
-    <div><b>WhatsApp and Viber</b><span>+355 69 553 9156</span><span class="rx-rod-ig"><a href="https://www.instagram.com/thebluedoorhostel/" target="_blank" rel="noopener">Instagram Blue Door</a> · <a href="https://www.instagram.com/beardeddadhostel/" target="_blank" rel="noopener">Instagram Bearded Dad</a></span></div>
+    <div><b>WhatsApp</b><span>+355 69 553 9156</span><span class="rx-rod-ig"><a href="https://www.instagram.com/thebluedoorhostel/" target="_blank" rel="noopener">Instagram Blue Door</a> · <a href="https://www.instagram.com/beardeddadhostel/" target="_blank" rel="noopener">Instagram Bearded Dad</a></span></div>
     <nav aria-label="Footer"><a href="../hostels/blue-door/">Blue Door</a><a href="../hostels/the-bearded-dad/">The Bearded Dad</a><a href="../tours/">Tours</a><a href="../buses/">Buses</a><a href="../blog/">Blog</a><a href="../volunteer/">Volunteer</a><a href="../privacy/">Privacy</a><a href="../privacy/#credits">Photo credits</a></nav>
   </div>
   <p class="rx-rod-fim">Thank you, in Albanian: <b lang="sq">Faleminderit</b> (<span class="diz">fah-leh-meen-DEH-reet</span>).</p>
@@ -731,7 +794,13 @@ h2{font-size:clamp(48px,7.4vw,104px)}
    site não mostra nada no lugar (memória "[PREENCHER] não vai para a tela"). */
 const CONFIG = {
   whatsapp: "355695539156",   // o mesmo nas duas casas; confirmar qual número recebe (pauta 2)
-  viber: "355695539156",
+  // Viber saiu em 25/11/2026: o dono disse que o botão não funcionava e ninguém sabia o que era
+  // TÁXI (item 11 da lista do dono, 25/11/2026): o WhatsApp da Mimi. Vazio = a seção some.
+  taxi: "",
+  mensagemTaxi: "Hi Mimi! I'm staying at a Tirana Hostels house and I need a taxi on … at … from … to …",
+  // GUIA EM PDF de cada passeio (item 9). Caminho do arquivo dentro do site, ex.: "/guias/bovilla.pdf".
+  // Vazio = o link de baixar some.
+  guias: { bovilla: "" },
   // cada botão leva a mensagem da sua seção (regra 5)
   mensagens: {
     topo: "Hi! I found your website and I have a question about your hostels in Tirana.",
@@ -771,13 +840,14 @@ const CONFIG = {
     pubcrawl: "Hi! Is there a pub crawl tonight? How do I join?",
     parceiro: "Hi! I run a tour / class in Tirana and I'd like to be a partner of Tirana Hostels."
   },
-  // agência de passeios do grupo: Lost in Albania, contato do Leo (cartaz da
-  // Bovilla nas duas casas, foto do Alejandro de 30/10/2026)
-  agencia: "355697478510",
+  // agência de passeios do grupo: Lost in Albania. Desde 25/11/2026 o contato é
+  // a Eri, +355 69 338 8881 (lista do dono, item 8: Bovilla e passeios em geral).
+  // Antes era o Leo, 355697478510, do cartaz da Bovilla de 30/10/2026.
+  agencia: "355693388881",
   mensagensAgencia: {
-    bovilla: "Hi Leo! I'd like to join the hike to Lake Bovilla. We're … people, on …",
-    alpes: "Hi Leo! I'd like to know about the 3-day trip to the Albanian Alps. We're … people, from …",
-    passeios: "Hi Leo! Which tours from Tirana are on this week?"
+    bovilla: "Hi Eri! I'd like to join the hike to Lake Bovilla. We're … people, on …",
+    alpes: "Hi Eri! I'd like to know about the 3-day trip to the Albanian Alps. We're … people, from …",
+    passeios: "Hi Eri! Which tours from Tirana are on this week?"
   },
   // o pedido do topo começa com o nome da casa escolhida
   casas: {
@@ -865,7 +935,15 @@ document.querySelectorAll('[data-reserva]').forEach(a => {
   if (zap) zap.classList.add('btn-s');
 });
 document.querySelectorAll('[data-msg]').forEach(a => { a.href = wa(CONFIG.mensagens[a.dataset.msg]); });
-document.querySelectorAll('[data-viber]').forEach(a => { a.href = "viber://chat?number=%2B" + CONFIG.viber; });
+/* táxi e guias em PDF: só aparecem quando o CONFIG tiver o dado */
+if (CONFIG.taxi) {
+  document.querySelectorAll('[data-taxi-msg]').forEach(a => { a.href = wa(CONFIG.mensagemTaxi, CONFIG.taxi); });
+  document.querySelectorAll('[data-taxi]').forEach(s => { s.hidden = false; });
+}
+document.querySelectorAll('[data-guia]').forEach(a => {
+  const arq = CONFIG.guias[a.dataset.guia];
+  if (arq) { a.href = arq; a.hidden = false; }
+});
 
 /* preço e vantagem direta: só aparecem quando o CONFIG tiver o dado. No modo
    "motor" e no "embutido" o preço fica com o FrontDesk Master (é o do dia) */
