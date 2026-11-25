@@ -499,7 +499,7 @@ h2{font-size:clamp(48px,7.4vw,104px)}
    14: chamadas mais fortes. 15: fotos trocando no fundo do What's on. */
 .heroi-comunidade{position:relative;isolation:isolate;overflow:hidden;--veu:20,16,13}
 .heroi-comunidade[data-casa="bd"]{--veu:6,34,110}
-.heroi-comunidade[data-casa="bb"]{--veu:74,54,4}
+.heroi-comunidade[data-casa="bb"]{--veu:242,199,68}
 .heroi-fundo{position:absolute;inset:0;z-index:-2}
 .heroi-fundo picture{position:absolute;inset:0}
 .heroi-fundo img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block}
@@ -542,6 +542,17 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 /* ônibus: rota de cada hostel até o terminal */
 .rotas-t{margin:18px 0 0;color:var(--texto2);max-width:60ch}
 .rotas-terminal{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 0}
+
+/* 25/11/2026 (João): Bearded Dad = amarelo dominante e botões verdes.
+   Véu amarelo forte e texto escuro por cima. */
+.heroi-comunidade[data-casa="bb"]::before{opacity:.84}
+.heroi-comunidade[data-casa="bb"]::after{background:none}
+.heroi-comunidade[data-casa="bb"] h1,.heroi-comunidade[data-casa="bb"] .dica,.heroi-comunidade[data-casa="bb"] .dica b,.heroi-comunidade[data-casa="bb"] .traducao,.heroi-comunidade[data-casa="bb"] .diz{color:#17181A}
+.heroi-comunidade[data-casa="bb"] .btn-painel,.heroi-comunidade[data-casa="bb"] .oferta,.heroi-comunidade[data-casa="bb"] .pq-btn{background:#17773F;color:#fff}
+.heroi-comunidade[data-casa="bb"] .linha:has(input:checked){box-shadow:inset 0 0 0 2px #3FBF73}
+.heroi-comunidade[data-casa="bb"] .linha input:checked{border-color:#3FBF73}
+.heroi-comunidade[data-casa="bb"] .linha input::before{background:#3FBF73}
+.heroi-comunidade h1,.heroi-comunidade .dica,.heroi-comunidade .traducao{transition:color 220ms ease}
 
 </style>
 
@@ -597,9 +608,10 @@ h2{font-size:clamp(48px,7.4vw,104px)}
         <p class="dica">In Albanian: <b lang="sq">Vullnetar</b> (<span class="diz">vool-neh-TAR</span>)</p>
         <p class="intro">Both hostels host volunteers. At The Bearded Dad, the volunteers cook Family Dinner for the guests every night.</p>
         <div class="ctas">
-          <a class="btn" data-worldpackers="bb" hidden href="#" target="_blank" rel="noopener"><span>The Bearded Dad on Worldpackers</span></a>
-          <a class="btn" data-worldpackers="bd" hidden href="#" target="_blank" rel="noopener"><span>Blue Door on Worldpackers</span></a>
-          <a class="btn" data-msg="voluntario" data-sem-flutua href="https://wa.me/355695539156" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2Z"/></svg><span>Ask about volunteering</span></a>
+          <!-- 25/11/2026 (João): o Worldpackers vem primeiro; o WhatsApp vira só um link -->
+          <a class="btn btn-grande" data-worldpackers="bd" data-sem-flutua href="https://www.worldpackers.com/locations/blue-door-hostel" target="_blank" rel="noopener"><span>Blue Door on Worldpackers</span></a>
+          <a class="btn btn-grande" data-worldpackers="bb" href="https://www.worldpackers.com/locations/the-bearded-dad-hostel" target="_blank" rel="noopener"><span>The Bearded Dad on Worldpackers</span></a>
+          <a class="link" data-msg="voluntario" href="https://wa.me/355695539156" target="_blank" rel="noopener">Questions? Message us</a>
         </div>
       </div>
       <div class="foto"><picture style="--r:0.7499"><source type="image/avif" srcset="../img/bb-villa-cozinha-400.avif 400w, ../img/bb-villa-cozinha-640.avif 640w" sizes="(min-width:1240px) 300px, (min-width:960px) 24vw, 70vw"><source type="image/webp" srcset="../img/bb-villa-cozinha-400.webp 400w, ../img/bb-villa-cozinha-640.webp 640w" sizes="(min-width:1240px) 300px, (min-width:960px) 24vw, 70vw"><img src="../img/bb-villa-cozinha-640.webp" width="640" height="853" alt="The kitchen of the villa at The Bearded Dad, where the volunteers cook" loading="eager" fetchpriority="high" decoding="async"></picture></div>
@@ -611,12 +623,13 @@ h2{font-size:clamp(48px,7.4vw,104px)}
       <div class="palavra-txt">
         <h2 id="t-vol-como">How it works</h2>
         <dl class="perguntas">
-          <div><dt>How do I apply?</dt><dd>Through Worldpackers, or send us a message on WhatsApp with your dates.</dd></div>
+          <div><dt>How do I apply?</dt><dd>On Worldpackers. Blue Door: <a class="link-texto" href="https://www.worldpackers.com/positions/47034" target="_blank" rel="noopener">A new experience in Albania</a> and <a class="link-texto" href="https://www.worldpackers.com/positions/105332" target="_blank" rel="noopener">Make memories with us</a>. The Bearded Dad: <a class="link-texto" href="https://www.worldpackers.com/positions/105919" target="_blank" rel="noopener">Creative and enthusiastic member of our team</a>.</dd></div>
           <div><dt>What would I do?</dt><dd>It depends on the house and the season. Tell us what you're good at, and we'll tell you what we need.</dd></div>
           <div><dt>Which house?</dt><dd>Both take volunteers: the <a class="link-texto" href="../hostels/blue-door/">Blue Door</a> and <a class="link-texto" href="../hostels/the-bearded-dad/">The Bearded Dad</a>, 21 minutes apart on foot.</dd></div>
         </dl>
         <div class="ctas">
-          <a class="btn" data-msg="voluntario" href="https://wa.me/355695539156" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2Z"/></svg><span>Send us your dates</span></a>
+          <a class="btn" data-worldpackers="bd" href="https://www.worldpackers.com/locations/blue-door-hostel" target="_blank" rel="noopener"><span>Positions at the Blue Door</span></a>
+          <a class="btn" data-worldpackers="bb" href="https://www.worldpackers.com/locations/the-bearded-dad-hostel" target="_blank" rel="noopener"><span>Positions at The Bearded Dad</span></a>
         </div>
       </div>
     </div>
@@ -725,7 +738,8 @@ const CONFIG = {
   modoReserva: "from",
   // anúncio de cada casa no Worldpackers (pauta 54). Vazio = o botão some e
   // fica só o WhatsApp da página /volunteer/
-  worldpackers: { bd: "", bb: "" },
+  // conferido em 25/11/2026: as duas páginas são dos hostels de Tirana
+  worldpackers: { bd: "https://www.worldpackers.com/locations/blue-door-hostel", bb: "https://www.worldpackers.com/locations/the-bearded-dad-hostel" },
   // vantagem de reservar direto (pauta 4; 4 de 7 hostels que vendem direto dão
   // desconto). Vazio = nada na tela. Ex.: "Book here with code DIRECT10: 10% off."
   // ⚠ EXEMPLO, NÃO CONFIRMADO: 10% foi o exemplo do João (30/10/2026). O dono
@@ -769,8 +783,11 @@ document.querySelectorAll('[data-msg-agencia]').forEach(a => { a.href = wa(CONFI
 const motor = (casa, dados = {}) => {
   const base = CONFIG.reservas && CONFIG.reservas[casa];
   if (!base) return null;
+  // 25/11/2026: o FrontDesk Master lê as datas DEPOIS do #, nesta ordem:
+  // #nights=2&guests=2&arrival=AAAA-MM-DD (instrução do dono, via Alejandro)
   const u = new URL(base);
-  for (const [k, v] of Object.entries(dados)) if (v) u.searchParams.set(k, v);
+  const h = ['nights', 'guests', 'arrival'].filter(k => dados[k]).map(k => k + '=' + encodeURIComponent(dados[k])).join('&');
+  if (h) u.hash = h;
   return u.href;
 };
 /* páginas de casa: com o motor ligado, o "Book now" aparece e vira o botão

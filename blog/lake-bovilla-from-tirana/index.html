@@ -499,7 +499,7 @@ h2{font-size:clamp(48px,7.4vw,104px)}
    14: chamadas mais fortes. 15: fotos trocando no fundo do What's on. */
 .heroi-comunidade{position:relative;isolation:isolate;overflow:hidden;--veu:20,16,13}
 .heroi-comunidade[data-casa="bd"]{--veu:6,34,110}
-.heroi-comunidade[data-casa="bb"]{--veu:74,54,4}
+.heroi-comunidade[data-casa="bb"]{--veu:242,199,68}
 .heroi-fundo{position:absolute;inset:0;z-index:-2}
 .heroi-fundo picture{position:absolute;inset:0}
 .heroi-fundo img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block}
@@ -542,6 +542,17 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 /* ônibus: rota de cada hostel até o terminal */
 .rotas-t{margin:18px 0 0;color:var(--texto2);max-width:60ch}
 .rotas-terminal{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 0}
+
+/* 25/11/2026 (João): Bearded Dad = amarelo dominante e botões verdes.
+   Véu amarelo forte e texto escuro por cima. */
+.heroi-comunidade[data-casa="bb"]::before{opacity:.84}
+.heroi-comunidade[data-casa="bb"]::after{background:none}
+.heroi-comunidade[data-casa="bb"] h1,.heroi-comunidade[data-casa="bb"] .dica,.heroi-comunidade[data-casa="bb"] .dica b,.heroi-comunidade[data-casa="bb"] .traducao,.heroi-comunidade[data-casa="bb"] .diz{color:#17181A}
+.heroi-comunidade[data-casa="bb"] .btn-painel,.heroi-comunidade[data-casa="bb"] .oferta,.heroi-comunidade[data-casa="bb"] .pq-btn{background:#17773F;color:#fff}
+.heroi-comunidade[data-casa="bb"] .linha:has(input:checked){box-shadow:inset 0 0 0 2px #3FBF73}
+.heroi-comunidade[data-casa="bb"] .linha input:checked{border-color:#3FBF73}
+.heroi-comunidade[data-casa="bb"] .linha input::before{background:#3FBF73}
+.heroi-comunidade h1,.heroi-comunidade .dica,.heroi-comunidade .traducao{transition:color 220ms ease}
 
 </style>
 
@@ -715,7 +726,8 @@ const CONFIG = {
   modoReserva: "from",
   // anúncio de cada casa no Worldpackers (pauta 54). Vazio = o botão some e
   // fica só o WhatsApp da página /volunteer/
-  worldpackers: { bd: "", bb: "" },
+  // conferido em 25/11/2026: as duas páginas são dos hostels de Tirana
+  worldpackers: { bd: "https://www.worldpackers.com/locations/blue-door-hostel", bb: "https://www.worldpackers.com/locations/the-bearded-dad-hostel" },
   // vantagem de reservar direto (pauta 4; 4 de 7 hostels que vendem direto dão
   // desconto). Vazio = nada na tela. Ex.: "Book here with code DIRECT10: 10% off."
   // ⚠ EXEMPLO, NÃO CONFIRMADO: 10% foi o exemplo do João (30/10/2026). O dono
@@ -759,8 +771,11 @@ document.querySelectorAll('[data-msg-agencia]').forEach(a => { a.href = wa(CONFI
 const motor = (casa, dados = {}) => {
   const base = CONFIG.reservas && CONFIG.reservas[casa];
   if (!base) return null;
+  // 25/11/2026: o FrontDesk Master lê as datas DEPOIS do #, nesta ordem:
+  // #nights=2&guests=2&arrival=AAAA-MM-DD (instrução do dono, via Alejandro)
   const u = new URL(base);
-  for (const [k, v] of Object.entries(dados)) if (v) u.searchParams.set(k, v);
+  const h = ['nights', 'guests', 'arrival'].filter(k => dados[k]).map(k => k + '=' + encodeURIComponent(dados[k])).join('&');
+  if (h) u.hash = h;
   return u.href;
 };
 /* páginas de casa: com o motor ligado, o "Book now" aparece e vira o botão
