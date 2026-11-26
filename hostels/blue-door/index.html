@@ -585,6 +585,22 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 .pv-selo{background:var(--amarelo);color:#17181A;font:800 15px/1.2 "Archivo",system-ui,sans-serif;padding:8px 14px;border-radius:999px}
 .pv-txt .btn{margin-top:6px}
 
+/* Theth: painéis que abrem (opção H, escolhida pelo João em 25/11/2026) */
+.h-faixa{display:flex;gap:10px;height:min(62vh,540px);margin-top:18px}
+.h-painel{position:relative;flex:1;min-width:0;border:0;padding:0;border-radius:16px;overflow:hidden;background:#000;cursor:pointer;transition:flex-grow 700ms cubic-bezier(.23,1,.32,1)}
+.h-painel.ativo{flex-grow:5}
+.h-painel picture{position:absolute;inset:0}
+.h-painel img{width:100%;height:100%;object-fit:cover;transition:transform 900ms cubic-bezier(.23,1,.32,1)}
+.h-painel:not(.ativo) img{transform:scale(1.15)}
+.h-painel::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(0,0,0,.7));pointer-events:none}
+.h-painel .leg{position:absolute;left:20px;right:20px;bottom:18px;z-index:1;color:#fff;text-align:left;font:800 clamp(20px,2vw,26px)/1.15 "Archivo",system-ui,sans-serif;font-variation-settings:"wdth" 112;opacity:0;transform:translateY(10px);transition:opacity 400ms 200ms,transform 500ms 200ms cubic-bezier(.23,1,.32,1)}
+.h-painel.ativo .leg{opacity:1;transform:none}
+.h-painel:focus-visible{outline:3px solid var(--foco);outline-offset:3px}
+@media(max-width:699px){.h-faixa{flex-direction:column;height:auto}.h-painel{flex:none;height:64px;transition:height 600ms cubic-bezier(.23,1,.32,1)}.h-painel.ativo{height:56vh}.h-progresso{display:none}}
+.h-progresso{height:3px;background:rgba(255,255,255,.15);border-radius:2px;margin-top:16px;overflow:hidden}
+.h-progresso b{display:block;height:100%;width:0;background:var(--amarelo)}
+@media(prefers-reduced-motion:reduce){.h-painel,.h-painel img,.h-painel .leg{transition:none}}
+
 </style>
 
 <title>Blue Door Hostel, Tirana · Rooms, kitchen and garden</title>

@@ -585,6 +585,22 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 .pv-selo{background:var(--amarelo);color:#17181A;font:800 15px/1.2 "Archivo",system-ui,sans-serif;padding:8px 14px;border-radius:999px}
 .pv-txt .btn{margin-top:6px}
 
+/* Theth: painéis que abrem (opção H, escolhida pelo João em 25/11/2026) */
+.h-faixa{display:flex;gap:10px;height:min(62vh,540px);margin-top:18px}
+.h-painel{position:relative;flex:1;min-width:0;border:0;padding:0;border-radius:16px;overflow:hidden;background:#000;cursor:pointer;transition:flex-grow 700ms cubic-bezier(.23,1,.32,1)}
+.h-painel.ativo{flex-grow:5}
+.h-painel picture{position:absolute;inset:0}
+.h-painel img{width:100%;height:100%;object-fit:cover;transition:transform 900ms cubic-bezier(.23,1,.32,1)}
+.h-painel:not(.ativo) img{transform:scale(1.15)}
+.h-painel::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(0,0,0,.7));pointer-events:none}
+.h-painel .leg{position:absolute;left:20px;right:20px;bottom:18px;z-index:1;color:#fff;text-align:left;font:800 clamp(20px,2vw,26px)/1.15 "Archivo",system-ui,sans-serif;font-variation-settings:"wdth" 112;opacity:0;transform:translateY(10px);transition:opacity 400ms 200ms,transform 500ms 200ms cubic-bezier(.23,1,.32,1)}
+.h-painel.ativo .leg{opacity:1;transform:none}
+.h-painel:focus-visible{outline:3px solid var(--foco);outline-offset:3px}
+@media(max-width:699px){.h-faixa{flex-direction:column;height:auto}.h-painel{flex:none;height:64px;transition:height 600ms cubic-bezier(.23,1,.32,1)}.h-painel.ativo{height:56vh}.h-progresso{display:none}}
+.h-progresso{height:3px;background:rgba(255,255,255,.15);border-radius:2px;margin-top:16px;overflow:hidden}
+.h-progresso b{display:block;height:100%;width:0;background:var(--amarelo)}
+@media(prefers-reduced-motion:reduce){.h-painel,.h-painel img,.h-painel .leg{transition:none}}
+
 </style>
 
 <title>Tours from Tirana · Lake Bovilla, the Albanian Alps and more</title>
@@ -685,17 +701,18 @@ h2{font-size:clamp(48px,7.4vw,104px)}
           </div>
         </div>
         <h3 class="h3-solto">On the trip to Theth</h3>
-        <ul class="tirana-fita galeria-fita" aria-label="Photos from the trip to Theth" tabindex="0">
-          <li class="fita-cartao fita-foto"><picture style="--r:0.7500"><source type="image/avif" srcset="../img/th-cachoeira-400.avif 400w, ../img/th-cachoeira-640.avif 640w, ../img/th-cachoeira-960.avif 960w" sizes="(min-width:900px) 340px, 78vw"><source type="image/webp" srcset="../img/th-cachoeira-400.webp 400w, ../img/th-cachoeira-640.webp 640w, ../img/th-cachoeira-960.webp 960w" sizes="(min-width:900px) 340px, 78vw"><img src="../img/th-cachoeira-640.webp" width="640" height="853" alt="The Grunas waterfall in Theth falling into a green pool, with hikers on the rocks below" loading="lazy" decoding="async"></picture></li>
-          <li class="fita-cartao fita-foto"><picture style="--r:0.7500"><source type="image/avif" srcset="../img/th-olho-400.avif 400w, ../img/th-olho-640.avif 640w, ../img/th-olho-960.avif 960w" sizes="(min-width:900px) 340px, 78vw"><source type="image/webp" srcset="../img/th-olho-400.webp 400w, ../img/th-olho-640.webp 640w, ../img/th-olho-960.webp 960w" sizes="(min-width:900px) 340px, 78vw"><img src="../img/th-olho-640.webp" width="640" height="853" alt="A small waterfall pouring into the turquoise water of the Blue Eye of Theth" loading="lazy" decoding="async"></picture></li>
-          <li class="fita-cartao fita-foto"><picture style="--r:0.7506"><source type="image/avif" srcset="../img/th-igreja-400.avif 400w, ../img/th-igreja-600.avif 600w" sizes="(min-width:900px) 340px, 78vw"><source type="image/webp" srcset="../img/th-igreja-400.webp 400w, ../img/th-igreja-600.webp 600w" sizes="(min-width:900px) 340px, 78vw"><img src="../img/th-igreja-600.webp" width="600" height="799" alt="The stone church of Theth at dusk, with the mountains in the clouds behind" loading="lazy" decoding="async"></picture></li>
-          <li class="fita-cartao fita-foto"><picture style="--r:0.7500"><source type="image/avif" srcset="../img/th-casal-400.avif 400w, ../img/th-casal-640.avif 640w, ../img/th-casal-960.avif 960w" sizes="(min-width:900px) 340px, 78vw"><source type="image/webp" srcset="../img/th-casal-400.webp 400w, ../img/th-casal-640.webp 640w, ../img/th-casal-960.webp 960w" sizes="(min-width:900px) 340px, 78vw"><img src="../img/th-casal-640.webp" width="640" height="853" alt="Two hikers resting on the grass in front of a snowy rock peak" loading="lazy" decoding="async"></picture></li>
-          <li class="fita-cartao fita-foto"><picture style="--r:0.7500"><source type="image/avif" srcset="../img/th-ovelhas-400.avif 400w, ../img/th-ovelhas-640.avif 640w, ../img/th-ovelhas-960.avif 960w" sizes="(min-width:900px) 340px, 78vw"><source type="image/webp" srcset="../img/th-ovelhas-400.webp 400w, ../img/th-ovelhas-640.webp 640w, ../img/th-ovelhas-960.webp 960w" sizes="(min-width:900px) 340px, 78vw"><img src="../img/th-ovelhas-640.webp" width="640" height="853" alt="Sheep grazing in a green field in Theth, with stone houses and snowy mountains behind" loading="lazy" decoding="async"></picture></li>
-          <li class="fita-cartao fita-foto"><picture style="--r:0.7500"><source type="image/avif" srcset="../img/th-van-400.avif 400w, ../img/th-van-640.avif 640w, ../img/th-van-960.avif 960w" sizes="(min-width:900px) 340px, 78vw"><source type="image/webp" srcset="../img/th-van-400.webp 400w, ../img/th-van-640.webp 640w, ../img/th-van-960.webp 960w" sizes="(min-width:900px) 340px, 78vw"><img src="../img/th-van-640.webp" width="640" height="853" alt="A white van driving on a wide stony riverbed towards the mountains" loading="lazy" decoding="async"></picture></li>
-          <li class="fita-cartao fita-foto"><picture style="--r:0.7500"><source type="image/avif" srcset="../img/th-pico-400.avif 400w, ../img/th-pico-640.avif 640w, ../img/th-pico-960.avif 960w" sizes="(min-width:900px) 340px, 78vw"><source type="image/webp" srcset="../img/th-pico-400.webp 400w, ../img/th-pico-640.webp 640w, ../img/th-pico-960.webp 960w" sizes="(min-width:900px) 340px, 78vw"><img src="../img/th-pico-640.webp" width="640" height="853" alt="A hiker pointing at a huge rock wall with snow, from the top of a trail" loading="lazy" decoding="async"></picture></li>
-          <li class="fita-cartao fita-foto"><picture style="--r:0.7500"><source type="image/avif" srcset="../img/th-rio-ponte-400.avif 400w, ../img/th-rio-ponte-640.avif 640w, ../img/th-rio-ponte-960.avif 960w" sizes="(min-width:900px) 340px, 78vw"><source type="image/webp" srcset="../img/th-rio-ponte-400.webp 400w, ../img/th-rio-ponte-640.webp 640w, ../img/th-rio-ponte-960.webp 960w" sizes="(min-width:900px) 340px, 78vw"><img src="../img/th-rio-ponte-640.webp" width="640" height="853" alt="The river of Theth under the trees, with a small wooden platform over the water" loading="lazy" decoding="async"></picture></li>
-        </ul>
-        <p class="fita-dica" aria-hidden="true">Swipe for more</p>
+        <!-- 25/11/2026: opção H escolhida pelo João (painéis que abrem). No computador troca
+             sozinha a cada 5 s; no celular (empilhado) só abre no toque, para a página não pular. -->
+        <div class="h-faixa" id="theth">
+          <button class="h-painel" type="button" aria-label="The Grunas waterfall"><picture style="--r:0.7500"><source type="image/avif" srcset="../img/th-cachoeira-400.avif 400w, ../img/th-cachoeira-640.avif 640w, ../img/th-cachoeira-960.avif 960w" sizes="(min-width:900px) 760px, 92vw"><source type="image/webp" srcset="../img/th-cachoeira-400.webp 400w, ../img/th-cachoeira-640.webp 640w, ../img/th-cachoeira-960.webp 960w" sizes="(min-width:900px) 760px, 92vw"><img src="../img/th-cachoeira-640.webp" width="640" height="853" alt="The Grunas waterfall in Theth falling into a green pool, with hikers on the rocks below" loading="lazy" decoding="async"></picture><span class="leg">The Grunas waterfall</span></button>
+          <button class="h-painel" type="button" aria-label="The Blue Eye of Theth"><picture style="--r:0.7500"><source type="image/avif" srcset="../img/th-olho-400.avif 400w, ../img/th-olho-640.avif 640w, ../img/th-olho-960.avif 960w" sizes="(min-width:900px) 760px, 92vw"><source type="image/webp" srcset="../img/th-olho-400.webp 400w, ../img/th-olho-640.webp 640w, ../img/th-olho-960.webp 960w" sizes="(min-width:900px) 760px, 92vw"><img src="../img/th-olho-640.webp" width="640" height="853" alt="A small waterfall pouring into the turquoise water of the Blue Eye of Theth" loading="lazy" decoding="async"></picture><span class="leg">The Blue Eye of Theth</span></button>
+          <button class="h-painel" type="button" aria-label="The stone church of Theth"><picture style="--r:0.7506"><source type="image/avif" srcset="../img/th-igreja-400.avif 400w, ../img/th-igreja-600.avif 600w" sizes="(min-width:900px) 760px, 92vw"><source type="image/webp" srcset="../img/th-igreja-400.webp 400w, ../img/th-igreja-600.webp 600w" sizes="(min-width:900px) 760px, 92vw"><img src="../img/th-igreja-600.webp" width="600" height="799" alt="The stone church of Theth at dusk, with the mountains in the clouds behind" loading="lazy" decoding="async"></picture><span class="leg">The stone church of Theth</span></button>
+          <button class="h-painel" type="button" aria-label="A break in front of the peaks"><picture style="--r:0.7500"><source type="image/avif" srcset="../img/th-casal-400.avif 400w, ../img/th-casal-640.avif 640w, ../img/th-casal-960.avif 960w" sizes="(min-width:900px) 760px, 92vw"><source type="image/webp" srcset="../img/th-casal-400.webp 400w, ../img/th-casal-640.webp 640w, ../img/th-casal-960.webp 960w" sizes="(min-width:900px) 760px, 92vw"><img src="../img/th-casal-640.webp" width="640" height="853" alt="Two hikers resting on the grass in front of a snowy rock peak" loading="lazy" decoding="async"></picture><span class="leg">A break in front of the peaks</span></button>
+          <button class="h-painel" type="button" aria-label="Sheep in the valley"><picture style="--r:0.7500"><source type="image/avif" srcset="../img/th-ovelhas-400.avif 400w, ../img/th-ovelhas-640.avif 640w, ../img/th-ovelhas-960.avif 960w" sizes="(min-width:900px) 760px, 92vw"><source type="image/webp" srcset="../img/th-ovelhas-400.webp 400w, ../img/th-ovelhas-640.webp 640w, ../img/th-ovelhas-960.webp 960w" sizes="(min-width:900px) 760px, 92vw"><img src="../img/th-ovelhas-640.webp" width="640" height="853" alt="Sheep grazing in a green field in Theth, with stone houses and snowy mountains behind" loading="lazy" decoding="async"></picture><span class="leg">Sheep in the valley</span></button>
+          <button class="h-painel" type="button" aria-label="Across the riverbed to Valbona"><picture style="--r:0.7500"><source type="image/avif" srcset="../img/th-van-400.avif 400w, ../img/th-van-640.avif 640w, ../img/th-van-960.avif 960w" sizes="(min-width:900px) 760px, 92vw"><source type="image/webp" srcset="../img/th-van-400.webp 400w, ../img/th-van-640.webp 640w, ../img/th-van-960.webp 960w" sizes="(min-width:900px) 760px, 92vw"><img src="../img/th-van-640.webp" width="640" height="853" alt="A white van driving on a wide stony riverbed towards the mountains" loading="lazy" decoding="async"></picture><span class="leg">Across the riverbed to Valbona</span></button>
+          <button class="h-painel" type="button" aria-label="The rock walls of the Alps"><picture style="--r:0.7500"><source type="image/avif" srcset="../img/th-pico-400.avif 400w, ../img/th-pico-640.avif 640w, ../img/th-pico-960.avif 960w" sizes="(min-width:900px) 760px, 92vw"><source type="image/webp" srcset="../img/th-pico-400.webp 400w, ../img/th-pico-640.webp 640w, ../img/th-pico-960.webp 960w" sizes="(min-width:900px) 760px, 92vw"><img src="../img/th-pico-640.webp" width="640" height="853" alt="A hiker pointing at a huge rock wall with snow, from the top of a trail" loading="lazy" decoding="async"></picture><span class="leg">The rock walls of the Alps</span></button>
+        </div>
+        <div class="h-progresso" aria-hidden="true"><b></b></div>
         <h3 class="h3-solto">More with Lost in Albania</h3>
         <ul class="resumo-lista">
           <li><b>Cultural heritage</b> tours</li>
@@ -1092,6 +1109,29 @@ document.addEventListener('click', e => {
   if (window.gtag && a) gtag('event', 'clique_whatsapp', { secao: a.closest('section')?.id || 'topo' });
 });
 
+
+/* Theth: painéis que abrem (opção H, 25/11/2026). Automático só com mouse e tela larga,
+   e nunca com movimento reduzido; no celular abre só no toque. */
+(() => {
+  const faixa = document.getElementById('theth');
+  if (!faixa) return;
+  const ps = [...faixa.children], prog = document.querySelector('.h-progresso b');
+  const auto = () => matchMedia('(min-width:700px) and (hover:hover)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const DUR = 5000; let i = 0, t0 = performance.now(), parado = false;
+  const vai = k => { i = (k + ps.length) % ps.length; ps.forEach((p, j) => { p.classList.toggle('ativo', j === i); p.setAttribute('aria-pressed', j === i); }); t0 = performance.now(); prog.style.width = '0'; };
+  ps.forEach((p, k) => { p.addEventListener('click', () => vai(k)); p.addEventListener('mouseenter', () => { if (matchMedia('(hover:hover)').matches) vai(k); }); });
+  faixa.addEventListener('mouseenter', () => parado = true);
+  faixa.addEventListener('mouseleave', () => { parado = false; t0 = performance.now(); });
+  vai(0);
+  const passo = now => {
+    if (auto() && !parado && !document.hidden) {
+      const p = Math.min(1, (now - t0) / DUR); prog.style.width = (p * 100) + '%';
+      if (p >= 1) vai(i + 1);
+    } else { t0 = now; if (!auto()) prog.style.width = '0'; }
+    requestAnimationFrame(passo);
+  };
+  requestAnimationFrame(passo);
+})();
 </script>
 </body>
 </html>
