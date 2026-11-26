@@ -572,6 +572,19 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 .chegada-terminal b{display:block;font-weight:800;color:var(--titulo)}
 .chegada-terminal .rotas-terminal{margin-top:8px}
 
+/* Our partners, opção 3 (25/11/2026): foto inteira, texto por cima, selo da vantagem */
+.parceiros-v{display:grid;gap:20px;margin-top:28px}
+@media(min-width:760px){.parceiros-v{grid-template-columns:1fr 1fr}}
+.pv-cartao{position:relative;border-radius:14px;overflow:hidden;min-height:380px;display:flex;align-items:flex-end;isolation:isolate}
+.pv-cartao picture{position:absolute;inset:0;z-index:-2}
+.pv-cartao img{width:100%;height:100%;object-fit:cover}
+.pv-cartao::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(10,14,10,.95) 0,rgba(10,14,10,.6) 180px,rgba(10,14,10,0) 320px)}
+.pv-txt{padding:22px;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.pv-txt b{font:900 clamp(26px,2.6vw,32px)/1.1 "Archivo",system-ui,sans-serif;font-variation-settings:"wdth" 112;color:#fff}
+.pv-txt > span:not(.pv-selo){color:#E6ECDF}
+.pv-selo{background:var(--amarelo);color:#17181A;font:800 15px/1.2 "Archivo",system-ui,sans-serif;padding:8px 14px;border-radius:999px}
+.pv-txt .btn{margin-top:6px}
+
 </style>
 
 <title>Buses from Tirana · Stations and departure times</title>
@@ -790,6 +803,9 @@ const CONFIG = {
   // GUIA EM PDF de cada passeio (item 9). Caminho do arquivo dentro do site, ex.: "/guias/bovilla.pdf".
   // Vazio = o link de baixar some.
   guias: { bovilla: "" },
+  // VANTAGEM DO HÓSPEDE em cada parceiro (opção 3 de "Our partners", 25/11/2026).
+  // Ex.: lost: "Guests: 10% off". Vazio = o selo some. Só com o "sim" do dono (regra 2).
+  vantagensParceiros: { lost: "", pubcrawl: "" },
   // cada botão leva a mensagem da sua seção (regra 5)
   mensagens: {
     topo: "Hi! I found your website and I have a question about your hostels in Tirana.",
@@ -933,6 +949,10 @@ if (CONFIG.taxi) {
   document.querySelectorAll('[data-taxi-msg]').forEach(a => { a.href = wa(CONFIG.mensagemTaxi, CONFIG.taxi); });
   document.querySelectorAll('[data-taxi]').forEach(s => { s.hidden = false; });
 }
+document.querySelectorAll('[data-vantagem]').forEach(el => {
+  const v = CONFIG.vantagensParceiros && CONFIG.vantagensParceiros[el.dataset.vantagem];
+  if (v) { el.textContent = v; el.hidden = false; }
+});
 document.querySelectorAll('[data-guia]').forEach(a => {
   const arq = CONFIG.guias[a.dataset.guia];
   if (arq) { a.href = arq; a.hidden = false; }
