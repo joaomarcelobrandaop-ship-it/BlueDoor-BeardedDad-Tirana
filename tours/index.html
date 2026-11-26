@@ -563,6 +563,15 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 /* 25/11/2026 (João): o botão não encosta no mapa */
 .mapa-google + .btn{margin-top:20px}
 
+/* blocos com botão de mapa: um respiro acima e lado a lado quando forem dois */
+.bloco > .btn-s{margin:14px 10px 0 0}
+
+/* ônibus: do terminal até o hostel (topo da página /buses/) */
+.chegadas{margin-top:26px;display:grid;gap:18px}
+.chegadas .rotas-t{margin:0}
+.chegada-terminal b{display:block;font-weight:800;color:var(--titulo)}
+.chegada-terminal .rotas-terminal{margin-top:8px}
+
 </style>
 
 <title>Tours from Tirana · Lake Bovilla, the Albanian Alps and more</title>
@@ -725,7 +734,7 @@ h2{font-size:clamp(48px,7.4vw,104px)}
         <h2 id="t-parceiros">Our partners</h2>
         <p class="traducao">The people we send our guests to.</p>
         <ul class="atalhos">
-          <li><a data-msg-agencia="passeios" href="https://wa.me/355693388881" target="_blank" rel="noopener"><b>Lost in Albania</b><span>Tours from Tirana: the Bovilla hike, the Alps, cultural, cycling and off-road trips.</span></a></li>
+          <li><a href="https://lostinalbania.com/" target="_blank" rel="noopener nofollow"><b>Lost in Albania</b><span>Tours from Tirana: the Bovilla hike, the Alps, cultural, cycling and off-road trips.</span></a></li>
           <li><a data-msg="pubcrawl" href="https://wa.me/355695539156" target="_blank" rel="noopener"><b>Pub Crawl Tirana</b><span>Three bars with a local guide, leaving from the reception after the evening events.</span></a></li>
         </ul>
         <div class="ctas">
@@ -759,7 +768,7 @@ h2{font-size:clamp(48px,7.4vw,104px)}
     </div>
   </section>
 
-  <!-- Na cidade e no Dajti: fotos do Wikimedia Commons (créditos embaixo) -->
+  <!-- Na cidade e no Dajti: fotos do Wikimedia Commons. 25/11/2026: cada bloco abre o lugar no Google Maps (o WhatsApp saiu, pedido do João) -->
   <section class="palavra p-azul" id="na-cidade" aria-labelledby="t-cidade">
     <div class="palavra-in uma">
       <div class="palavra-txt">
@@ -769,24 +778,25 @@ h2{font-size:clamp(48px,7.4vw,104px)}
             <picture style="--r:1.3336"><source type="image/avif" srcset="../img/pa-bunkart-480.avif 480w, ../img/pa-bunkart-800.avif 800w, ../img/pa-bunkart-1200.avif 1200w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><source type="image/webp" srcset="../img/pa-bunkart-480.webp 480w, ../img/pa-bunkart-800.webp 800w, ../img/pa-bunkart-1200.webp 1200w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><img src="../img/pa-bunkart-800.webp" width="800" height="600" alt="The assembly hall inside Bunk&#x27;Art 1, with rows of red seats" loading="lazy" decoding="async"></picture>
             <h3>Bunk'Art 1</h3>
             <p>A five-storey nuclear shelter built into a hill near Tirana for the communist leader Enver Hoxha. Since 2014 it has been a museum and art space about the Second World War and the communist years.</p>
+            <a class="btn btn-s" href="https://www.google.com/maps/search/?api=1&amp;query=Bunk%27Art+1%2C+Tirana" target="_blank" rel="noopener"><span>See it on the map</span></a>
           </div>
           <div class="bloco">
             <picture style="--r:1.3333"><source type="image/avif" srcset="../img/pa-teleferico-480.avif 480w, ../img/pa-teleferico-800.avif 800w, ../img/pa-teleferico-1200.avif 1200w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><source type="image/webp" srcset="../img/pa-teleferico-480.webp 480w, ../img/pa-teleferico-800.webp 800w, ../img/pa-teleferico-1200.webp 1200w" sizes="(min-width:1240px) 580px, (min-width:800px) 46vw, 92vw"><img src="../img/pa-teleferico-800.webp" width="800" height="600" alt="A Dajti Ekspres cable car cabin above green hills, with Tirana in the distance" loading="lazy" decoding="async"></picture>
             <h3>Dajti Ekspres</h3>
             <p>The cable car that goes up Mount Dajti from the eastern edge of the city. Mount Dajti is the mountain just east of Tirana, inside Dajti Mountain National Park.</p>
+            <a class="btn btn-s" href="https://www.google.com/maps/search/?api=1&amp;query=Dajti+Ekspres%2C+Tirana" target="_blank" rel="noopener"><span>See it on the map</span></a>
           </div>
           <div class="bloco">
             <h3>On foot from the hostels</h3>
             <p>Skanderbeg Square is 18 minutes from the Blue Door and 12 from The Bearded Dad. The New Bazaar is 9 minutes from the Blue Door and 17 from The Bearded Dad.</p>
             <p>Near the square, Bunk'Art 2 is a second bunker museum, about the Sigurimi, the secret police of the communist years.</p>
+            <a class="btn btn-s" href="https://www.google.com/maps/search/?api=1&amp;query=Skanderbeg+Square%2C+Tirana" target="_blank" rel="noopener"><span>Skanderbeg Square on the map</span></a>
+            <a class="btn btn-s" href="https://www.google.com/maps/search/?api=1&amp;query=Pazari+i+Ri%2C+Tirana" target="_blank" rel="noopener"><span>The New Bazaar on the map</span></a>
           </div>
           <div class="bloco">
             <h3>Further away, by bus</h3>
             <p>Berat, Shkodër, Durrës, Gjirokastër and Saranda all have buses from Tirana. <a class="link-texto" href="../buses/">See the stations and departure times</a>.</p>
           </div>
-        </div>
-        <div class="ctas">
-          <a class="btn" data-msg="dajti" href="https://wa.me/355695539156" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2Z"/></svg><span>Ask how to get there</span></a>
         </div>
         <!-- licenças CC exigem autor, licença e link (referencias/fotos-passeios/CREDITOS.md) -->
       </div>
