@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Theth: modern carousels</title>
+<!-- Página de TESTE (25/11/2026): três carrosséis modernos para as fotos do Theth.
+     Sem biblioteca (regra 1): só CSS e JS na mão. Some depois da escolha. -->
+<style>
+@font-face{font-family:Archivo;src:url(../fontes/archivo-400-900.woff2) format('woff2');font-weight:400 900;font-display:swap}
+@font-face{font-family:'Martian Mono';src:url(../fontes/martian-mono-400-800.woff2) format('woff2');font-weight:400 800;font-display:swap}
+:root{--amarelo:#F2C744;--jardim:#1E2A20;--creme:#ECE6D6;--cinza:#BFC0AC;--ease:cubic-bezier(.23,1,.32,1)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--jardim);color:var(--creme);font:400 17px/1.6 Archivo,system-ui,sans-serif;overflow-x:clip}
+.etiqueta{position:sticky;top:0;z-index:20;background:var(--amarelo);color:#17181A;font:800 15px/1.3 'Martian Mono',monospace;padding:12px 20px}
+section{padding:48px 0 72px;border-bottom:6px solid #0d130e;overflow:hidden}
+.in{max-width:1240px;margin:0 auto;padding:0 20px}
+h2{font:900 clamp(30px,4vw,48px)/1.05 Archivo,sans-serif;font-variation-settings:"wdth" 112;margin:0 0 8px}
+.nota{color:var(--cinza);margin:0 0 26px;max-width:62ch}
+img{display:block}
+button{font:inherit;cursor:pointer}
+.seta{width:56px;height:56px;border:0;border-radius:50%;background:var(--amarelo);color:#17181A;font:900 24px/1 Archivo;box-shadow:0 4px 0 rgba(0,0,0,.35);transition:transform 160ms var(--ease),box-shadow 160ms var(--ease)}
+.seta:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.35)}
+.seta-s{background:transparent;color:var(--creme);box-shadow:inset 0 0 0 2px var(--creme)}
+.seta-s:active{box-shadow:inset 0 0 0 2px var(--creme)}
+:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.leg{font:800 clamp(20px,2vw,26px)/1.15 Archivo;font-variation-settings:"wdth" 112}
+
+/* ---------- G · palco 3D: a do meio grande, as dos lados menores e escuras */
+.g-palco{position:relative;height:min(64vh,560px);perspective:1400px;touch-action:pan-y}
+.g-slide{position:absolute;top:0;left:50%;width:min(40vw,400px);height:100%;margin-left:calc(min(40vw,400px) / -2);border-radius:18px;overflow:hidden;transition:transform 700ms var(--ease),opacity 700ms var(--ease),filter 700ms var(--ease);will-change:transform}
+@media(max-width:699px){.g-slide{width:70vw;margin-left:-35vw}}
+.g-slide img{width:100%;height:100%;object-fit:cover}
+.g-slide .leg{position:absolute;left:0;right:0;bottom:0;padding:70px 18px 18px;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff;opacity:0;transition:opacity 400ms ease}
+.g-slide.ativo .leg{opacity:1}
+.g-barra{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:22px}
+.g-conta{font:700 15px/1 'Martian Mono',monospace;color:var(--cinza);min-width:70px;text-align:center}
+
+/* ---------- H · painéis que abrem (sanfona) */
+.h-faixa{display:flex;gap:10px;height:min(62vh,540px)}
+.h-painel{position:relative;flex:1;min-width:0;border:0;padding:0;border-radius:18px;overflow:hidden;background:#000;transition:flex-grow 700ms var(--ease)}
+.h-painel.ativo{flex-grow:5}
+.h-painel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 900ms var(--ease)}
+.h-painel:not(.ativo) img{transform:scale(1.15)}
+.h-painel::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(0,0,0,.7));transition:opacity 400ms}
+.h-painel .leg{position:absolute;left:20px;right:20px;bottom:18px;z-index:1;color:#fff;text-align:left;opacity:0;transform:translateY(10px);transition:opacity 400ms 200ms,transform 500ms 200ms var(--ease)}
+.h-painel.ativo .leg{opacity:1;transform:none}
+.h-painel .n{position:absolute;top:14px;left:14px;z-index:1;font:700 13px/1 'Martian Mono',monospace;color:#fff;opacity:.85}
+@media(max-width:699px){.h-faixa{flex-direction:column;height:auto}.h-painel{flex:none;height:64px;transition:height 600ms var(--ease)}.h-painel.ativo{height:56vh}}
+.h-progresso{height:3px;background:rgba(255,255,255,.15);border-radius:2px;margin-top:16px;overflow:hidden}
+.h-progresso b{display:block;height:100%;width:0;background:var(--amarelo)}
+
+/* ---------- I · trilho com a próxima aparecendo, barra de progresso e número grande */
+.i-topo{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:22px}
+.i-num{font:900 clamp(56px,8vw,110px)/.85 Archivo;font-variation-settings:"wdth" 112;color:var(--amarelo)}
+.i-num small{font-size:.32em;color:var(--cinza);margin-left:6px}
+.i-setas{display:flex;gap:10px}
+.i-trilho{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 max(20px,calc((100vw - 1240px) / 2 + 20px)) 6px;scrollbar-width:none;scroll-behavior:smooth}
+.i-trilho::-webkit-scrollbar{display:none}
+.i-card{flex:0 0 min(72vw,720px);scroll-snap-align:start;position:relative;border-radius:18px;overflow:hidden;aspect-ratio:16/10;background:#000}
+@media(max-width:699px){.i-card{flex-basis:84vw;aspect-ratio:4/5}}
+.i-card img{position:absolute;inset:-4% -8%;width:116%;height:108%;object-fit:cover;transform:translateX(var(--px,0));transition:transform 120ms linear}
+.i-card .leg{position:absolute;left:0;right:0;bottom:0;padding:80px 22px 20px;background:linear-gradient(transparent,rgba(0,0,0,.72));color:#fff}
+.i-linha{max-width:1240px;margin:22px auto 0;padding:0 20px}
+.i-linha div{height:3px;background:rgba(255,255,255,.15);border-radius:2px;overflow:hidden}
+.i-linha b{display:block;height:100%;width:10%;background:var(--amarelo);transition:width 300ms var(--ease)}
+@media(prefers-reduced-motion:reduce){.g-slide,.h-painel,.h-painel img,.h-painel .leg,.i-card img{transition:none}.i-trilho{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="etiqueta">OPÇÃO G — Palco 3D (a do meio em destaque, as dos lados recuam)</div>
+<section><div class="in">
+  <h2>On the trip to Theth</h2>
+  <p class="nota">A foto do meio fica grande e com legenda; as dos lados viram de leve e escurecem. Passa sozinho, para com o mouse em cima, e no celular dá para arrastar.</p>
+</div>
+  <div class="g-palco" id="g"></div>
+  <div class="g-barra"><button class="seta seta-s" id="g-ant" type="button" aria-label="Previous photo">‹</button><span class="g-conta" id="g-conta"></span><button class="seta" id="g-prox" type="button" aria-label="Next photo">›</button></div>
+</section>
+
+<div class="etiqueta">OPÇÃO H — Painéis que abrem (passe o mouse ou toque)</div>
+<section><div class="in">
+  <h2>On the trip to Theth</h2>
+  <p class="nota">Faixas lado a lado; a escolhida abre e mostra a foto inteira com a legenda. Troca sozinha com uma barrinha de tempo embaixo. No celular, as faixas ficam empilhadas.</p>
+  <div class="h-faixa" id="h"></div>
+  <div class="h-progresso"><b id="h-prog"></b></div>
+</div></section>
+
+<div class="etiqueta">OPÇÃO I — Trilho largo com número grande e barra de progresso</div>
+<section><div class="in">
+  <div class="i-topo">
+    <div><h2>On the trip to Theth</h2><p class="nota" style="margin:0">Fotos largas, a próxima aparecendo na borda. A foto se move um pouco dentro do quadro enquanto você arrasta.</p></div>
+    <div style="display:flex;align-items:flex-end;gap:22px"><span class="i-num" id="i-num">01<small>/ 10</small></span><div class="i-setas"><button class="seta seta-s" id="i-ant" type="button" aria-label="Previous photo">‹</button><button class="seta" id="i-prox" type="button" aria-label="Next photo">›</button></div></div>
+  </div>
+</div>
+  <div class="i-trilho" id="i" tabindex="0" aria-label="Photos from the trip to Theth"></div>
+  <div class="i-linha"><div><b id="i-prog"></b></div></div>
+</section>
+
+<script>
+const src = n => '../img/' + n + '.webp';
+const reduz = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const F = [
+  ['th-trilha-1125', 'The trail to the Grunas waterfall'],
+  ['th-cachoeira-960', 'The Grunas waterfall'],
+  ['th-olho-960', 'The Blue Eye of Theth'],
+  ['th-igreja-600', 'The stone church of Theth'],
+  ['th-casal-960', 'A break in front of the peaks'],
+  ['th-ovelhas-960', 'Sheep in the valley'],
+  ['th-van-960', 'Across the riverbed to Valbona'],
+  ['th-pico-960', 'The rock walls of the Alps'],
+  ['th-capa-1125', 'A stone house by the river'],
+  ['th-rio-ponte-960', 'The river under the trees']
+];
+const N = F.length;
+const pad = n => String(n).padStart(2, '0');
+
+/* G · palco 3D */
+(() => {
+  const palco = document.getElementById('g'), conta = document.getElementById('g-conta');
+  F.forEach(f => palco.insertAdjacentHTML('beforeend', '<div class="g-slide"><img src="' + src(f[0]) + '" alt="' + f[1] + '" loading="lazy"><span class="leg">' + f[1] + '</span></div>'));
+  const ss = [...palco.children]; let i = 0, parado = false;
+  const pinta = () => {
+    ss.forEach((s, k) => {
+      let d = k - i; if (d > N / 2) d -= N; if (d < -N / 2) d += N;
+      const a = Math.abs(d), lado = Math.sign(d);
+      s.style.transform = a === 0 ? 'translateX(0) scale(1)' : 'translateX(' + (lado * (55 + (a - 1) * 38)) + '%) translateZ(' + (-140 * a) + 'px) rotateY(' + (-lado * 22) + 'deg) scale(' + (1 - a * .08) + ')';
+      s.style.opacity = a > 2 ? 0 : 1; s.style.filter = a ? 'brightness(.45)' : 'none'; s.style.zIndex = 10 - a;
+      s.classList.toggle('ativo', a === 0); s.setAttribute('aria-hidden', a !== 0);
+    });
+    conta.textContent = pad(i + 1) + ' / ' + pad(N);
+  };
+  const vai = k => { i = (k + N) % N; pinta(); };
+  document.getElementById('g-ant').onclick = () => vai(i - 1);
+  document.getElementById('g-prox').onclick = () => vai(i + 1);
+  ss.forEach((s, k) => s.addEventListener('click', () => vai(k)));
+  palco.addEventListener('mouseenter', () => parado = true); palco.addEventListener('mouseleave', () => parado = false);
+  let x0 = null;
+  palco.addEventListener('pointerdown', e => x0 = e.clientX);
+  palco.addEventListener('pointerup', e => { if (x0 !== null && Math.abs(e.clientX - x0) > 40) vai(i + (e.clientX < x0 ? 1 : -1)); x0 = null; });
+  pinta();
+  if (!reduz) setInterval(() => { if (!parado && !document.hidden) vai(i + 1); }, 4500);
+})();
+
+/* H · painéis que abrem */
+(() => {
+  const faixa = document.getElementById('h'), prog = document.getElementById('h-prog');
+  const lista = F.slice(0, 6);
+  lista.forEach((f, k) => faixa.insertAdjacentHTML('beforeend', '<button class="h-painel" type="button" aria-label="' + f[1] + '"><img src="' + src(f[0]) + '" alt="" loading="lazy"><span class="n">' + pad(k + 1) + '</span><span class="leg">' + f[1] + '</span></button>'));
+  const ps = [...faixa.children]; let i = 0, t0 = performance.now(), parado = false; const DUR = 5000;
+  const vai = k => { i = (k + ps.length) % ps.length; ps.forEach((p, j) => { p.classList.toggle('ativo', j === i); p.setAttribute('aria-pressed', j === i); }); t0 = performance.now(); };
+  ps.forEach((p, k) => { p.addEventListener('click', () => vai(k)); p.addEventListener('mouseenter', () => { if (matchMedia('(hover:hover)').matches) vai(k); }); });
+  faixa.addEventListener('mouseenter', () => parado = true); faixa.addEventListener('mouseleave', () => { parado = false; t0 = performance.now(); });
+  vai(0);
+  const passo = now => {
+    if (!reduz && !parado && !document.hidden) { const p = Math.min(1, (now - t0) / DUR); prog.style.width = (p * 100) + '%'; if (p >= 1) vai(i + 1); }
+    else t0 = now - (parseFloat(prog.style.width) || 0) / 100 * DUR;
+    requestAnimationFrame(passo);
+  };
+  requestAnimationFrame(passo);
+})();
+
+/* I · trilho largo com número e progresso */
+(() => {
+  const t = document.getElementById('i'), num = document.getElementById('i-num'), prog = document.getElementById('i-prog');
+  F.forEach(f => t.insertAdjacentHTML('beforeend', '<div class="i-card"><img src="' + src(f[0]) + '" alt="' + f[1] + '" loading="lazy"><span class="leg">' + f[1] + '</span></div>'));
+  const cs = [...t.children];
+  const atual = () => { let m = 0, d = 1e9; const esq = t.getBoundingClientRect().left + parseFloat(getComputedStyle(t).paddingLeft); cs.forEach((c, k) => { const x = Math.abs(c.getBoundingClientRect().left - esq); if (x < d) { d = x; m = k; } }); return m; };
+  const pinta = () => {
+    const k = atual(); num.innerHTML = pad(k + 1) + '<small>/ ' + pad(N) + '</small>';
+    prog.style.width = ((k + 1) / N * 100) + '%';
+    if (!reduz) cs.forEach(c => { const r = c.getBoundingClientRect(); const meio = (r.left + r.width / 2 - innerWidth / 2) / innerWidth; c.style.setProperty('--px', (-meio * 6) + '%'); });
+  };
+  const vai = k => { const c = cs[Math.max(0, Math.min(N - 1, k))]; t.scrollTo({ left: c.offsetLeft - parseFloat(getComputedStyle(t).paddingLeft) }); };
+  document.getElementById('i-ant').onclick = () => vai(atual() - 1);
+  document.getElementById('i-prox').onclick = () => vai(atual() + 1);
+  t.addEventListener('scroll', () => requestAnimationFrame(pinta), { passive: true });
+  addEventListener('resize', pinta); pinta();
+})();
+</script>
+</body>
+</html>
