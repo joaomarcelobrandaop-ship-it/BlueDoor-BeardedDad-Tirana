@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Theth: Instagram-style options</title>
+<!-- Página de TESTE (25/11/2026): três jeitos "estilo Instagram" de mostrar as fotos
+     do Theth. Sem curtidas nem comentários inventados (regra 2). Some depois da escolha. -->
+<style>
+@font-face{font-family:Archivo;src:url(../fontes/archivo-400-900.woff2) format('woff2');font-weight:400 900;font-display:swap}
+@font-face{font-family:'Martian Mono';src:url(../fontes/martian-mono-400-800.woff2) format('woff2');font-weight:400 800;font-display:swap}
+:root{--amarelo:#F2C744;--jardim:#1E2A20;--creme:#ECE6D6;--cinza:#BFC0AC;--anel:conic-gradient(#F2C744,#E8743B,#0A4FD1,#F2C744)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--jardim);color:var(--creme);font:400 17px/1.6 Archivo,system-ui,sans-serif;overflow-x:clip}
+.etiqueta{position:sticky;top:0;z-index:20;background:var(--amarelo);color:#17181A;font:800 15px/1.3 'Martian Mono',monospace;padding:12px 20px}
+section{padding:48px 20px 72px;border-bottom:6px solid #0d130e}
+.in{max-width:1240px;margin:0 auto}
+.lado{display:grid;gap:32px;align-items:center}
+@media(min-width:900px){.lado{grid-template-columns:1fr 420px}}
+h2{font:900 clamp(30px,4vw,48px)/1.05 Archivo,sans-serif;font-variation-settings:"wdth" 112;margin:0 0 8px}
+.nota{color:var(--cinza);margin:0 0 20px;max-width:56ch}
+img{display:block}
+button{font:inherit;cursor:pointer}
+.btn{display:inline-flex;align-items:center;min-height:52px;padding:0 24px;border-radius:4px;background:var(--amarelo);color:#17181A;font:800 17px/1.2 Archivo;text-decoration:none;box-shadow:0 4px 0 rgba(0,0,0,.35);border:0}
+
+/* ---------- stories (usado na D e na E) */
+.story{position:relative;aspect-ratio:9/16;width:100%;max-width:420px;margin:0 auto;border-radius:22px;overflow:hidden;background:#000;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.story img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.story::before{content:"";position:absolute;inset:0 0 auto;height:120px;background:linear-gradient(rgba(0,0,0,.55),transparent);z-index:1;pointer-events:none}
+.barras{position:absolute;top:12px;left:12px;right:12px;display:flex;gap:4px;z-index:2}
+.barras i{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.35);overflow:hidden}
+.barras i b{display:block;height:100%;width:0;background:#fff}
+.quem{position:absolute;top:26px;left:14px;right:14px;z-index:2;display:flex;align-items:center;gap:10px;color:#fff;font-weight:700;font-size:15px}
+.quem .av{width:34px;height:34px;border-radius:50%;padding:2px;background:var(--anel)}
+.quem .av img{position:static;width:100%;height:100%;border-radius:50%;border:2px solid #000;object-fit:cover}
+.quem small{font-weight:400;opacity:.8}
+.toque{position:absolute;inset:0;z-index:3;display:flex}
+.toque button{flex:1;border:0;background:transparent}
+.story .legenda{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:60px 16px 18px;background:linear-gradient(transparent,rgba(0,0,0,.7));color:#fff;font-weight:700}
+.dica-toque{font:600 13px/1.3 'Martian Mono',monospace;color:var(--cinza);text-align:center;margin:12px 0 0}
+
+/* ---------- E · destaques em bolinha */
+.destaques{display:flex;gap:18px;overflow-x:auto;padding:6px 2px 12px}
+.dest{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:8px;border:0;background:none;color:var(--creme);font-weight:700;font-size:14px;width:96px}
+.dest .anel{width:88px;height:88px;border-radius:50%;padding:3px;background:var(--anel);transition:transform 160ms cubic-bezier(.23,1,.32,1)}
+.dest .anel img{width:100%;height:100%;border-radius:50%;border:3px solid var(--jardim);object-fit:cover}
+.dest:active .anel{transform:scale(.94)}
+.dest:focus-visible{outline:3px solid #fff;outline-offset:4px;border-radius:12px}
+dialog{border:0;padding:0;background:rgba(5,6,5,.97);width:100vw;height:100vh;max-width:none;max-height:none}
+dialog::backdrop{background:#000}
+.dlg{height:100%;display:flex;align-items:center;justify-content:center;padding:16px}
+.dlg .story{height:min(92vh,860px);width:auto;max-width:92vw}
+.fechar{position:absolute;top:14px;right:14px;z-index:5;width:46px;height:46px;border:0;border-radius:50%;background:#fff;color:#17181A;font:900 22px/1 Archivo}
+
+/* ---------- F · grade de perfil + post com carrossel */
+.perfil{max-width:620px}
+.cab{display:flex;align-items:center;gap:18px;margin-bottom:18px}
+.cab .av{width:84px;height:84px;border-radius:50%;padding:3px;background:var(--anel);flex:none}
+.cab .av img{width:100%;height:100%;border-radius:50%;border:3px solid var(--jardim);object-fit:cover}
+.cab b{font:900 22px/1.1 Archivo;display:block}
+.cab span{color:var(--cinza);font-size:15px}
+.grade3{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.grade3 button{padding:0;border:0;aspect-ratio:1;overflow:hidden;position:relative;background:#000}
+.grade3 img{width:100%;height:100%;object-fit:cover;transition:opacity 160ms}
+@media(hover:hover){.grade3 button:hover img{opacity:.8}}
+.grade3 .multi::after{content:"";position:absolute;top:8px;right:8px;width:16px;height:16px;border:2px solid #fff;border-radius:3px;box-shadow:3px -3px 0 -1px rgba(0,0,0,.4),3px -3px 0 1px #fff}
+.post{background:#000;border-radius:14px;overflow:hidden;width:min(560px,94vw,calc(70vh * .8))}
+.post-cab{display:flex;align-items:center;gap:10px;padding:12px 14px;color:#fff;font-weight:700;font-size:15px}
+.post-cab .av{width:32px;height:32px;border-radius:50%;padding:2px;background:var(--anel)}
+.post-cab .av img{width:100%;height:100%;border-radius:50%;border:2px solid #000;object-fit:cover}
+.post-trilho{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.post-trilho::-webkit-scrollbar{display:none}
+.post-trilho img{flex:0 0 100%;width:100%;min-width:0;height:auto;aspect-ratio:4/5;object-fit:cover;scroll-snap-align:center}
+.post-pontos{display:flex;gap:5px;justify-content:center;padding:12px}
+.post-pontos span{width:6px;height:6px;border-radius:50%;background:#555}
+.post-pontos span.on{background:var(--amarelo)}
+.post p{color:#ddd;margin:0;padding:0 14px 16px;font-size:15px}
+.post-dlg .dlg{flex-direction:column}
+@media(prefers-reduced-motion:reduce){.dest .anel,.grade3 img{transition:none}}
+</style>
+</head>
+<body>
+
+<div class="etiqueta">OPÇÃO D — Story na página (passa sozinho, toque para avançar)</div>
+<section><div class="in lado">
+  <div>
+    <h2>On the trip to Theth</h2>
+    <p class="nota">Como um story do Instagram, já aberto na página: as barrinhas em cima mostram o andamento. Toque na direita para avançar, na esquerda para voltar, segure para pausar.</p>
+    <a class="btn" href="#">Ask about the Alps trip</a>
+  </div>
+  <div><div class="story" id="story-d"></div><p class="dica-toque">tap → next · tap ← back · hold to pause</p></div>
+</div></section>
+
+<div class="etiqueta">OPÇÃO E — Destaques em bolinha (abre o story em tela cheia)</div>
+<section><div class="in">
+  <h2>On the trip to Theth</h2>
+  <p class="nota">Como os destaques do perfil do Instagram: cada bolinha é um momento da viagem. Tocou, abre o story em tela cheia.</p>
+  <div class="destaques" id="destaques"></div>
+</div></section>
+<dialog id="dlg-e" aria-label="Story"><button class="fechar" type="button" aria-label="Close">×</button><div class="dlg"><div class="story" id="story-e"></div></div></dialog>
+
+<div class="etiqueta">OPÇÃO F — Grade de perfil (abre o post com carrossel)</div>
+<section><div class="in">
+  <h2>On the trip to Theth</h2>
+  <p class="nota">Como o perfil do Instagram: grade de quadradinhos. Tocou, abre o post; arraste para o lado para ver as outras fotos daquele momento.</p>
+  <div class="perfil">
+    <div class="cab"><span class="av"><img src="../img/th-cachoeira-400.webp" alt=""></span><div><b>Three days in the Albanian Alps</b><span>Lake Koman · Valbona · Theth</span></div></div>
+    <div class="grade3" id="grade3"></div>
+  </div>
+</div></section>
+<dialog id="dlg-f" class="post-dlg" aria-label="Post"><button class="fechar" type="button" aria-label="Close">×</button><div class="dlg"><div class="post" id="post"></div></div></dialog>
+
+<script>
+const src = n => '../img/' + n + '.webp';
+const reduz = matchMedia('(prefers-reduced-motion: reduce)').matches;
+// grupos = os "momentos" da viagem (cada um vira um destaque / um post)
+const G = [
+  { t: 'Waterfall', capa: 'th-cachoeira-400', f: [['th-cachoeira-960', 'The Grunas waterfall'], ['th-trilha-1125', 'On the trail to the waterfall']] },
+  { t: 'Blue Eye', capa: 'th-olho-400', f: [['th-olho-960', 'The Blue Eye of Theth'], ['th-rio-ponte-960', 'The river under the trees']] },
+  { t: 'Village', capa: 'th-igreja-400', f: [['th-igreja-600', 'The stone church of Theth'], ['th-ovelhas-960', 'Sheep in the valley'], ['th-capa-1125', 'A stone house by the river']] },
+  { t: 'Peaks', capa: 'th-casal-400', f: [['th-casal-960', 'A break in front of the peaks'], ['th-pico-960', 'The rock walls of the Alps']] },
+  { t: 'The road', capa: 'th-van-400', f: [['th-van-960', 'Across the riverbed to Valbona']] }
+];
+const TODAS = G.flatMap(g => g.f);
+
+/* motor de story: barras, toque, segurar para pausar */
+function story(el, fotos, aoFim) {
+  el.innerHTML = '<div class="barras">' + fotos.map(() => '<i><b></b></i>').join('') + '</div>'
+    + '<div class="quem"><span class="av"><img src="' + src('th-cachoeira-400') + '" alt=""></span><span>Lost in Albania <small>· Theth</small></span></div>'
+    + '<img alt=""><div class="legenda"></div><div class="toque"><button type="button" aria-label="Previous photo"></button><button type="button" aria-label="Next photo"></button></div>';
+  const img = el.querySelector(':scope > img'), leg = el.querySelector('.legenda'), bs = [...el.querySelectorAll('.barras b')];
+  let i = 0, t0 = 0, gasto = 0, pausa = false, raf, DUR = 5000, vivo = true;
+  const mostra = k => {
+    if (k >= fotos.length) { if (aoFim) { aoFim(); return; } k = 0; }
+    i = Math.max(0, k); gasto = 0; t0 = performance.now();
+    img.src = src(fotos[i][0]); img.alt = fotos[i][1]; leg.textContent = fotos[i][1];
+    bs.forEach((b, j) => b.style.width = j < i ? '100%' : '0');
+  };
+  const passo = now => {
+    if (!vivo) return;
+    if (!pausa && !reduz && !document.hidden) {
+      const p = Math.min(1, (gasto + now - t0) / DUR);
+      bs[i].style.width = (p * 100) + '%';
+      if (p >= 1) mostra(i + 1);
+    } else t0 = now;
+    raf = requestAnimationFrame(passo);
+  };
+  const [ant, prox] = el.querySelectorAll('.toque button');
+  ant.onclick = () => mostra(i - 1); prox.onclick = () => mostra(i + 1);
+  const segura = v => () => { if (v) { gasto += performance.now() - t0; pausa = true; } else { pausa = false; t0 = performance.now(); } };
+  el.addEventListener('pointerdown', segura(true)); el.addEventListener('pointerup', segura(false)); el.addEventListener('pointerleave', segura(false));
+  mostra(0); if (reduz) bs[0].style.width = '100%'; raf = requestAnimationFrame(passo);
+  return () => { vivo = false; cancelAnimationFrame(raf); };
+}
+
+/* D · story na página, todas as fotos em loop */
+story(document.getElementById('story-d'), TODAS);
+
+/* E · destaques */
+(() => {
+  const box = document.getElementById('destaques'), dlg = document.getElementById('dlg-e'), el = document.getElementById('story-e');
+  let para = null;
+  G.forEach((g, k) => box.insertAdjacentHTML('beforeend', '<button class="dest" type="button"><span class="anel"><img src="' + src(g.capa) + '" alt=""></span>' + g.t + '</button>'));
+  const abre = k => { if (para) para(); para = story(el, G[k].f, () => { if (k + 1 < G.length) abre(k + 1); else dlg.close(); }); };
+  [...box.children].forEach((b, k) => b.onclick = () => { dlg.showModal(); abre(k); });
+  dlg.querySelector('.fechar').onclick = () => dlg.close();
+  dlg.addEventListener('close', () => { if (para) para(); para = null; });
+})();
+
+/* F · grade de perfil + post com carrossel */
+(() => {
+  const g = document.getElementById('grade3'), dlg = document.getElementById('dlg-f'), post = document.getElementById('post');
+  const posts = [...G, { t: 'Theth', capa: 'th-rio-ponte-400', f: [['th-rio-ponte-960', 'The river of Theth']] }];
+  posts.forEach(p => g.insertAdjacentHTML('beforeend', '<button type="button" class="' + (p.f.length > 1 ? 'multi' : '') + '" aria-label="Open post: ' + p.t + '"><img src="' + src(p.capa) + '" alt="" loading="lazy"></button>'));
+  [...g.children].forEach((b, k) => b.onclick = () => {
+    const p = posts[k];
+    post.innerHTML = '<div class="post-cab"><span class="av"><img src="' + src('th-cachoeira-400') + '" alt=""></span>Lost in Albania · ' + p.t + '</div>'
+      + '<div class="post-trilho">' + p.f.map(f => '<img src="' + src(f[0]) + '" alt="' + f[1] + '">').join('') + '</div>'
+      + '<div class="post-pontos">' + p.f.map((_, j) => '<span' + (j ? '' : ' class="on"') + '></span>').join('') + '</div>'
+      + '<p><b>' + p.t + '.</b> ' + p.f.map(f => f[1]).join(' · ') + '</p>';
+    const tr = post.querySelector('.post-trilho'), pts = [...post.querySelectorAll('.post-pontos span')];
+    tr.addEventListener('scroll', () => { const j = Math.round(tr.scrollLeft / tr.clientWidth); pts.forEach((s, x) => s.classList.toggle('on', x === j)); });
+    dlg.showModal();
+  });
+  dlg.querySelector('.fechar').onclick = () => dlg.close();
+  dlg.addEventListener('click', e => { if (e.target === dlg || e.target.classList.contains('dlg')) dlg.close(); });
+})();
+</script>
+</body>
+</html>
