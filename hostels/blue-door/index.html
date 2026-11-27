@@ -936,10 +936,13 @@ const CONFIG = {
   // deles ainda não está montado: as duas contas estão em "TestMode: True",
   // sem quartos ativos (ActiveRooms vazio) e sem pagamento configurado, e a
   // página abre EM BRANCO (erro no JS deles: BookingEngineAcceptPayments
-  // undefined). Desligado até o dono configurar; aí é só colar de volta:
-  //   bd: "https://new-booking.frontdeskmaster.com/?hostelId=pMFK9av%2B2X7ppLgejtMYK2xc89u4cHCY"
-  //   bb: "https://new-booking.frontdeskmaster.com/?hostelId=bTUqfzmhM1JEJQt6zX3i0k117Kka5hV2"
-  reservas: { bd: "", bb: "" }
+  // undefined). LIGADO mesmo assim, decisão do João (27/11/2026): "esse site
+  // não tá no ar, não tem por que levar ao WhatsApp". Passa a funcionar
+  // sozinho quando o dono configurar o motor no painel deles.
+  reservas: {
+    bd: "https://new-booking.frontdeskmaster.com/?hostelId=pMFK9av%2B2X7ppLgejtMYK2xc89u4cHCY",
+    bb: "https://new-booking.frontdeskmaster.com/?hostelId=bTUqfzmhM1JEJQt6zX3i0k117Kka5hV2"
+  }
 };
 
 /* ============================================================ INTEGRACOES
