@@ -604,6 +604,14 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 /* sem casa escolhida com o motor ligado: o botão pede a casa (27/11/2026) */
 .btn-painel[aria-disabled]{opacity:.55;cursor:default}
 
+/* parceiros sem foto (bares, 27/11/2026): cartão de cor, sem o véu da foto */
+.parceiros-v{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.pv-cor{min-height:300px}
+.pv-cor::after{display:none}
+.pv-libraria{background:#0A4FD1}
+.pv-juliette{background:#7A1F2B}
+.pv-cor .pv-txt > span:not(.pv-selo){color:#fff}
+
 </style>
 
 <title>Buses from Tirana · Stations and departure times</title>
@@ -825,7 +833,7 @@ const CONFIG = {
   guias: { bovilla: "", alpes: "/guias/alps-valbona-theth.pdf" },
   // VANTAGEM DO HÓSPEDE em cada parceiro (opção 3 de "Our partners", 25/11/2026).
   // Ex.: lost: "Guests: 10% off". Vazio = o selo some. Só com o "sim" do dono (regra 2).
-  vantagensParceiros: { lost: "", pubcrawl: "" },
+  vantagensParceiros: { lost: "", libraria: "", juliette: "" },
   // cada botão leva a mensagem da sua seção (regra 5)
   mensagens: {
     topo: "Hi! I found your website and I have a question about your hostels in Tirana.",
