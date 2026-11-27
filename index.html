@@ -612,6 +612,16 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 .pv-juliette{background:#7A1F2B}
 .pv-cor .pv-txt > span:not(.pv-selo){color:#fff}
 
+/* What's on no celular (27/11/2026, "super zoom"): a seção tem ~1.500 px de
+   altura e a foto é deitada, então de fundo ela era ampliada ~4x. No celular
+   a foto vira uma faixa 4:3 no topo, inteira, e a agenda vem embaixo */
+@media(max-width:759px){
+  .ag-fundo{position:relative;inset:auto;z-index:0;aspect-ratio:4/3;width:100%}
+  .ag-fundo::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(30,42,32,0) 55%,#1E2A20 100%)}
+  #semana::before{display:none}
+  #semana .palavra-in{padding-top:8px}
+}
+
 </style>
 
 <title>Tirana Hostels · Blue Door and The Bearded Dad, hostels in Tirana, Albania</title>
