@@ -601,6 +601,9 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 .h-progresso b{display:block;height:100%;width:0;background:var(--amarelo)}
 @media(prefers-reduced-motion:reduce){.h-painel,.h-painel img,.h-painel .leg{transition:none}}
 
+/* sem casa escolhida com o motor ligado: o botão pede a casa (27/11/2026) */
+.btn-painel[aria-disabled]{opacity:.55;cursor:default}
+
 </style>
 
 <title>Tirana Hostels · Blue Door and The Bearded Dad, hostels in Tirana, Albania</title>
@@ -1085,8 +1088,10 @@ document.querySelectorAll('[data-reserva]').forEach(a => {
   if (!link) return;
   a.href = link;
   a.hidden = false;
+  // 27/11/2026 (João): com o motor ligado, reserva é só pelo motor. O
+  // "Ask ... for a bed" some; o WhatsApp fica para dúvidas (botão flutuante)
   const zap = a.parentElement.querySelector('[data-msg]');
-  if (zap) zap.classList.add('btn-s');
+  if (zap) zap.hidden = true;
 });
 document.querySelectorAll('[data-msg]').forEach(a => { a.href = wa(CONFIG.mensagens[a.dataset.msg]); });
 /* táxi e guias em PDF: só aparecem quando o CONFIG tiver o dado */
@@ -1215,7 +1220,11 @@ function montarPedido() {
   // casa com motor de reservas ligado (CONFIG.reservas): abre o calendário
   // dela com as datas; sem motor, ou "qualquer casa", segue pelo WhatsApp
   const link = motor(form.casa.value, { arrival: form.chegada.value, nights: noites > 0 ? noites : '', guests: pessoas > 0 ? pessoas : '' });
-  pedir.querySelector('span').textContent = link ? 'See free beds and book' : 'Book now';
+  // motor ligado nas duas casas e nenhuma escolhida: o botão pede a casa
+  // em vez de cair no WhatsApp (João, 27/11/2026)
+  const semCasa = motoresLigados && !form.casa.value;
+  pedir.toggleAttribute('aria-disabled', semCasa);
+  pedir.querySelector('span').textContent = semCasa ? 'Pick a hostel above' : (link ? 'See free beds and book' : 'Book now');
   // os quartos da casa escolhida aparecem no painel (pedido do dono, 30/10/2026)
   document.querySelectorAll('[data-painel-casa]').forEach(b => { b.hidden = b.dataset.painelCasa !== form.casa.value; });
   const fonte = form.querySelector('[data-preco-fonte]');
@@ -1227,8 +1236,26 @@ function montarPedido() {
     const l = motor(a.dataset.reservar, { arrival: form.chegada.value, nights: noites > 0 ? noites : '', guests: pessoas > 0 ? pessoas : '' });
     a.href = l || wa(a.dataset.quartoMsg.replace("I'm arriving on … for … nights.", datas));
   });
-  pedirNota.textContent = link ? 'This opens the booking page of the house with your dates already filled in.' : 'This opens WhatsApp with your message already written. Nothing is saved on this site.';
+  pedirNota.textContent = semCasa ? 'Each hostel has its own booking page: choose one and the button opens it with your dates.' : link ? 'This opens the booking page of the hostel with your dates already filled in.' : 'This opens WhatsApp with your message already written. Nothing is saved on this site.';
   pedir.href = link || wa(partes.length ? abre + ' ' + partes.join(', ') + '?' : abre + ' for these dates? ');
+}
+/* motor nas duas casas: sai a opção "qualquer casa" (cada motor é de uma
+   casa só) e o "Send us your dates" do fim da página leva ao formulário */
+const motoresLigados = !!(motor('bd') && motor('bb'));
+if (motoresLigados) {
+  const q = form.querySelector('.qualquer');
+  q.querySelector('input').checked = false;
+  q.hidden = true;
+  pedir.addEventListener('click', e => {
+    if (form.casa.value) return;
+    e.preventDefault();
+    form.querySelector('input[name=casa]').focus();
+  });
+  document.querySelectorAll('[data-msg="datas"]').forEach(a => {
+    a.href = '#reserva'; a.removeAttribute('target'); a.removeAttribute('rel');
+    a.querySelector('span').textContent = 'Pick your dates and book';
+    a.addEventListener('click', () => setTimeout(() => form.focus(), 0));
+  });
 }
 const hoje = new Date();
 form.chegada.min = [hoje.getFullYear(), String(hoje.getMonth() + 1).padStart(2, '0'), String(hoje.getDate()).padStart(2, '0')].join('-');

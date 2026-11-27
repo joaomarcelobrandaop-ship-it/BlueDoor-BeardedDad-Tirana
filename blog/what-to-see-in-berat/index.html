@@ -601,6 +601,9 @@ h2{font-size:clamp(48px,7.4vw,104px)}
 .h-progresso b{display:block;height:100%;width:0;background:var(--amarelo)}
 @media(prefers-reduced-motion:reduce){.h-painel,.h-painel img,.h-painel .leg{transition:none}}
 
+/* sem casa escolhida com o motor ligado: o botão pede a casa (27/11/2026) */
+.btn-painel[aria-disabled]{opacity:.55;cursor:default}
+
 </style>
 
 <title>What to see in Berat, the city of a thousand windows · Tirana Hostels</title>
@@ -843,8 +846,10 @@ document.querySelectorAll('[data-reserva]').forEach(a => {
   if (!link) return;
   a.href = link;
   a.hidden = false;
+  // 27/11/2026 (João): com o motor ligado, reserva é só pelo motor. O
+  // "Ask ... for a bed" some; o WhatsApp fica para dúvidas (botão flutuante)
   const zap = a.parentElement.querySelector('[data-msg]');
-  if (zap) zap.classList.add('btn-s');
+  if (zap) zap.hidden = true;
 });
 document.querySelectorAll('[data-msg]').forEach(a => { a.href = wa(CONFIG.mensagens[a.dataset.msg]); });
 /* táxi e guias em PDF: só aparecem quando o CONFIG tiver o dado */
