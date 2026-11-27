@@ -1224,6 +1224,7 @@ function montarPedido() {
   // em vez de cair no WhatsApp (João, 27/11/2026)
   const semCasa = motoresLigados && !form.casa.value;
   pedir.toggleAttribute('aria-disabled', semCasa);
+  const icone = pedir.querySelector('svg'); if (icone) icone.style.display = (semCasa || link) ? 'none' : '';  // ícone do WhatsApp só quando vai ao WhatsApp
   pedir.querySelector('span').textContent = semCasa ? 'Pick a hostel above' : (link ? 'See free beds and book' : 'Book now');
   // os quartos da casa escolhida aparecem no painel (pedido do dono, 30/10/2026)
   document.querySelectorAll('[data-painel-casa]').forEach(b => { b.hidden = b.dataset.painelCasa !== form.casa.value; });
