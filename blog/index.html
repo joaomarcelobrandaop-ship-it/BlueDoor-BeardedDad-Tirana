@@ -814,12 +814,14 @@ const CONFIG = {
   // abre o calendário deles já com chegada, noites e pessoas, e cada página
   // de casa ganha o botão "Book now". ANTES de preencher: política de
   // privacidade no site (regra 8: o motor recolhe nome, e-mail e cartão).
-  // 27/11/2026: links do dono, via Alejandro. Conferidos: os dois abrem o
-  // calendário da casa (um id errado devolve página vazia de 4 KB).
-  reservas: {
-    bd: "https://new-booking.frontdeskmaster.com/?hostelId=pMFK9av%2B2X7ppLgejtMYK2xc89u4cHCY",
-    bb: "https://new-booking.frontdeskmaster.com/?hostelId=bTUqfzmhM1JEJQt6zX3i0k117Kka5hV2"
-  }
+  // 27/11/2026: links do dono, via Alejandro. Os ids existem, MAS o motor
+  // deles ainda não está montado: as duas contas estão em "TestMode: True",
+  // sem quartos ativos (ActiveRooms vazio) e sem pagamento configurado, e a
+  // página abre EM BRANCO (erro no JS deles: BookingEngineAcceptPayments
+  // undefined). Desligado até o dono configurar; aí é só colar de volta:
+  //   bd: "https://new-booking.frontdeskmaster.com/?hostelId=pMFK9av%2B2X7ppLgejtMYK2xc89u4cHCY"
+  //   bb: "https://new-booking.frontdeskmaster.com/?hostelId=bTUqfzmhM1JEJQt6zX3i0k117Kka5hV2"
+  reservas: { bd: "", bb: "" }
 };
 
 /* ============================================================ INTEGRACOES
